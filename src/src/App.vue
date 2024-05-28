@@ -1,16 +1,14 @@
 <template>
-  <Background/>
+    <InputForm />
 </template>
 
 <script>
-import Background from './components/Background.vue'
+import InputForm from './components/InputForm.vue'
 
 export default {
   name: 'App',
-  components: {Background},
-
+  components: { InputForm }
 }
-
 </script>
 
 <style>
@@ -21,6 +19,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+body {
+  margin : 0;
+  background: #1b2d36;
 }
 
 </style>
