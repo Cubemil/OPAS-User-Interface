@@ -8,7 +8,7 @@
 
             <label>* Aktenzeichen:</label>
             <input type="text" required v-model="aktenzeichen" placeholder="Bitte eingeben">
-            
+
             <br><p>Angaben zur Person:</p>
 
             <label>Anrede:</label>
@@ -59,21 +59,64 @@
 </template>
 
 <script>
-
 export default {
     data() {
         return {
             aktenzeichen: '',
             anrede: '',
-        }
+            vorname: '',
+            nachname: '',
+            titel: '',
+            geburtsdatum: '',
+            plz: '',
+            wohnort: '',
+            str: '',
+            hausnummer: '',
+            versicherungsnummer: '',
+            krankenversicherungsname: '',
+            vertragsunternehmensnummer: '',
+            beschreibung: ''
+        };
     },
     methods: {
-        handleSubmit() {
-            // validate password
-            
+        async handleSubmit() {
+            const formData = {
+                aktenzeichen: this.aktenzeichen,
+                anrede: this.anrede,
+                vorname: this.vorname,
+                nachname: this.nachname,
+                titel: this.titel,
+                geburtsdatum: this.geburtsdatum,
+                plz: this.plz,
+                wohnort: this.wohnort,
+                str: this.str,
+                hausnummer: this.hausnummer,
+                versicherungsnummer: this.versicherungsnummer,
+                krankenversicherungsname: this.krankenversicherungsname,
+                vertragsunternehmensnummer: this.vertragsunternehmensnummer,
+                beschreibung: this.beschreibung
+            };
+
+            try {
+                const response = await fetch('http://localhost:5000/api/offense', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                return await response.json();
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
         }
     }
-}
+};
 </script>
 
 <style>
