@@ -53,6 +53,7 @@
 
             <div class="submit">
                 <button id="submit_button">Absenden</button>
+                <p id="submit_area"></p>
             </div>
         </form>
     </div>
@@ -110,7 +111,12 @@ export default {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
 
-                return await response.json();
+                // writes response at the end of the form
+                const result = await response.json();
+                const submitArea = document.getElementById('submit_area');
+                submitArea.textContent += result.message;
+
+                return result;
             } catch (error) {
                 alert('Error: ' + error.message);
             }
