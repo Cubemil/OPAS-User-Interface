@@ -1,13 +1,13 @@
 <template>
-    <InputForm />
+  <Home/>
 </template>
 
 <script>
-import InputForm from './components/InputForm.vue'
+import Home from '@/components/Home.vue'
 
 export default {
   name: 'App',
-  components: { InputForm }
+  components: {Home}
 }
 </script>
 
@@ -16,13 +16,15 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-body {
-  margin : 0;
-  background: #1b2d36;
+  color: #0a1c2c;
+  /* 100vh represent 100% of viewport's height / viewable screen's height -> content can now occupy entire screen */
+  min-height: 100vh;
+  background: #f6f7fa;
 }
 
+/* removing default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+}
 </style>

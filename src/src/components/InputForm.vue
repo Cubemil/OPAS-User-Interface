@@ -128,9 +128,9 @@ export default {
 <style>
 form {
     max-width: 420px;
-    margin: 30px auto;
     background: white;
     text-align: left;
+    margin: auto;
     padding: 40px;
     border-radius: 10px;
 }
