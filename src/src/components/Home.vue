@@ -6,8 +6,14 @@
   <div class="body">
     <div class="menu-panel">
       <ul class="menu">
-        <li><img class="arrow-icon" src="@/assets/arrow_right.png" alt="Fall melden"/><a>Fall melden</a></li>
-        <li><img class="arrow-icon" src="@/assets/arrow_right.png" alt="Fallübersicht"/><a>Fallübersicht</a></li>
+        <li class="Fall_melden">
+          <div class="arrow-icon"/>
+          Fall melden
+        </li>
+        <li class="Fallübersicht">
+          <div class="arrow-icon"/>
+          Fallübersicht
+        </li>
       </ul>
     </div>
   </div>
@@ -48,6 +54,7 @@ export default {
   list-style: none;
   font-size: 18px;
   font-weight: bold;
+  display: inline-block;
 }
 
 .menu li {
@@ -59,12 +66,24 @@ export default {
 }
 
 .arrow-icon {
-  height: 26px;
-  width: auto;
-  position: relative;
-  top: 6px;
-  right: 10px;
   cursor: pointer;
+  background-image: url("@/assets/arrow_right.png");
+  background-size: 28px;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+  top: 3px;
+  right: 10px;
+}
+
+li:hover .arrow-icon {
+  background-image: url("@/assets/arrow_right_hovered.png");
+}
+
+li:hover {
+  color: #e2b904;
 }
 
 @media only screen and (max-width: 1280px) {

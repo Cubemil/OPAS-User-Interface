@@ -2,7 +2,10 @@
   <div class="navbar">
     <img class="logo" src="@/assets/logo.png" alt="Logo"/>
     <ul class="nav">
-      <li><img class="account-icon" src="@/assets/account.png" alt="Account"/>Anmelden</li>
+      <li>
+        <div class="account-icon"/>
+        Anmelden
+      </li>
     </ul>
   </div>
 </template>
@@ -42,11 +45,19 @@
 }
 
 .account-icon {
-  height: 32px;
-  width: auto;
+  cursor: pointer;
+  background-image: url("@/assets/account.png");
+  background-size: 28px;
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
   position: relative;
-  top: 7px;
-  right: 7px;
+  right: 4px;
+}
+
+li:hover .account-icon {
+  background-image: url("@/assets/account_hovered.png");
 }
 
 @media only screen and (max-width: 1280px) {
