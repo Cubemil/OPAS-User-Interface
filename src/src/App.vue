@@ -17,13 +17,10 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #0a1c2c;
-  /* 100vh represent 100% of viewport's height / viewable screen's height -> content can now occupy entire screen */
-  min-height: 100vh;
   background: #f6f7fa;
 }
 
-/* removing default margin and padding */
-* {
+body {
   margin: 0;
   padding: 0;
 }
