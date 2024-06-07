@@ -61,7 +61,7 @@ export default {
   padding-top: 10px;
 }
 
-.menu li a {
+.menu li {
   cursor: pointer;
 }
 
