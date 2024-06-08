@@ -18,8 +18,7 @@
         </ul>
       </div>
     </div>
-  </div>
-  <div class="footer">
+    <div class="footer">
     <ul class="rights-row">
       <li>© OPUS 2024</li>
       <li>Impressum</li>
@@ -28,6 +27,8 @@
       <li>Nutzungsbedingungen</li>
     </ul>
   </div>
+  </div>
+  
 </template>
 
 <script>
