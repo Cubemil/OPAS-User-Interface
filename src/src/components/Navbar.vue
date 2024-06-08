@@ -3,7 +3,7 @@
     <img class="logo" src="@/assets/logo.png" alt="Logo"/>
     <ul class="nav">
       <li>
-        <div class="account-icon"/>
+        <div class="account-icon"></div>
         Anmelden
       </li>
     </ul>
