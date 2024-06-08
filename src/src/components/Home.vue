@@ -1,20 +1,22 @@
 <template>
-  <div class="background"></div>
-  <div class="header">
-    <Navbar/>
-  </div>
-  <div class="body">
-    <div class="menu-panel">
-      <ul class="menu">
-        <li class="Fall_melden">
-          <div class="arrow-icon"/>
-          Fall melden
-        </li>
-        <li class="Fallübersicht">
-          <div class="arrow-icon"/>
-          Fallübersicht
-        </li>
-      </ul>
+  <div>
+    <div class="background"></div>
+    <div class="header">
+      <Navbar/>
+    </div>
+    <div class="body">
+      <div class="menu-panel">
+        <ul class="menu">
+          <li id="report-case">
+            <div id="arrow-icon"></div>
+            Fall melden
+          </li>
+          <li id="case-overview">
+            <div id="arrow-icon"></div>
+            Fallübersicht
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -59,13 +61,10 @@ export default {
 
 .menu li {
   padding-top: 10px;
-}
-
-.menu li {
   cursor: pointer;
 }
 
-.arrow-icon {
+#arrow-icon {
   cursor: pointer;
   background-image: url("@/assets/arrow_right.png");
   background-size: 28px;
@@ -78,7 +77,7 @@ export default {
   right: 10px;
 }
 
-li:hover .arrow-icon {
+li:hover #arrow-icon {
   background-image: url("@/assets/arrow_right_hovered.png");
 }
 
