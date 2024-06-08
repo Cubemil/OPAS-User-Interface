@@ -2,7 +2,7 @@
   <div>
     <div class="background"></div>
     <div class="header">
-      <Navbar/>
+      <Navbar />
     </div>
     <div class="body">
       <div class="menu-panel">
@@ -19,25 +19,24 @@
       </div>
     </div>
     <div class="footer">
-    <ul class="rights-row">
-      <li>© OPUS 2024</li>
-      <li>Impressum</li>
-      <li>Datenschutzerklärung</li>
-      <li>Erklärung zur digitalen Barrierefreiheit</li>
-      <li>Nutzungsbedingungen</li>
-    </ul>
-  </div>
-  </div>
-  
+      <ul class="rights-row">
+        <li>© OPUS 2024</li>
+        <li>Impressum</li>
+        <li>Datenschutzerklärung</li>
+        <li>Erklärung zur digitalen Barrierefreiheit</li>
+        <li>Nutzungsbedingungen</li>
+      </ul>
+    </div>
+  </div> 
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue'
+import Navbar from "@/components/Navbar.vue";
 
 export default {
-  name: 'Home',
-  components: {Navbar}
-}
+  name: "Home",
+  components: { Navbar },
+};
 </script>
 
 <style>
@@ -45,7 +44,7 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url('@/assets/background.JPG');
+  background-image: url("@/assets/background.JPG");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -124,15 +123,13 @@ li:hover {
 /*
 
 - change list style from none to arrow background
+- change hover effect from now to unterlined in yellow
 
 */
 
 @media only screen and (max-width: 1280px) {
-
 }
 
 @media only screen and (max-width: 480px) {
-
 }
-
 </style>
