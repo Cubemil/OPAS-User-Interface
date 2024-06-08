@@ -17,6 +17,15 @@
       </ul>
     </div>
   </div>
+  <div class="footer">
+    <ul class="rights-row">
+      <li>© OPUS 2024</li>
+      <li>Impressum</li>
+      <li>Datenschutzerklärung</li>
+      <li>Erklärung zur digitalen Barrierefreiheit</li>
+      <li>Nutzungsbedingungen</li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -30,7 +39,7 @@ export default {
 
 <style>
 .background {
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: 100%;
   background-image: url('@/assets/background.JPG');
@@ -41,17 +50,16 @@ export default {
 }
 
 .menu-panel {
-  position: fixed;
-  background: white;
+  position: absolute;
+  background: #fdfdfd;
   width: 100%;
-  height: 100%;
+  height: 430px;
   margin-top: 400px;
   box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .menu {
-  padding: 10px 40px 40px 80px;
-  list-style: none;
+  padding-left: 80px;
   font-size: 18px;
   font-weight: bold;
   display: inline-block;
@@ -59,10 +67,8 @@ export default {
 
 .menu li {
   padding-top: 10px;
-}
-
-.menu li {
   cursor: pointer;
+  list-style: none;
 }
 
 .arrow-icon {
@@ -85,6 +91,38 @@ li:hover .arrow-icon {
 li:hover {
   color: #e2b904;
 }
+
+.footer {
+  position: absolute;
+  background: #404040;
+  width: 100%;
+  min-height: 100px;
+  margin-top: 836px;
+  color: #fdfdfd;
+  box-shadow: 0 -4px 0 4px rgba(226, 185, 4, 1);
+}
+
+.footer li {
+  list-style: none;
+}
+
+.footer ul {
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.rights-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+/*
+
+- change list style from none to arrow background
+
+*/
 
 @media only screen and (max-width: 1280px) {
 

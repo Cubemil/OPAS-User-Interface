@@ -16,11 +16,10 @@
 
 <style>
 .navbar {
-  position: fixed;
-  background: white;
+  position: absolute;
+  background: #fdfdfd;
   width: 100%;
   height: 100px;
-  overflow-y: scroll;
   display: flex;
   align-items: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -39,7 +38,8 @@
 .logo {
   height: 70px;
   width: auto;
-  padding-left: 80px;
+  position: relative;
+  left: 80px;
   padding-right: 10px;
   cursor: pointer;
 }

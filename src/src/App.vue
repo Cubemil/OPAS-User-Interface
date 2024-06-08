@@ -4,15 +4,17 @@
 
 <script>
 import Home from '@/components/Home.vue'
+import InputForm from '@/components/InputForm.vue'
+import CaseOverview from '@/components/CaseOverview.vue'
 
 export default {
   name: 'App',
-  components: {Home}
+  components: {Home, InputForm, CaseOverview}
 }
 </script>
 
 <style>
-#app{
+#app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
