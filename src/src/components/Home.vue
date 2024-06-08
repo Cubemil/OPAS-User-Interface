@@ -7,9 +7,9 @@
     <div class="body">
       <div class="menu-panel">
         <ul class="menu">
-          <li id="report-case">
+          <li id="create-case">
             <div id="arrow-icon"></div>
-            Fall melden
+            Fall anlegen
           </li>
           <li id="case-overview">
             <div id="arrow-icon"></div>
