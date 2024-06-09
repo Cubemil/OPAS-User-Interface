@@ -1,15 +1,12 @@
 <template>
-  <Home/>
+  <div id="app">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import Home from '@/components/Home.vue'
-import InputForm from '@/components/InputForm.vue'
-import CaseOverview from '@/components/CaseOverview.vue'
-
 export default {
   name: 'App',
-  components: {Home, InputForm, CaseOverview}
 }
 </script>
 

@@ -8,12 +8,16 @@
       <div class="menu-panel">
         <ul class="menu">
           <li id="create-case">
-            <div id="arrow-icon"></div>
-            Fall anlegen
+            <router-link to="/input-form">
+              <div id="arrow-icon"></div>
+              Fall anlegen
+            </router-link>
           </li>
           <li id="case-overview">
-            <div id="arrow-icon"></div>
-            Fallübersicht
+            <router-link to="/case-overview">
+              <div id="arrow-icon"></div>
+              Fallübersicht
+            </router-link>
           </li>
         </ul>
       </div>
