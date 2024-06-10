@@ -8,13 +8,13 @@
       <div class="menu-panel">
         <ul class="menu">
           <li id="create-case">
-            <router-link to="/input-form">
+            <router-link to="/input-form" class="router-link">
               <div id="arrow-icon"></div>
               Fall anlegen
             </router-link>
           </li>
           <li id="case-overview">
-            <router-link to="/case-overview">
+            <router-link to="/case-overview" class="router-link">
               <div id="arrow-icon"></div>
               Fallübersicht
             </router-link>
@@ -124,6 +124,15 @@ li:hover {
   font-weight: bold;
 }
 
+.router-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.router-link:hover {
+  text-decoration: underline;
+  text-decoration-color: yellow;
+}
 /*
 
 - change list style from none to arrow background
