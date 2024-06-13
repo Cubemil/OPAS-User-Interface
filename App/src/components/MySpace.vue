@@ -1,26 +1,25 @@
 <template>
-  <div class="home">
+  <div class="my-space">
     <Navbar/>
     <img id="background" src="@/assets/landesverwaltungsamt.jpeg" alt="background">
     <div class="menu-container">
       <div class="menu">
-        <h1 id="title">Die OWi-Erfassung</h1>
-        <p id="description">Erfassen Sie jetzt eine<br/>Ordnungswidrigkeit - offiziell, sicher und schnell.</p>
-        <router-link to="/my-space" class="router-link">
-          <button id="btn">Jetzt Fall melden</button>
-        </router-link>
         <ul class="nav-list">
           <li>
-            <a id="nav-list-item">
-              <div id="arrow-icon"></div>
-              Anmelden
-            </a>
+            <router-link to="/input-form" class="router-link">
+              <a id="nav-list-item">
+                <div id="arrow-icon"></div>
+                Fall melden
+              </a>
+            </router-link>
           </li>
           <li>
-            <a id="nav-list-item">
-              <div id="arrow-icon"></div>
-              Häufige Fragen
-            </a>
+            <router-link to="/case-overview" class="router-link">
+              <a id="nav-list-item">
+                <div id="arrow-icon"></div>
+                Fallübersicht
+              </a>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -34,7 +33,7 @@ import Navbar from "@/components/default/Navbar.vue";
 import Footer from "@/components/default/Footer.vue";
 
 export default {
-  name: 'Home',
+  name: 'MySpace',
   components: {Navbar, Footer}
 }
 </script>
@@ -56,20 +55,6 @@ export default {
   height: 100%;
   width: 100%;
   z-index: -1;
-}
-
-#btn {
-  background: #404040;
-  font-size: 20px;
-  padding: 1% 3%;
-  color: #fdfdfd;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-#btn:hover {
-  background: #E8C325;
 }
 
 .nav-list {
@@ -100,20 +85,5 @@ export default {
 
 #nav-list-item:hover {
   color: #E8C325;
-}
-
-@media only screen and (max-width: 480px) {
-  #title {
-    font-size: 32px;
-  }
-
-  #description {
-    font-size: 20px;
-  }
-
-  #btn {
-    font-size: 16px;
-    padding: 4% 8%;
-  }
 }
 </style>

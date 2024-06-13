@@ -1,11 +1,7 @@
 <template>
-  <div>
-    <div class="background"></div>
-    <div class="header">
-      <Navbar/>
-    </div>
-    <br><br><br><br>
-    <div class="case-overview">
+  <div class="case-overview">
+    <Navbar/>
+    <div class="case-overview-panel">
       <h1>Fallübersicht</h1>
       <div v-if="items.length">
         <div v-for="item in items" :key="item.aktenzeichen" class="item">
@@ -18,24 +14,17 @@
         <p>Es wurden keine Fälle gefunden.</p>
       </div>
     </div>
-    <div class="footer">
-      <ul class="rights-row">
-        <li>© OPUS 2024</li>
-        <li>Impressum</li>
-        <li>Datenschutzerklärung</li>
-        <li>Erklärung zur digitalen Barrierefreiheit</li>
-        <li>Nutzungsbedingungen</li>
-      </ul>
-    </div>
+    <Footer/>
   </div>
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue';
+import Navbar from '@/components/default/Navbar.vue';
+import Footer from '@/components/default/Footer.vue';
 
 export default {
   name: 'CaseOverview',
-  components: { Navbar },
+  components: {Navbar, Footer},
   data() {
     return {
       items: []
@@ -59,18 +48,7 @@ export default {
 </script>
 
 <style>
-.background {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url('@/assets/background.JPG');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  bottom: 50px;
-}
-
-.case-overview {
+.case-overview-panel {
   position: relative;
   margin: 50px 80px 0 80px;
   padding: 20px;
@@ -102,37 +80,4 @@ export default {
 .case-overview .item p strong {
   color: #333;
 }
-
-.footer {
-  position: absolute;
-  background: #404040;
-  width: 100%;
-  min-height: 100px;
-  margin-top: 836px;
-  color: #fdfdfd;
-  box-shadow: 0 -4px 0 4px rgba(226, 185, 4, 1);
-}
-
-.footer li {
-  list-style: none;
-}
-
-.footer ul {
-  padding-left: 80px;
-  padding-right: 80px;
-}
-
-.rights-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-weight: bold;
-}
-
-@media only screen and (max-width: 1280px) {
-}
-
-@media only screen and (max-width: 480px) {
-}
-
 </style>

@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="input-form">
+    <Navbar/>
     <form @submit.prevent="handleSubmit">
       <h2>Eingabeformular für die Erfassung einer Ordnungswidrigkeit</h2>
       <h5>(mit * markierte Felder sind Pflichtfelder)</h5>
@@ -60,11 +61,17 @@
         <p id="submit_area"></p>
       </div>
     </form>
+    <Footer/>
   </div>
 </template>
 
 <script>
+import Navbar from "@/components/default/Navbar.vue";
+import Footer from "@/components/default/Footer.vue";
+
 export default {
+  name: 'CaseOverview',
+  components: {Footer, Navbar},
   data() {
     return {
       aktenzeichen: '',
