@@ -7,18 +7,14 @@
         <ul class="nav-list">
           <li>
             <router-link to="/input-form" class="router-link">
-              <a id="nav-list-item">
-                <div id="arrow-icon"></div>
-                Fall melden
-              </a>
+              <div id="arrow-icon"></div>
+              Fall melden
             </router-link>
           </li>
           <li>
             <router-link to="/case-overview" class="router-link">
-              <a id="nav-list-item">
-                <div id="arrow-icon"></div>
-                Fallübersicht
-              </a>
+              <div id="arrow-icon"></div>
+              Fallübersicht
             </router-link>
           </li>
         </ul>
@@ -74,16 +70,19 @@ export default {
   transition: 0.3s;
 }
 
-#nav-list-item {
+.router-link {
   cursor: pointer;
   transition: 0.3s;
+  text-decoration: none;
+  color: inherit;
 }
 
-#nav-list-item:hover #arrow-icon {
+.router-link:hover #arrow-icon {
   background-image: url("@/assets/arrow-right-hovered.png");
 }
 
-#nav-list-item:hover {
+.router-link:hover {
   color: #E8C325;
 }
+
 </style>
