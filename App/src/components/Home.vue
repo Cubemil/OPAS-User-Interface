@@ -4,10 +4,10 @@
     <img id="background" src="@/assets/landesverwaltungsamt.jpeg" alt="background">
     <div class="menu-container">
       <div class="menu">
-        <h1 id="title">Die OWi-Erfassung</h1>
-        <p id="description">Erfassen Sie jetzt eine<br/>Ordnungswidrigkeit - offiziell, sicher und schnell.</p>
+        <h1 id="title">OWiG121</h1>
+        <p id="description">Ordnungswidrigkeitsverfahren<br/>nach §121 Abs.1 Nr.6 SGB XI - Soziale Pflegeversicherung</p>
         <router-link to="/my-space" class="router-link">
-          <button id="btn">Jetzt Fall melden</button>
+          <button id="btn">Fall erfassen</button>
         </router-link>
         <ul class="nav-list">
           <li>
