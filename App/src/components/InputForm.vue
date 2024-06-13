@@ -1,66 +1,60 @@
 <template>
   <div class="input-form">
     <Navbar/>
-    <form @submit.prevent="handleSubmit">
-      <h2>Eingabeformular für die Erfassung einer Ordnungswidrigkeit</h2>
-      <h5>(mit * markierte Felder sind Pflichtfelder)</h5>
+    <img id="background" src="@/assets/landesverwaltungsamt.jpeg" alt="background">
+    <div class="menu-container">
+      <div class="menu">
+        <form @submit.prevent="handleSubmit">
+          <h1 id="title">Eingabeformular für die Erfassung einer Ordnungswidrigkeit</h1>
+          <h3 id="description">(mit * markierte Felder sind Pflichtfelder)</h3>
 
-      <br>
-      <p>Formelle Angaben: </p>
+          <table class="input-fields">
+            <tr>
+              <th>Formelle Angaben</th>
+              <th>Angaben zur Person</th>
+              <th>Angaben zur Versicherung</th>
+              <th>Beschreibung des Vorfalls</th>
+            </tr>
+            <tr>
+              <td>
+                <input type="text" required v-model="aktenzeichen" placeholder="Aktenzeichen*" size="40">
+              </td>
+              <td>
+                <input type="text" required v-model="anrede" placeholder="Anrede*" size="40">
+                <input type="text" required v-model="vorname" placeholder="Vorname*" size="40">
+                <input type="text" required v-model="nachname" placeholder="Nachname*" size="40">
+                <input type="text" v-model="titel" placeholder="Titel (optional)" size="40">
+                <input type="date" required v-model="geburtsdatum" placeholder="Geburtsdatum*">
+                <input type="text" required v-model="plz" placeholder="PLZ*" size="40">
+                <input type="text" required v-model="wohnort" placeholder="Wohnort*" size="40">
+                <input type="text" required v-model="str" placeholder="Straße*" size="40">
+                <input type="text" required v-model="hausnummer" placeholder="Hausnummer*" size="40">
+              </td>
+              <td>
+                <input type="text" required v-model="versicherungsnummer" placeholder="Versicherungsnummer*"
+                       size="40">
+                <input type="text" required v-model="krankenversicherungsname"
+                       placeholder="Name der Krankenversicherung*"
+                       size="40">
+                <input type="text" required v-model="vertragsunternehmensnummer"
+                       placeholder="Vertragsunternehmensnummer*"
+                       size="40">
+              </td>
+              <td>
+                <input id="beschreibung" type="text" required v-model="beschreibung"
+                       placeholder="Beschreibung des Vorfalls"
+                       size="40">
+              </td>
+            </tr>
+          </table>
 
-      <label>* Aktenzeichen:</label>
-      <input type="text" required v-model="aktenzeichen" placeholder="Bitte eingeben">
-
-      <br>
-      <p>Angaben zur Person:</p>
-
-      <label>Anrede:</label>
-      <input type="text" required v-model="anrede" placeholder="Bitte eingeben">
-
-      <label>* Vorname:</label>
-      <input type="text" required v-model="vorname" placeholder="Bitte eingeben">
-
-      <label>* Nachname:</label>
-      <input type="text" required v-model="nachname" placeholder="Bitte eingeben">
-
-      <label>Titel:</label>
-      <input type="text" v-model="titel" placeholder="(optional)">
-
-      <label>* Geburtsdatum:</label>
-      <input type="date" required v-model="geburtsdatum" placeholder="Bitte eingeben">
-
-      <label>* PLZ: </label>
-      <input type="text" required v-model="plz" placeholder="Bitte eingeben">
-
-      <label>* Wohnort:</label>
-      <input type="text" required v-model="wohnort" placeholder="Bitte eingeben">
-
-      <label>* Straße: </label>
-      <input type="text" required v-model="str" placeholder="Bitte eingeben">
-
-      <label>* Hausnummer: </label>
-      <input type="text" required v-model="hausnummer" placeholder="Bitte eingeben">
-
-      <br>
-      <p>Angaben zur Versicherung:</p>
-      <label>* Versicherungsnummer:</label>
-      <input type="text" required v-model="versicherungsnummer" placeholder="Bitte eingeben">
-
-      <label>* Name der Krankenversicherung:</label>
-      <input type="text" required v-model="krankenversicherungsname" placeholder="Bitte eingeben">
-
-      <label>* Vertragsunternehmensnummer:</label>
-      <input type="text" required v-model="vertragsunternehmensnummer" placeholder="Bitte eingeben">
-
-      <br>
-      <p>Beschreibung des Vorfalls:</p>
-      <input id="beschreibung" type="text" required v-model="beschreibung" placeholder="Bitte eingeben">
-
-      <div class="submit">
-        <button id="submit_button">Absenden</button>
-        <p id="submit_area"></p>
+          <div class="submit">
+            <button id="submit_button">Absenden</button>
+            <p id="submit_area"></p>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
     <Footer/>
   </div>
 </template>
@@ -137,51 +131,97 @@ export default {
 </script>
 
 <style>
-form {
-  max-width: 820px;
-  background: white;
-  text-align: left;
-  margin: auto;
-  padding: 40px;
-  border-radius: 10px;
+#background {
+  height: 100%;
+  width: 100%;
+  z-index: -1;
 }
 
-label {
-  display: inline-block;
-  margin: 20px 5px;
-  font-size: 0.7em;
-  letter-spacing: 0.5px;
+.menu-container {
+  background: #fdfdfd;
+  width: 100%;
+  min-height: 520px;
+}
+
+.menu {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.input-fields, th, td {
+  text-align: left;
+  /*border: 1px solid #ddd;*/
+}
+
+th, td {
+  padding: 10px;
+}
+
+td {
+  vertical-align: top;
+}
+
+form {
+  background: #fdfdfd;
+}
+
+form p {
+  font-size: 20px;
   font-weight: bold;
 }
 
 input {
   display: block;
   padding: 10px 6px;
-  widows: 100%;
+  margin-bottom: 10px;
   box-sizing: border-box;
-  border: none;
-  border-bottom: 1px solid #ddd;
-  color: #555;
+  border: 1px solid #404040;
+}
+
+input[type="date"] {
+  width: 285px;
+  height: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: grey;
 }
 
 .submit {
   text-align: center;
+  padding-top: 3%;
 }
 
 #submit_button {
   background: #404040;
-  border: 0;
-  padding: 10px 20px;
-  margin-top: 20px;
+  font-size: 20px;
+  padding: 1% 3%;
   color: #fdfdfd;
-  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  /*border-radius: 20px;*/
 }
 
 #submit_button:hover {
-  background-color: #4e4e4e;
+  background: #E8C325;
 }
 
-#submit_button:active {
-  background-color: #303030;
+@media only screen and (max-width: 480px) {
+  # {
+    font-size: 32px;
+  }
+
+  #description {
+    font-size: 20px;
+  }
+
+  #submit_button {
+    font-size: 16px;
+    padding: 2% 4%;
+  }
+
+  th, td {
+    display:inline-block;
+  }
 }
 </style>

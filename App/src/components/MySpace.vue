@@ -38,7 +38,7 @@ export default {
 .menu-container {
   background: #fdfdfd;
   width: 100%;
-  height: 540px;
+  min-height: 520px;
 }
 
 .menu {

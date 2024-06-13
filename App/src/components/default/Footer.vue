@@ -31,6 +31,7 @@ export default {
   list-style: none;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
   flex-wrap: wrap;
 }
 

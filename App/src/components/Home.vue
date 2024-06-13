@@ -5,7 +5,8 @@
     <div class="menu-container">
       <div class="menu">
         <h1 id="title">OWiG121</h1>
-        <p id="description">Ordnungswidrigkeitsverfahren<br/>nach §121 Abs.1 Nr.6 SGB XI - Soziale Pflegeversicherung</p>
+        <p id="description">Ordnungswidrigkeitsverfahren<br/>nach §121 Abs.1 Nr.6 SGB XI - Soziale Pflegeversicherung
+        </p>
         <router-link to="/my-space" class="router-link">
           <button id="btn">Ersterfassung</button>
         </router-link>
@@ -40,22 +41,22 @@ export default {
 </script>
 
 <style>
+#background {
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
 .menu-container {
   background: #fdfdfd;
   width: 100%;
-  height: 540px;
+  min-height: 525px;
 }
 
 .menu {
   padding: 1% 6%;
   font-size: 20px;
   font-weight: bold;
-}
-
-#background {
-  height: 100%;
-  width: 100%;
-  z-index: -1;
 }
 
 #btn {
