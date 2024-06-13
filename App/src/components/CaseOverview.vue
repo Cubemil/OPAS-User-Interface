@@ -2,7 +2,7 @@
   <div class="case-overview">
     <Navbar/>
     <div class="case-overview-panel">
-      <h1>Fallübersicht</h1>
+      <h1>Register</h1>
       <div v-if="items.length">
         <div v-for="item in items" :key="item.aktenzeichen" class="item">
           <p><strong>Aktenzeichen:</strong> {{ item.aktenzeichen }}</p>
