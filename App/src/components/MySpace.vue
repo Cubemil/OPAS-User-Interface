@@ -8,13 +8,13 @@
           <li>
             <router-link to="/input-form" class="router-link">
               <div id="arrow-icon"></div>
-              Fall melden
+              Ersterfassung
             </router-link>
           </li>
           <li>
             <router-link to="/case-overview" class="router-link">
               <div id="arrow-icon"></div>
-              Fallübersicht
+              Fall Register
             </router-link>
           </li>
         </ul>
