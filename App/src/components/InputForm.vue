@@ -60,8 +60,8 @@
 </template>
 
 <script>
-import Navbar from "@/components/default/Navbar.vue";
-import Footer from "@/components/default/Footer.vue";
+import Navbar from "@/components/Navbar.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: 'CaseOverview',

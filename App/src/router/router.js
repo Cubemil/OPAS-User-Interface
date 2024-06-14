@@ -1,8 +1,8 @@
 import {createRouter, createWebHistory} from 'vue-router';
-import Home from './components/Home.vue';
-import MySpace from './components/MySpace.vue';
-import InputForm from './components/InputForm.vue';
-import CaseOverview from './components/CaseOverview.vue';
+import Home from '../views/Home.vue';
+import MySpace from '../views/MySpace.vue';
+import InputForm from '../components/InputForm.vue';
+import CaseOverview from '../views/CaseOverview.vue';
 
 const routes = [
     {path: '/', component: Home},
