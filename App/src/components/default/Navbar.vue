@@ -18,6 +18,7 @@ export default {
 
 <style>
 .navbar {
+  position: sticky;
   background: #fdfdfd;
   padding: 1% 6%;
   display: flex;
@@ -25,6 +26,7 @@ export default {
   justify-content: space-between;
   font-size: 20px;
   font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #logo {

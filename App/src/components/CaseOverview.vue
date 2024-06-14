@@ -1,17 +1,20 @@
 <template>
   <div class="case-overview">
     <Navbar/>
-    <div class="case-overview-panel">
-      <h1>Register</h1>
-      <div v-if="items.length">
-        <div v-for="item in items" :key="item.aktenzeichen" class="item">
-          <p><strong>Aktenzeichen:</strong> {{ item.aktenzeichen }}</p>
-          <p><strong>Name:</strong> {{ item.nachname }}, {{ item.vorname }}</p><br>
-          <p><strong>Beschreibung:</strong> {{ item.beschreibung }}</p>
+    <img id="background" src="@/assets/landesverwaltungsamt.jpeg" alt="background">
+    <div class="menu-container">
+      <div class="menu">
+        <h1>Fallübersicht</h1>
+        <div v-if="items.length">
+          <div v-for="item in items" :key="item.aktenzeichen" class="item">
+            <p><strong>Aktenzeichen:</strong> {{ item.aktenzeichen }}</p>
+            <p><strong>Name:</strong> {{ item.nachname }}, {{ item.vorname }}</p><br>
+            <p><strong>Beschreibung:</strong> {{ item.beschreibung }}</p>
+          </div>
         </div>
-      </div>
-      <div v-else>
-        <p>Es wurden keine Fälle gefunden.</p>
+        <div v-else>
+          <p>Es wurden keine Fälle gefunden.</p>
+        </div>
       </div>
     </div>
     <Footer/>
@@ -48,36 +51,43 @@ export default {
 </script>
 
 <style>
-.case-overview-panel {
-  position: relative;
-  margin: 50px 80px 0 80px;
-  padding: 20px;
-  border-radius: 15px;
-  background: #fdfdfd;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+#background {
+  height: 100%;
+  width: 100%;
+  z-index: -1;
 }
 
-.case-overview .item {
+.menu-container {
+  background: #fdfdfd;
+  width: 100%;
+  min-height: 520px;
+}
+
+.menu {
+  padding: 1% 6%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.menu .item {
   border: 1px solid #ddd;
   padding: 20px;
   margin-bottom: 20px;
-  border-radius: 10px;
   background: #f9f9f9;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: 0.3s;
 }
 
-.case-overview .item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+.menu .item:hover {
+  background: #E8C325;
 }
 
-.case-overview .item p {
+.menu .item p {
   margin: 5px 0;
   font-size: 16px;
 }
 
-.case-overview .item p strong {
+.menu .item p strong {
   color: #333;
 }
 </style>
