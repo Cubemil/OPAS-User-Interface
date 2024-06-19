@@ -1,7 +1,7 @@
 <template>
   <div class="my-space">
     <Navbar/>
-    <img id="background" src="@/assets/landesverwaltungsamt.jpeg" alt="background">
+    <img id="background" src="../assets/landesverwaltungsamt.jpeg" alt="background">
     <div class="menu-container">
       <div class="menu">
         <ul class="nav-list">
@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import Navbar from "@/components/default/Navbar.vue";
-import Footer from "@/components/default/Footer.vue";
+import Navbar from "@/components/Navbar.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: 'MySpace',

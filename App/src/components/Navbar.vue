@@ -1,10 +1,10 @@
 <template>
   <div class="navbar">
     <router-link to="/" class="router-link">
-      <img id="logo" src="@/assets/logo.png" alt="logo">
+      <img id="logo" src="../assets/logo.png" alt="logo">
     </router-link>
     <div class="account-container">
-      <img id="account" src="@/assets/account.png" alt="account"/>
+      <img id="account" src="../assets/account.png" alt="account"/>
       Anmelden
     </div>
   </div>
