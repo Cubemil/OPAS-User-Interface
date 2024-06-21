@@ -5,13 +5,13 @@
     <div class="menu-container">
       <div class="menu">
         <form @submit.prevent="handleSubmit">
-          <h1 id="title">Eingabeformular für die Erfassung einer Ordnungswidrigkeit</h1>
+          <h1 id="title">Ordnungswidrigkeit nach §121 Abs.1 Nr.6 SGB XI</h1>
           <h3 id="description">(mit * markierte Felder sind Pflichtfelder)</h3>
 
           <table class="input-fields">
             <tr>
               <th>Formelle Angaben</th>
-              <th>Angaben zur Person</th>
+              <th>Angaben zur beschuldigten Person</th>
               <th>Angaben zur Versicherung</th>
               <th>Beschreibung des Vorfalls</th>
             </tr>
@@ -21,14 +21,14 @@
               </td>
               <td>
                 <input type="text" required v-model="anrede" placeholder="Anrede*" size="40">
+                <input type="text" v-model="titel" placeholder="Titel (optional)" size="40">
                 <input type="text" required v-model="vorname" placeholder="Vorname*" size="40">
                 <input type="text" required v-model="nachname" placeholder="Nachname*" size="40">
-                <input type="text" v-model="titel" placeholder="Titel (optional)" size="40">
                 <input type="date" required v-model="geburtsdatum" placeholder="Geburtsdatum*">
-                <input type="text" required v-model="plz" placeholder="PLZ*" size="40">
-                <input type="text" required v-model="wohnort" placeholder="Wohnort*" size="40">
                 <input type="text" required v-model="str" placeholder="Straße*" size="40">
                 <input type="text" required v-model="hausnummer" placeholder="Hausnummer*" size="40">
+                <input type="text" required v-model="plz" placeholder="PLZ*" size="40">
+                <input type="text" required v-model="wohnort" placeholder="Wohnort*" size="40">
               </td>
               <td>
                 <input type="text" required v-model="versicherungsnummer" placeholder="Versicherungsnummer*"

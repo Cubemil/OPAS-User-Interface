@@ -14,7 +14,7 @@
           <li>
             <router-link to="/case-overview" class="router-link">
               <div id="arrow-icon"></div>
-              Register
+              Fallübersicht
             </router-link>
           </li>
         </ul>
