@@ -1,14 +1,14 @@
 import {createRouter, createWebHistory} from 'vue-router';
-import Home from '../views/Home.vue';
-import MySpace from '../views/MySpace.vue';
-import InputForm from '../components/InputForm.vue';
-import CaseOverview from '../views/CaseOverview.vue';
+import Startseite from '../views/Startseite.vue';
+import Verwaltung from '../views/Verwaltung.vue';
+import Ersterfassung from '../views/Ersterfassung.vue';
+import Falluebersicht from '../views/Falluebersicht.vue';
 
 const routes = [
-    {path: '/', component: Home},
-    {path: '/my-space', component: MySpace},
-    {path: '/input-form', component: InputForm},
-    {path: '/case-overview', component: CaseOverview},
+    {path: '/', component: Startseite},
+    {path: '/ordnungswidrigkeiten-verwalten', component: Verwaltung},
+    {path: '/ersterfassung', component: Ersterfassung},
+    {path: '/falluebersicht', component: Falluebersicht},
 ];
 
 const router = createRouter({

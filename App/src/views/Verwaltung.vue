@@ -1,17 +1,17 @@
 <template>
-  <div class="my-space">
+  <div class="container">
     <img id="background" src="../assets/landesverwaltungsamt.jpeg" alt="background">
     <div class="menu-container">
       <div class="menu">
         <ul class="nav-list">
           <li>
-            <router-link to="/input-form" class="router-link">
+            <router-link to="/ersterfassung" class="router-link">
               <div id="arrow-icon"></div>
               Ersterfassung
             </router-link>
           </li>
           <li>
-            <router-link to="/case-overview" class="router-link">
+            <router-link to="/falluebersicht" class="router-link">
               <div id="arrow-icon"></div>
               Fallübersicht
             </router-link>
@@ -24,7 +24,7 @@
 
 <script scoped>
 export default {
-  name: 'MySpace',
+  name: 'Verwaltung',
 }
 </script>
 

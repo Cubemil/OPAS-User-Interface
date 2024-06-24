@@ -6,8 +6,8 @@
         <h1 id="title">OWiG121</h1>
         <p id="description">Ordnungswidrigkeitsverfahren<br/>nach §121 Abs.1 Nr.6 SGB XI - Soziale Pflegeversicherung
         </p>
-        <router-link to="/my-space" class="router-link">
-          <button id="btn">Ersterfassung</button>
+        <router-link to="/ordnungswidrigkeiten-verwalten" class="router-link">
+          <button id="btn">Ordnungswidrigkeiten verwalten</button>
         </router-link>
         <ul class="nav-list">
           <li>
@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: 'Home',
+  name: 'Startseite',
 }
 </script>
 
