@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <Navbar/>
     <img id="background" src="../assets/landesverwaltungsamt.jpeg" alt="background">
     <div class="menu-container">
       <div class="menu">
@@ -26,17 +25,12 @@
         </ul>
       </div>
     </div>
-    <Footer/>
   </div>
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
-import Footer from "@/components/Footer.vue";
-
 export default {
   name: 'Home',
-  components: {Navbar, Footer}
 }
 </script>
 

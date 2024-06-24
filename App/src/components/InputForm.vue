@@ -1,6 +1,5 @@
 <template>
   <div class="input-form">
-    <Navbar/>
     <img id="background" src="@/assets/landesverwaltungsamt.jpeg" alt="background">
     <div class="menu-container">
       <div class="menu">
@@ -31,10 +30,10 @@
                 <input type="text" required v-model="wohnort" placeholder="Wohnort*" size="40">
               </td>
               <td>
-                <input type="text" required v-model="versicherungsnummer" placeholder="Versicherungsnummer*"
-                       size="40">
                 <input type="text" required v-model="krankenversicherungsname"
                        placeholder="Name der Krankenversicherung*"
+                       size="40">
+                <input type="text" required v-model="versicherungsnummer" placeholder="Versicherungsnummer*"
                        size="40">
                 <input type="text" required v-model="vertragsunternehmensnummer"
                        placeholder="Vertragsunternehmensnummer*"
@@ -52,10 +51,10 @@
             <button id="submit_button">Absenden</button>
             <p id="submit_area"></p>
           </div>
+
         </form>
       </div>
     </div>
-    <Footer/>
   </div>
 </template>
 
@@ -130,7 +129,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #background {
   height: 100%;
   width: 100%;
@@ -207,7 +206,7 @@ input[type="date"] {
 }
 
 @media only screen and (max-width: 480px) {
-  # {
+  .input-form {
     font-size: 32px;
   }
 

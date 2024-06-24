@@ -1,6 +1,5 @@
 <template>
   <div class="case-overview">
-    <Navbar/>
     <img id="background" src="../assets/landesverwaltungsamt.jpeg" alt="background">
     <div class="menu-container">
       <div class="menu">
@@ -17,17 +16,12 @@
         </div>
       </div>
     </div>
-    <Footer/>
   </div>
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue';
-import Footer from '@/components/Footer.vue';
-
 export default {
   name: 'CaseOverview',
-  components: {Navbar, Footer},
   data() {
     return {
       items: []
@@ -50,7 +44,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #background {
   height: 100%;
   width: 100%;
