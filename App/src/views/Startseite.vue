@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="container">
     <img id="background" src="../assets/landesverwaltungsamt.jpeg" alt="background">
     <div class="menu-container">
       <div class="menu">
@@ -34,7 +34,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #background {
   height: 100%;
   width: 100%;

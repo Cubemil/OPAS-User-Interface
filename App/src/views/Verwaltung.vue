@@ -28,7 +28,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .menu-container {
   background: #fdfdfd;
   width: 100%;
