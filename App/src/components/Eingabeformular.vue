@@ -107,6 +107,7 @@ export default {
       if (this.startdatum) {
         let start = new Date(this.startdatum);
         start.setMonth(start.getMonth() + 6);
+				start.setDate(start.getDate());
         return start.toISOString().split('T')[0];
       }
       return '...';
