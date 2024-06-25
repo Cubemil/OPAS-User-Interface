@@ -7,8 +7,7 @@
         <div v-if="items.length">
           <div v-for="item in items" :key="item.aktenzeichen" class="item">
             <p><strong>Aktenzeichen:</strong> {{ item.aktenzeichen }}</p>
-            <p><strong>Name:</strong> {{ item.nachname }}, {{ item.vorname }}</p><br>
-            <p><strong>Beschreibung:</strong> {{ item.beschreibung }}</p>
+            <p><strong>Name:</strong> {{ item.nachname }}, {{ item.vorname }}</p>
           </div>
         </div>
         <div v-else>
