@@ -39,11 +39,11 @@
               <input type="text" id="wohnort" required v-model="wohnort" placeholder="Bitte eingeben">
             </td>  
             <td>
-              <label for="krankenversicherungsname">Name der Krankenversicherung *</label>
+              <label for="krankenversicherungsname">Krankenversicherung *</label>
               <input type="text" id="krankenversicherungsname" required v-model="krankenversicherungsname" placeholder="Bitte eingeben">
               <label for="versicherungsnummer">Versicherungsnummer *</label>
               <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer" placeholder="Bitte eingeben">
-              <label for="vertragsunternehmensnummer">Vertragsunternehmensnummer *</label>
+              <label for="vertragsunternehmensnummer">VU-Nr. *</label>
               <input type="text" id="vertragsunternehmensnummer" required v-model="vertragsunternehmensnummer" placeholder="Bitte eingeben">
             </td>
             <td>
