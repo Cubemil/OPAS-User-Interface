@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-		<div class="menu">
+		<div class="input-form">
 			
 			<form @submit.prevent="handleSubmit">
 				<h1 id="title">Ordnungswidrigkeit nach §121 Abs.1 Nr.6 SGB XI</h1>
@@ -46,9 +46,9 @@
 					</tr>
 				</table>
 
-				<div class="submit">
+				<div class="submit-and-response">
 					<button id="submit_button">Absenden</button>
-					<p id="submit_area"></p>
+					<p id="response"></p>
 				</div>
 
 			</form>
@@ -125,13 +125,13 @@ export default {
 </script>
 
 <style scoped>
-.menu-container {
+.container {
 	background: #fdfdfd;
 	width: 100%;
 	min-height: 520px;
 }
 
-.menu {
+.input-form {
 	padding: 1% 6%;
 	font-size: 20px;
 	font-weight: bold;
@@ -175,7 +175,7 @@ input[type="date"] {
 	color: grey;
 }
 
-.submit {
+.submit-and-response {
 	text-align: center;
 	padding-top: 3%;
 }
