@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div class="input-form">
-      
       <form @submit.prevent="handleSubmit">
         <h1 id="title">Ordnungswidrigkeit nach §121 Abs.1 Nr.6 SGB XI</h1>
         <h3 id="description">(mit * markierte Felder sind Pflichtfelder)</h3>
@@ -16,50 +15,50 @@
           <tr>
             <td>
               <label for="aktenzeichen">Aktenzeichen *</label>
-              <input type="text" id="aktenzeichen" required v-model="aktenzeichen" placeholder="Bitte eingeben">
+              <input type="text" id="aktenzeichen" required v-model="aktenzeichen" :class="{ 'error-border': errorMessages.aktenzeichen }" placeholder="Bitte eingeben">
             </td>
             <td>
               <label for="anrede">Anrede *</label>
-              <input type="text" id="anrede" required v-model="anrede" placeholder="Bitte eingeben">
+              <input type="text" id="anrede" required v-model="anrede" :class="{ 'error-border': errorMessages.anrede }" placeholder="Bitte eingeben">
               <label for="titel">Titel (optional)</label>
-              <input type="text" id="titel" v-model="titel" placeholder="Bitte eingeben">
+              <input type="text" id="titel" v-model="titel" :class="{ 'error-border': errorMessages.titel }" placeholder="Bitte eingeben">
               <label for="vorname">Vorname *</label>
-              <input type="text" id="vorname" required v-model="vorname" placeholder="Bitte eingeben">
+              <input type="text" id="vorname" required v-model="vorname" :class="{ 'error-border': errorMessages.vorname }" placeholder="Bitte eingeben">
               <label for="nachname">Nachname *</label>
-              <input type="text" id="nachname" required v-model="nachname" placeholder="Bitte eingeben">
+              <input type="text" id="nachname" required v-model="nachname" :class="{ 'error-border': errorMessages.nachname }" placeholder="Bitte eingeben">
               <label for="geburtsdatum">Geburtsdatum *</label>
-              <input type="date" id="geburtsdatum" required v-model="geburtsdatum" placeholder="Bitte eingeben">
+              <input type="date" id="geburtsdatum" required v-model="geburtsdatum" :class="{ 'error-border': errorMessages.geburtsdatum }" placeholder="Bitte eingeben">
               <label for="str">Straße *</label>
-              <input type="text" id="str" required v-model="str" placeholder="Bitte eingeben">
+              <input type="text" id="str" required v-model="str" :class="{ 'error-border': errorMessages.str }" placeholder="Bitte eingeben">
               <label for="hausnummer">Hausnummer *</label>
-              <input type="text" id="hausnummer" required v-model="hausnummer" placeholder="Bitte eingeben">
+              <input type="text" id="hausnummer" required v-model="hausnummer" :class="{ 'error-border': errorMessages.hausnummer }" placeholder="Bitte eingeben">
               <label for="plz">PLZ *</label>
-              <input type="text" id="plz" required v-model="plz" placeholder="Bitte eingeben">
+              <input type="text" id="plz" required v-model="plz" :class="{ 'error-border': errorMessages.plz }" placeholder="Bitte eingeben">
               <label for="wohnort">Wohnort *</label>
-              <input type="text" id="wohnort" required v-model="wohnort" placeholder="Bitte eingeben">
-            </td>  
+              <input type="text" id="wohnort" required v-model="wohnort" :class="{ 'error-border': errorMessages.wohnort }" placeholder="Bitte eingeben">
+            </td>
             <td>
               <label for="versicherungsunternehmensnummer">VU-Nr. *</label>
-              <input type="text" id="versicherungsunternehmensnummer" required v-model="versicherungsunternehmensnummer" placeholder="Bitte eingeben">
+              <input type="text" id="versicherungsunternehmensnummer" required v-model="versicherungsunternehmensnummer" :class="{ 'error-border': errorMessages.versicherungsunternehmensnummer }" placeholder="Bitte eingeben">
               <label for="krankenversicherung">Krankenversicherung *</label>
-              <input type="text" id="krankenversicherung" required v-model="krankenversicherung" placeholder="Bitte eingeben">
+              <input type="text" id="krankenversicherung" required v-model="krankenversicherung" :class="{ 'error-border': errorMessages.krankenversicherung }" placeholder="Bitte eingeben">
               <label for="versicherungsnummer">Versicherungsnummer *</label>
-              <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer" placeholder="Bitte eingeben">
+              <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer" :class="{ 'error-border': errorMessages.versicherungsnummer }" placeholder="Bitte eingeben">
             </td>
             <td>
               <label for="aufforderungsdatum">Aufforderungsdatum *</label>
               <span v-if="errorMessages.aufforderungsdatum" class="error-message">{{ errorMessages.aufforderungsdatum }}</span>
-              <input type="date" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates">
+              <input type="date" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates" :class="{ 'error-border': errorMessages.aufforderungsdatum }">
               <label for="startdatum">Beginn Rückstand (Startdatum) *</label>
               <span v-if="errorMessages.startdatum" class="error-message">{{ errorMessages.startdatum }}</span>
-              <input type="date" id="startdatum" v-model="startdatum" @change="validateDates">
+              <input type="date" id="startdatum" v-model="startdatum" @change="validateDates" :class="{ 'error-border': errorMessages.startdatum }">
               <label for="verzugBis">Verzug bis</label>
               <div class="readonly-field" id="verzugBis">{{ calculateVerzugBis }}</div>
               <label for="verzugsende">Verzugsende *</label>
               <span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
-              <input type="date" id="verzugsende" v-model="verzugsende" @change="validateVerzugsende">
+              <input type="date" id="verzugsende" v-model="verzugsende" @change="validateVerzugsende" :class="{ 'error-border': errorMessages.verzugsende }">
               <label for="beitragsrueckstand">Beitragsrückstand *</label>
-              <input type="number" id="beitragsrueckstand" v-model="beitragsrueckstand" placeholder="Bitte eingeben">
+              <input type="number" id="beitragsrueckstand" v-model="beitragsrueckstand" :class="{ 'error-border': errorMessages.beitragsrueckstand }" placeholder="Bitte eingeben">
               <label for="gesamtsollbetrag">Gesamtsollbetrag</label>
               <div class="readonly-field" id="gesamtsollbetrag">{{ calculateGesamtsollbetrag }} €</div>
               <label for="verjaehrungsfrist">Verjährungsfrist</label>
@@ -177,7 +176,7 @@ export default {
         verzugBis: this.calculateVerzugBis,
         verzugsende: this.verzugsende,
         beitragsrueckstand: this.beitragsrueckstand,
-        gesamtsollbetrag: this.gesamtsollbetrag,
+        gesamtsollbetrag: this.calculateGesamtsollbetrag,
         verjaehrungsfrist: this.calculateVerjaehrungsfrist
       }
 
@@ -270,6 +269,10 @@ input[type="date"] {
   margin-bottom: 15px;
 }
 
+.error-border {
+  border-color: red !important;
+}
+
 .submit-and-response {
   text-align: center;
   padding-top: 3%;
@@ -285,7 +288,12 @@ input[type="date"] {
   transition: 0.3s;
 }
 
-#submit_button:hover {
+#submit_button:disabled {
+  background: grey;
+  cursor: not-allowed;
+}
+
+#submit_button:hover:enabled {
   background: #E8C325;
 }
 
