@@ -39,23 +39,23 @@
               <input type="text" id="wohnort" required v-model="wohnort" placeholder="Bitte eingeben">
             </td>  
             <td>
-              <label for="krankenversicherungsname">Krankenversicherung *</label>
-              <input type="text" id="krankenversicherungsname" required v-model="krankenversicherungsname" placeholder="Bitte eingeben">
+              <label for="versicherungsunternehmensnummer">VU-Nr. *</label>
+              <input type="text" id="versicherungsunternehmensnummer" required v-model="versicherungsunternehmensnummer" placeholder="Bitte eingeben">
+              <label for="krankenversicherung">Krankenversicherung *</label>
+              <input type="text" id="krankenversicherung" required v-model="krankenversicherung" placeholder="Bitte eingeben">
               <label for="versicherungsnummer">Versicherungsnummer *</label>
               <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer" placeholder="Bitte eingeben">
-              <label for="vertragsunternehmensnummer">VU-Nr. *</label>
-              <input type="text" id="vertragsunternehmensnummer" required v-model="vertragsunternehmensnummer" placeholder="Bitte eingeben">
             </td>
             <td>
-              <label for="aufforderungsdatum">Aufforderungsdatum</label>
+              <label for="aufforderungsdatum">Aufforderungsdatum *</label>
               	<input type="date" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates">
-              <label for="startdatum">Beginn Rückstand (Startdatum)</label>
+              <label for="startdatum">Beginn Rückstand (Startdatum) *</label>
               	<input type="date" id="startdatum" v-model="startdatum" @change="validateDates">
               <label for="verzugBis">Verzug bis</label>
               	<div class="readonly-field" id="verzugBis">{{ calculateVerzugBis }}</div>
-              <label for="verzugsende">Verzugsende</label>
+              <label for="verzugsende">Verzugsende *</label>
               	<input type="date" id="verzugsende" v-model="verzugsende" @change="validateVerzugsende">
-              <label for="beitragsrueckstand">Beitragsrückstand</label>
+              <label for="beitragsrueckstand">Beitragsrückstand *</label>
 								<input type="number" id="beitragsrueckstand" v-model="beitragsrueckstand" placeholder="Bitte eingeben">
               <label for="gesamtsollbetrag">Gesamtsollbetrag</label>
               	<div class="readonly-field" id="gesamtsollbetrag">{{ calculateGesamtsollbetrag }} €</div>
@@ -87,18 +87,19 @@ export default {
       nachname: '',
       titel: '',
       geburtsdatum: '',
-      plz: '',
-      wohnort: '',
       str: '',
       hausnummer: '',
+      plz: '',
+      wohnort: '',
+      versicherungsunternehmensnummer: '',
       versicherungsnummer: '',
-      krankenversicherungsname: '',
-      vertragsunternehmensnummer: '',
+      krankenversicherung: '',
       aufforderungsdatum: '',
       startdatum: '',
       verzugsende: '',
       beitragsrueckstand: '',
       gesamtsollbetrag: '',
+      verjaehrungsfrist: '',
       responseMessage: ''
     }
   },
@@ -142,17 +143,17 @@ export default {
       const formData = {
         aktenzeichen: this.aktenzeichen,
         anrede: this.anrede,
+        titel: this.titel,
         vorname: this.vorname,
         nachname: this.nachname,
-        titel: this.titel,
         geburtsdatum: this.geburtsdatum,
-        plz: this.plz,
-        wohnort: this.wohnort,
         str: this.str,
         hausnummer: this.hausnummer,
+        plz: this.plz,
+        wohnort: this.wohnort,
+        versicherungsunternehmensnummer: this.versicherungsunternehmensnummer,
+        krankenversicherung: this.krankenversicherung,
         versicherungsnummer: this.versicherungsnummer,
-        krankenversicherungsname: this.krankenversicherungsname,
-        vertragsunternehmensnummer: this.vertragsunternehmensnummer,
         aufforderungsdatum: this.aufforderungsdatum,
         startdatum: this.startdatum,
         verzugBis: this.calculateVerzugBis,
