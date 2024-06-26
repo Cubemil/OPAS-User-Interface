@@ -48,25 +48,28 @@
             </td>
             <td>
               <label for="aufforderungsdatum">Aufforderungsdatum *</label>
-              	<input type="date" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates">
+              <span v-if="errorMessages.aufforderungsdatum" class="error-message">{{ errorMessages.aufforderungsdatum }}</span>
+              <input type="date" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates">
               <label for="startdatum">Beginn Rückstand (Startdatum) *</label>
-              	<input type="date" id="startdatum" v-model="startdatum" @change="validateDates">
+              <span v-if="errorMessages.startdatum" class="error-message">{{ errorMessages.startdatum }}</span>
+              <input type="date" id="startdatum" v-model="startdatum" @change="validateDates">
               <label for="verzugBis">Verzug bis</label>
-              	<div class="readonly-field" id="verzugBis">{{ calculateVerzugBis }}</div>
+              <div class="readonly-field" id="verzugBis">{{ calculateVerzugBis }}</div>
               <label for="verzugsende">Verzugsende *</label>
-              	<input type="date" id="verzugsende" v-model="verzugsende" @change="validateVerzugsende">
+              <span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
+              <input type="date" id="verzugsende" v-model="verzugsende" @change="validateVerzugsende">
               <label for="beitragsrueckstand">Beitragsrückstand *</label>
-								<input type="number" id="beitragsrueckstand" v-model="beitragsrueckstand" placeholder="Bitte eingeben">
+              <input type="number" id="beitragsrueckstand" v-model="beitragsrueckstand" placeholder="Bitte eingeben">
               <label for="gesamtsollbetrag">Gesamtsollbetrag</label>
-              	<div class="readonly-field" id="gesamtsollbetrag">{{ calculateGesamtsollbetrag }} €</div>
+              <div class="readonly-field" id="gesamtsollbetrag">{{ calculateGesamtsollbetrag }} €</div>
               <label for="verjaehrungsfrist">Verjährungsfrist</label>
-              	<div class="readonly-field" id="verjaehrungsfrist">{{ calculateVerjaehrungsfrist }}</div>
+              <div class="readonly-field" id="verjaehrungsfrist">{{ calculateVerjaehrungsfrist }}</div>
             </td>
           </tr>
         </table>
 
         <div class="submit-and-response">
-          <button id="submit_button">Absenden</button>
+          <button id="submit_button" :disabled="hasErrors">Absenden</button>
           <p id="response">{{ responseMessage }}</p>
         </div>
 
@@ -100,7 +103,8 @@ export default {
       beitragsrueckstand: '',
       gesamtsollbetrag: '',
       verjaehrungsfrist: '',
-      responseMessage: ''
+      responseMessage: '',
+      errorMessages: {}
     }
   },
   computed: {
@@ -108,7 +112,7 @@ export default {
       if (this.startdatum) {
         let start = new Date(this.startdatum);
         start.setMonth(start.getMonth() + 6);
-				start.setDate(start.getDate());
+        start.setDate(start.getDate());
         return start.toISOString().split('T')[0];
       }
       return '...';
@@ -121,25 +125,39 @@ export default {
       }
       return '...';
     },
-		calculateGesamtsollbetrag() {
-			if (this.beitragsrueckstand) {
-				return this.beitragsrueckstand * 5;
-			}
-			return '...';
-		}
+    calculateGesamtsollbetrag() {
+      if (this.beitragsrueckstand) {
+        return this.beitragsrueckstand * 5;
+      }
+      return '...';
+    },
+    hasErrors() {
+      return Object.keys(this.errorMessages).length > 0;
+    }
   },
   methods: {
     validateDates() {
+      this.errorMessages = {};
       if (this.aufforderungsdatum && new Date(this.aufforderungsdatum) > new Date()) {
-        alert('Das Aufforderungsdatum muss in der Vergangenheit liegen.');
+        this.errorMessages.aufforderungsdatum = 'Das Aufforderungsdatum muss in der Vergangenheit liegen.';
+      }
+      if (this.startdatum && new Date(this.startdatum) > new Date()) {
+        this.errorMessages.startdatum = 'Das Startdatum muss in der Vergangenheit liegen.';
       }
     },
     validateVerzugsende() {
+      this.errorMessages.verzugsende = '';
       if (this.verzugsende && new Date(this.verzugsende) > new Date()) {
-        alert('Das Verzugsende muss in der Vergangenheit liegen.');
+        this.errorMessages.verzugsende = 'Das Verzugsende muss in der Vergangenheit liegen.';
       }
     },
     async handleSubmit() {
+      this.validateDates();
+      this.validateVerzugsende();
+      if (Object.keys(this.errorMessages).length > 0) {
+        return;
+      }
+
       const formData = {
         aktenzeichen: this.aktenzeichen,
         anrede: this.anrede,
@@ -228,7 +246,7 @@ label {
 input, .readonly-field {
   display: block;
   padding: 15px 10px;
-	margin-bottom: 20px;
+  margin-bottom: 20px;
   box-sizing: border-box;
   border: 1px solid #404040;
   width: 100%;
@@ -243,6 +261,13 @@ input[type="date"] {
 .readonly-field {
   background-color: #fdfdfd;
   color: gray;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: -15px;
+  margin-bottom: 15px;
 }
 
 .submit-and-response {
