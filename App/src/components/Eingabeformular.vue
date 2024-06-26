@@ -66,7 +66,7 @@
               <input type="date" id="verzugsende" v-model="verzugsende" @change="validateDates"
                      :class="{ 'error-border': errorMessages.verzugsende }">
               <label for="beitragsrueckstand">Beitragsrückstand *</label>
-              <input type="number" id="beitragsrueckstand" v-model="beitragsrueckstand" placeholder="Bitte eingeben">
+              <input type="number" min="0" id="beitragsrueckstand" v-model="beitragsrueckstand" placeholder="Bitte eingeben">
               <label for="gesamtsollbetrag">Gesamtsollbetrag</label>
               <div class="readonly-field" id="gesamtsollbetrag">{{ calculateGesamtsollbetrag }} €</div>
               <label for="verjaehrungsfrist">Verjährungsfrist</label>
