@@ -148,7 +148,7 @@ export default {
       if (this.beitragsrueckstand) {
         return this.beitragsrueckstand * 5;
       }
-      return '...';
+      return '0';
     },
     hasErrors() {
       return Object.keys(this.errorMessages).length > 0;
