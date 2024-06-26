@@ -279,7 +279,7 @@ input[type="date"] {
 }
 
 .readonly-field {
-  background: #f3f3f3;
+  background: #f1f1f1;
   color: gray;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: normal;
