@@ -120,17 +120,29 @@ export default {
         let start = new Date(this.startdatum);
         start.setMonth(start.getMonth() + 6);
         start.setDate(start.getDate());
-        return start.toISOString().split('T')[0];
+
+        // Format the date to DD.MM.YYYY
+        let day = start.getDate().toString().padStart(2, '0');
+        let month = (start.getMonth() + 1).toString().padStart(2, '0');
+        let year = start.getFullYear();
+
+        return `${day}.${month}.${year}`;
       }
-      return '...';
+      return 'dd.mm.yyyy';
     },
     calculateVerjaehrungsfrist() {
       if (this.verzugsende) {
         let ende = new Date(this.verzugsende);
         ende.setFullYear(ende.getFullYear() + 4);
-        return ende.toISOString().split('T')[0];
+
+        // Format the date to DD.MM.YYYY
+        let day = ende.getDate().toString().padStart(2, '0');
+        let month = (ende.getMonth() + 1).toString().padStart(2, '0');
+        let year = ende.getFullYear();
+
+        return `${day}.${month}.${year}`;
       }
-      return '...';
+      return 'dd.mm.yyyy';
     },
     calculateGesamtsollbetrag() {
       if (this.beitragsrueckstand) {
@@ -267,8 +279,10 @@ input[type="date"] {
 }
 
 .readonly-field {
-  background-color: #fdfdfd;
+  background: #f3f3f3;
   color: gray;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
 }
 
 .error-message {
