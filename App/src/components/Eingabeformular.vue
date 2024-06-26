@@ -2,8 +2,8 @@
   <div class="container">
     <div class="input-form">
       <form @submit.prevent="handleSubmit">
-        <h1 id="title">Ordnungswidrigkeit nach §121 Abs.1 Nr.6 SGB XI</h1>
-        <h3 id="description">(mit * markierte Felder sind Pflichtfelder)</h3>
+        <h2 id="title">Ordnungswidrigkeit nach §121 Abs.1 Nr.6 SGB XI</h2>
+        <h4 id="description">(mit * markierte Felder sind Pflichtfelder)</h4>
 
         <table class="input-fields">
           <tr>
@@ -39,24 +39,32 @@
             </td>
             <td>
               <label for="versicherungsunternehmensnummer">VU-Nr. *</label>
-              <input type="text" id="versicherungsunternehmensnummer" required v-model="versicherungsunternehmensnummer" placeholder="Bitte eingeben">
+              <input type="text" id="versicherungsunternehmensnummer" required v-model="versicherungsunternehmensnummer"
+                     placeholder="Bitte eingeben">
               <label for="krankenversicherung">Krankenversicherung *</label>
-              <input type="text" id="krankenversicherung" required v-model="krankenversicherung" placeholder="Bitte eingeben">
+              <input type="text" id="krankenversicherung" required v-model="krankenversicherung"
+                     placeholder="Bitte eingeben">
               <label for="versicherungsnummer">Versicherungsnummer *</label>
-              <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer" placeholder="Bitte eingeben">
+              <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer"
+                     placeholder="Bitte eingeben">
             </td>
             <td>
               <label for="aufforderungsdatum">Aufforderungsdatum *</label>
-              <span v-if="errorMessages.aufforderungsdatum" class="error-message">{{ errorMessages.aufforderungsdatum }}</span>
-              <input type="date" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates" :class="{ 'error-border': errorMessages.aufforderungsdatum }">
+              <span v-if="errorMessages.aufforderungsdatum" class="error-message">{{
+                  errorMessages.aufforderungsdatum
+                }}</span>
+              <input type="date" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates"
+                     :class="{ 'error-border': errorMessages.aufforderungsdatum }">
               <label for="startdatum">Beginn Rückstand (Startdatum) *</label>
               <span v-if="errorMessages.startdatum" class="error-message">{{ errorMessages.startdatum }}</span>
-              <input type="date" id="startdatum" v-model="startdatum" @change="validateDates" :class="{ 'error-border': errorMessages.startdatum }">
+              <input type="date" id="startdatum" v-model="startdatum" @change="validateDates"
+                     :class="{ 'error-border': errorMessages.startdatum }">
               <label for="verzugBis">Verzug bis</label>
               <div class="readonly-field" id="verzugBis">{{ calculateVerzugBis }}</div>
               <label for="verzugsende">Verzugsende *</label>
               <span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
-              <input type="date" id="verzugsende" v-model="verzugsende" @change="validateDates" :class="{ 'error-border': errorMessages.verzugsende }">
+              <input type="date" id="verzugsende" v-model="verzugsende" @change="validateDates"
+                     :class="{ 'error-border': errorMessages.verzugsende }">
               <label for="beitragsrueckstand">Beitragsrückstand *</label>
               <input type="number" id="beitragsrueckstand" v-model="beitragsrueckstand" placeholder="Bitte eingeben">
               <label for="gesamtsollbetrag">Gesamtsollbetrag</label>
@@ -178,18 +186,18 @@ export default {
         const response = await fetch('http://localhost:5000/api/offense', {
           method: 'POST',
           headers: {
-              'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify(formData)
         });
-  
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-  
+
         const result = await response.json();
         this.responseMessage = result.message;
-  
+
         return result;
       } catch (error) {
         alert('Error: ' + error.message);
@@ -215,14 +223,21 @@ export default {
 
 .input-fields, th, td {
   text-align: left;
+  //border: 1px solid;
 }
 
 th, td {
-  padding: 15px;  
+  padding-top: 0;
+  padding-bottom: 16px;
+  padding-right: 16px;
+}
+
+th {
+  vertical-align: top;
 }
 
 td {
-  vertical-align: top
+  vertical-align: top;
 }
 
 form {
@@ -232,18 +247,18 @@ form {
 label {
   display: block;
   margin-bottom: 5px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: normal;
 }
 
 input, .readonly-field {
   display: block;
-  padding: 15px 10px;
+  padding: 10px 10px;
   margin-bottom: 20px;
   box-sizing: border-box;
   border: 1px solid #404040;
   width: 100%;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 input[type="date"] {
@@ -306,7 +321,7 @@ input[type="date"] {
   }
 
   th, td {
-    display:inline-block;
+    display: inline-block;
   }
 }
 </style>
