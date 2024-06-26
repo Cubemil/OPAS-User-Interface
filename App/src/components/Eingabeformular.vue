@@ -15,35 +15,35 @@
           <tr>
             <td>
               <label for="aktenzeichen">Aktenzeichen *</label>
-              <input type="text" id="aktenzeichen" required v-model="aktenzeichen" :class="{ 'error-border': errorMessages.aktenzeichen }" placeholder="Bitte eingeben">
+              <input type="text" id="aktenzeichen" required v-model="aktenzeichen" placeholder="Bitte eingeben">
             </td>
             <td>
               <label for="anrede">Anrede *</label>
-              <input type="text" id="anrede" required v-model="anrede" :class="{ 'error-border': errorMessages.anrede }" placeholder="Bitte eingeben">
+              <input type="text" id="anrede" required v-model="anrede" placeholder="Bitte eingeben">
               <label for="titel">Titel (optional)</label>
-              <input type="text" id="titel" v-model="titel" :class="{ 'error-border': errorMessages.titel }" placeholder="Bitte eingeben">
+              <input type="text" id="titel" v-model="titel" placeholder="Bitte eingeben">
               <label for="vorname">Vorname *</label>
-              <input type="text" id="vorname" required v-model="vorname" :class="{ 'error-border': errorMessages.vorname }" placeholder="Bitte eingeben">
+              <input type="text" id="vorname" required v-model="vorname" placeholder="Bitte eingeben">
               <label for="nachname">Nachname *</label>
-              <input type="text" id="nachname" required v-model="nachname" :class="{ 'error-border': errorMessages.nachname }" placeholder="Bitte eingeben">
+              <input type="text" id="nachname" required v-model="nachname" placeholder="Bitte eingeben">
               <label for="geburtsdatum">Geburtsdatum *</label>
-              <input type="date" id="geburtsdatum" required v-model="geburtsdatum" :class="{ 'error-border': errorMessages.geburtsdatum }" placeholder="Bitte eingeben">
+              <input type="date" id="geburtsdatum" required v-model="geburtsdatum" placeholder="Bitte eingeben">
               <label for="str">Straße *</label>
-              <input type="text" id="str" required v-model="str" :class="{ 'error-border': errorMessages.str }" placeholder="Bitte eingeben">
+              <input type="text" id="str" required v-model="str" placeholder="Bitte eingeben">
               <label for="hausnummer">Hausnummer *</label>
-              <input type="text" id="hausnummer" required v-model="hausnummer" :class="{ 'error-border': errorMessages.hausnummer }" placeholder="Bitte eingeben">
+              <input type="text" id="hausnummer" required v-model="hausnummer" placeholder="Bitte eingeben">
               <label for="plz">PLZ *</label>
-              <input type="text" id="plz" required v-model="plz" :class="{ 'error-border': errorMessages.plz }" placeholder="Bitte eingeben">
+              <input type="text" id="plz" required v-model="plz" placeholder="Bitte eingeben">
               <label for="wohnort">Wohnort *</label>
-              <input type="text" id="wohnort" required v-model="wohnort" :class="{ 'error-border': errorMessages.wohnort }" placeholder="Bitte eingeben">
+              <input type="text" id="wohnort" required v-model="wohnort" placeholder="Bitte eingeben">
             </td>
             <td>
               <label for="versicherungsunternehmensnummer">VU-Nr. *</label>
-              <input type="text" id="versicherungsunternehmensnummer" required v-model="versicherungsunternehmensnummer" :class="{ 'error-border': errorMessages.versicherungsunternehmensnummer }" placeholder="Bitte eingeben">
+              <input type="text" id="versicherungsunternehmensnummer" required v-model="versicherungsunternehmensnummer" placeholder="Bitte eingeben">
               <label for="krankenversicherung">Krankenversicherung *</label>
-              <input type="text" id="krankenversicherung" required v-model="krankenversicherung" :class="{ 'error-border': errorMessages.krankenversicherung }" placeholder="Bitte eingeben">
+              <input type="text" id="krankenversicherung" required v-model="krankenversicherung" placeholder="Bitte eingeben">
               <label for="versicherungsnummer">Versicherungsnummer *</label>
-              <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer" :class="{ 'error-border': errorMessages.versicherungsnummer }" placeholder="Bitte eingeben">
+              <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer" placeholder="Bitte eingeben">
             </td>
             <td>
               <label for="aufforderungsdatum">Aufforderungsdatum *</label>
@@ -56,9 +56,9 @@
               <div class="readonly-field" id="verzugBis">{{ calculateVerzugBis }}</div>
               <label for="verzugsende">Verzugsende *</label>
               <span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
-              <input type="date" id="verzugsende" v-model="verzugsende" @change="validateVerzugsende" :class="{ 'error-border': errorMessages.verzugsende }">
+              <input type="date" id="verzugsende" v-model="verzugsende" @change="validateDates" :class="{ 'error-border': errorMessages.verzugsende }">
               <label for="beitragsrueckstand">Beitragsrückstand *</label>
-              <input type="number" id="beitragsrueckstand" v-model="beitragsrueckstand" :class="{ 'error-border': errorMessages.beitragsrueckstand }" placeholder="Bitte eingeben">
+              <input type="number" id="beitragsrueckstand" v-model="beitragsrueckstand" placeholder="Bitte eingeben">
               <label for="gesamtsollbetrag">Gesamtsollbetrag</label>
               <div class="readonly-field" id="gesamtsollbetrag">{{ calculateGesamtsollbetrag }} €</div>
               <label for="verjaehrungsfrist">Verjährungsfrist</label>
@@ -143,19 +143,13 @@ export default {
       if (this.startdatum && new Date(this.startdatum) > new Date()) {
         this.errorMessages.startdatum = 'Das Startdatum muss in der Vergangenheit liegen.';
       }
-    },
-    validateVerzugsende() {
-      this.errorMessages.verzugsende = '';
       if (this.verzugsende && new Date(this.verzugsende) > new Date()) {
         this.errorMessages.verzugsende = 'Das Verzugsende muss in der Vergangenheit liegen.';
       }
     },
     async handleSubmit() {
       this.validateDates();
-      this.validateVerzugsende();
-      if (Object.keys(this.errorMessages).length > 0) {
-        return;
-      }
+      if (Object.keys(this.errorMessages).length > 0) return;
 
       const formData = {
         aktenzeichen: this.aktenzeichen,
