@@ -26,7 +26,8 @@
               <input type="text" id="hausnummer" required v-model="hausnummer" placeholder="Hausnummer*">
               <input type="text" id="plz" required v-model="plz" placeholder="PLZ*">
               <input type="text" id="wohnort" required v-model="wohnort" placeholder="Wohnort*">
-
+              <input type="text" id="geburtsort" required v-model="geburtsort" placeholder="Geburtsort*">
+              <input type="text" id="ortsteil" required v-model="ortsteil" placeholder="Ortsteil*">
             </td>
             <td>
               <input type="text" id="vu-nr" required v-model="versicherungsunternehmensnummer"
