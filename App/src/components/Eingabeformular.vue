@@ -6,74 +6,106 @@
         <h2 id="title">Ordnungswidrigkeit nach §121 Abs.1 Nr.6 SGB XI</h2>
 
         <table class="formelle-angaben">
-          <tr><th>Formelle Angaben</th></tr>
-          <tr><td>
-            <input type="text" id="fallnummer" required v-model="fallnummer" placeholder="Fallnummer*">
-          </td></tr>
+          <tr>
+            <th>Formelle Angaben</th>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" id="fallnummer" required v-model="fallnummer" placeholder="Fallnummer*" size="">
+            </td>
+          </tr>
         </table>
 
         <table class="angaben-zur-beschuldigten-person">
-          <tr><th>Angaben zur beschuldigten Person</th></tr>
-          <tr><td>
-            <input type="text" id="geschlecht" required v-model="geschlecht" placeholder="Geschlecht*">
-            <input type="text" id="titel" v-model="titel" placeholder="Titel">
-            <input type="text" id="vorname" required v-model="vorname" placeholder="Vorname*">
-            <input type="text" id="nachname" required v-model="nachname" placeholder="Nachname*">
-            <input type="text" id="geburtsdatum" required v-model="geburtsdatum" placeholder="Geburtsdatum*"
-                   onfocus="(this.type='date')" onblur="(this.type='text')">
-            <input type="text" id="str" required v-model="str" placeholder="Straße*">
-            <input type="text" id="hausnummer" required v-model="hausnummer" placeholder="Hausnummer*">
-            <input type="text" id="plz" required v-model="plz" placeholder="PLZ*">
-            <input type="text" id="wohnort" required v-model="wohnort" placeholder="Wohnort*">
-            <input type="text" id="geburtsort" required v-model="geburtsort" placeholder="Geburtsort*">
-            <input type="text" id="ortsteil" required v-model="ortsteil" placeholder="Ortsteil*">
-          </td></tr>
+          <tr>
+            <th>Angaben zur beschuldigten Person</th>
+          </tr>
+          <tr>
+            <td><input type="text" id="geschlecht" required v-model="geschlecht" placeholder="Geschlecht*"></td>
+            <td><input type="text" id="titel" v-model="titel" placeholder="Titel"></td>
+          </tr>
+          <tr>
+            <td><input type="text" id="vorname" required v-model="vorname" placeholder="Vorname*"></td>
+            <td><input type="text" id="nachname" required v-model="nachname" placeholder="Nachname*"></td>
+            <td><input type="text" id="geburtsdatum" required v-model="geburtsdatum" placeholder="Geburtsdatum*"
+                       onfocus="(this.type='date')" onblur="(this.type='text')"></td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="text" id="str" required v-model="str" placeholder="Straße*"></td>
+            <td><input type="text" id="hausnummer" required v-model="hausnummer" placeholder="Hausnummer*"></td>
+          </tr>
+          <tr>
+            <td><input type="text" id="plz" required v-model="plz" placeholder="PLZ*"></td>
+            <td colspan="2"><input type="text" id="wohnort" required v-model="wohnort" placeholder="Wohnort*"></td>
+          </tr>
+          <tr>
+            <td><input type="text" id="geburtsort" required v-model="geburtsort" placeholder="Geburtsort*"></td>
+            <td colspan="2"><input type="text" id="ortsteil" required v-model="ortsteil" placeholder="Ortsteil*"></td>
+          </tr>
         </table>
 
         <table class="angaben-zur-versicherung">
-          <tr><th>Angaben zur Versicherung</th></tr>
-          <tr><td>
-            <input type="text" id="vu-nr" required v-model="versicherungsunternehmensnummer"
-                     placeholder="VU-Nr.*">
-            <input type="text" id="krankenversicherung" required v-model="krankenversicherung"
-                   placeholder="Krankenversicherung*">
-            <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer"
-                   placeholder="Versicherungsnummer*">
-          </td></tr>
+          <tr>
+            <th>Angaben zur Versicherung</th>
+          </tr>
+          <tr>
+            <td><input type="text" id="vu-nr" required v-model="versicherungsunternehmensnummer"
+                       placeholder="VU-Nr.*"></td>
+            <td><input type="text" id="krankenversicherung" required v-model="krankenversicherung"
+                       placeholder="Krankenversicherung*"></td>
+          </tr>
+          <tr>
+            <td><input type="text" id="versicherungsnummer" required v-model="versicherungsnummer"
+                       placeholder="Versicherungsnummer*"></td>
+          </tr>
         </table>
 
         <table class="angaben-zum-tatbestand">
-          <tr><th>Angaben zum Tatbestand § 51 Abs.1 Satz 2 SGB XI</th></tr>
-          <tr><td>
+          <tr>
+            <th>Angaben zum Tatbestand § 51 Abs.1 Satz 2 SGB XI</th>
+          </tr>
+          <tr>
+            <td>
               <span v-if="errorMessages.aufforderungsdatum" class="error-message">{{
                   errorMessages.aufforderungsdatum
                 }}</span>
-            <input type="text" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates"
-                   :class="{ 'error-border': errorMessages.aufforderungsdatum }" placeholder="Aufforderungsdatum*"
-                   onfocus="(this.type='date')" onblur="(this.type='text')">
-            <span v-if="errorMessages.startdatum" class="error-message">{{ errorMessages.startdatum }}</span>
-            <input type="text" id="startdatum" v-model="startdatum" @change="validateDates"
-                   :class="{ 'error-border': errorMessages.startdatum }" placeholder="Beginn Rückstand*"
-                   onfocus="(this.type='date')" onblur="(this.type='text')">
-            <input type="text" id="verzugBis" v-model="verzugbis"
-                   :class="{ 'error-border': errorMessages.verzugbis }" placeholder="Verzug bis*"
-                   onfocus="(this.type='date')" onblur="(this.type='text')">
-            <span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
-            <input type="text" id="verzugsende" v-model="verzugsende" @change="validateDates"
-                   :class="{ 'error-border': errorMessages.verzugsende }" placeholder="Verzugsende*"
-                   onfocus="(this.type='date')" onblur="(this.type='text')">
-            <input type="number" min="0" id="beitragsrueckstand" v-model="beitragsrueckstand"
-                   placeholder="Beitragsrückstand*">
-            <input type="number" min="0" id="gesamtsollbetrag" v-model="gesamtsollbetrag"
-                   placeholder="Gesamtsollbetrag in Euro*">
-          </td></tr>
+              <input type="text" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates"
+                     :class="{ 'error-border': errorMessages.aufforderungsdatum }" placeholder="Aufforderungsdatum*"
+                     onfocus="(this.type='date')" onblur="(this.type='text')"></td>
+            <td><span v-if="errorMessages.startdatum" class="error-message">{{ errorMessages.startdatum }}</span>
+              <input type="text" id="startdatum" v-model="startdatum" @change="validateDates"
+                     :class="{ 'error-border': errorMessages.startdatum }" placeholder="Beginn Rückstand*"
+                     onfocus="(this.type='date')" onblur="(this.type='text')">
+            </td>
+          </tr>
+          <tr>
+            <td><input type="text" id="verzugBis" v-model="verzugbis"
+                       :class="{ 'error-border': errorMessages.verzugbis }" placeholder="Verzug bis*"
+                       onfocus="(this.type='date')" onblur="(this.type='text')">
+            </td>
+            <td><span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
+              <input type="text" id="verzugsende" v-model="verzugsende" @change="validateDates"
+                     :class="{ 'error-border': errorMessages.verzugsende }" placeholder="Verzugsende*"
+                     onfocus="(this.type='date')" onblur="(this.type='text')">
+            </td>
+          </tr>
+          <tr>
+            <td><input type="number" min="0" id="beitragsrueckstand" v-model="beitragsrueckstand"
+                       placeholder="Beitragsrückstand*"></td>
+            <td><input type="number" min="0" id="gesamtsollbetrag" v-model="gesamtsollbetrag"
+                       placeholder="Gesamtsollbetrag*"></td>
+          </tr>
         </table>
 
         <table class="weitere-angaben">
-          <tr><th>Weitere Angaben</th></tr>
-          <tr><td>
-            <input type="text" id="notizen" placeholder="Notizen">
-          </td></tr>
+          <tr>
+            <th>Weitere Angaben</th>
+          </tr>
+          <tr>
+            <td>
+              <textarea type="text" id="notizen" placeholder="Notizen"></textarea>
+            </td>
+          </tr>
         </table>
 
         <div class="submit-and-response">
@@ -118,6 +150,21 @@ export default {
     }
   },
   computed: {
+    calculateVerzugBis() {
+      if (this.startdatum) {
+        let start = new Date(this.startdatum);
+        start.setMonth(start.getMonth() + 5);
+        start.setDate(start.getDate());
+
+        // Format the date to DD.MM.YYYY
+        let day = start.getDate().toString().padStart(2, '0');
+        let month = (start.getMonth() + 1).toString().padStart(2, '0');
+        let year = start.getFullYear();
+
+        return `${day}.${month}.${year}`;
+      }
+      return 'dd.mm.yyyy';
+    },
     hasErrors() {
       return Object.keys(this.errorMessages).length > 0;
     }
@@ -194,50 +241,39 @@ export default {
   min-height: 520px;
 }
 
+#title {
+  margin-bottom: 34px;
+}
+
 .input-form {
   padding: 1% 6%;
   font-size: 20px;
   font-weight: bold;
   margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  margin-bottom: 18px;
+  width: 100%;
 }
 
 th, td {
-  padding-top: 0;
-  padding-bottom: 16px;
-  padding-right: 16px;
-  border: 1px solid #292929;
-}
-
-th {
+  //border: 1px solid #292929;
+  text-align: left;
   vertical-align: top;
-}
-
-td {
-  vertical-align: top;
+  padding-right: 10px;
+  padding-top: 10px;
 }
 
 form {
   background: #fdfdfd;
 }
 
-textarea {
-  font-size: 16px;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  font-weight: normal;
-  border: 1px solid #404040;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 16px;
-  font-weight: normal;
-}
-
 input, .readonly-field {
   display: block;
-  padding: 10px 10px;
-  margin-bottom: 20px;
+  padding: 6px 10px;
   box-sizing: border-box;
   border: 1px solid #404040;
   width: 100%;
@@ -247,6 +283,16 @@ input, .readonly-field {
 input[type="date"] {
   font-family: Arial, Helvetica, sans-serif;
   color: grey;
+}
+
+#notizen {
+  width: calc(100% - 20px);
+  height: 125px;
+  resize: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  padding: 6px 10px;
+  border: 1px solid #404040;
 }
 
 .readonly-field {
