@@ -2,65 +2,78 @@
   <div class="container">
     <div class="input-form">
       <form @submit.prevent="handleSubmit">
+
         <h2 id="title">Ordnungswidrigkeit nach §121 Abs.1 Nr.6 SGB XI</h2>
 
-        <table class="input-fields">
-          <tr>
-            <th>Formelle Angaben</th>
-            <th>Angaben zur beschuldigten Person</th>
-            <th>Angaben zur Versicherung</th>
-            <th>Angaben zum Tatbestand § 51 Abs.1 Satz 2 SGB XI</th>
-          </tr>
-          <tr>
-            <td>
-              <input type="text" id="fallnummer" required v-model="fallnummer" placeholder="Fallnummer*">
-            </td>
-            <td>
-              <input type="text" id="geschlecht" required v-model="geschlecht" placeholder="Geschlecht*">
-              <input type="text" id="titel" v-model="titel" placeholder="Titel">
-              <input type="text" id="vorname" required v-model="vorname" placeholder="Vorname*">
-              <input type="text" id="nachname" required v-model="nachname" placeholder="Nachname*">
-              <input type="text" id="geburtsdatum" required v-model="geburtsdatum" placeholder="Geburtsdatum*"
-                     onfocus="(this.type='date')" onblur="(this.type='text')">
-              <input type="text" id="str" required v-model="str" placeholder="Straße*">
-              <input type="text" id="hausnummer" required v-model="hausnummer" placeholder="Hausnummer*">
-              <input type="text" id="plz" required v-model="plz" placeholder="PLZ*">
-              <input type="text" id="wohnort" required v-model="wohnort" placeholder="Wohnort*">
-              <input type="text" id="geburtsort" required v-model="geburtsort" placeholder="Geburtsort*">
-              <input type="text" id="ortsteil" required v-model="ortsteil" placeholder="Ortsteil*">
-            </td>
-            <td>
-              <input type="text" id="vu-nr" required v-model="versicherungsunternehmensnummer"
+        <table class="formelle-angaben">
+          <tr><th>Formelle Angaben</th></tr>
+          <tr><td>
+            <input type="text" id="fallnummer" required v-model="fallnummer" placeholder="Fallnummer*">
+          </td></tr>
+        </table>
+
+        <table class="angaben-zur-beschuldigten-person">
+          <tr><th>Angaben zur beschuldigten Person</th></tr>
+          <tr><td>
+            <input type="text" id="geschlecht" required v-model="geschlecht" placeholder="Geschlecht*">
+            <input type="text" id="titel" v-model="titel" placeholder="Titel">
+            <input type="text" id="vorname" required v-model="vorname" placeholder="Vorname*">
+            <input type="text" id="nachname" required v-model="nachname" placeholder="Nachname*">
+            <input type="text" id="geburtsdatum" required v-model="geburtsdatum" placeholder="Geburtsdatum*"
+                   onfocus="(this.type='date')" onblur="(this.type='text')">
+            <input type="text" id="str" required v-model="str" placeholder="Straße*">
+            <input type="text" id="hausnummer" required v-model="hausnummer" placeholder="Hausnummer*">
+            <input type="text" id="plz" required v-model="plz" placeholder="PLZ*">
+            <input type="text" id="wohnort" required v-model="wohnort" placeholder="Wohnort*">
+            <input type="text" id="geburtsort" required v-model="geburtsort" placeholder="Geburtsort*">
+            <input type="text" id="ortsteil" required v-model="ortsteil" placeholder="Ortsteil*">
+          </td></tr>
+        </table>
+
+        <table class="angaben-zur-versicherung">
+          <tr><th>Angaben zur Versicherung</th></tr>
+          <tr><td>
+            <input type="text" id="vu-nr" required v-model="versicherungsunternehmensnummer"
                      placeholder="VU-Nr.*">
-              <input type="text" id="krankenversicherung" required v-model="krankenversicherung"
-                     placeholder="Krankenversicherung*">
-              <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer"
-                     placeholder="Versicherungsnummer*">
-            </td>
-            <td>
+            <input type="text" id="krankenversicherung" required v-model="krankenversicherung"
+                   placeholder="Krankenversicherung*">
+            <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer"
+                   placeholder="Versicherungsnummer*">
+          </td></tr>
+        </table>
+
+        <table class="angaben-zum-tatbestand">
+          <tr><th>Angaben zum Tatbestand § 51 Abs.1 Satz 2 SGB XI</th></tr>
+          <tr><td>
               <span v-if="errorMessages.aufforderungsdatum" class="error-message">{{
                   errorMessages.aufforderungsdatum
                 }}</span>
-              <input type="text" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates"
-                     :class="{ 'error-border': errorMessages.aufforderungsdatum }" placeholder="Aufforderungsdatum*"
-                     onfocus="(this.type='date')" onblur="(this.type='text')">
-              <span v-if="errorMessages.startdatum" class="error-message">{{ errorMessages.startdatum }}</span>
-              <input type="text" id="startdatum" v-model="startdatum" @change="validateDates"
-                     :class="{ 'error-border': errorMessages.startdatum }" placeholder="Beginn Rückstand*"
-                     onfocus="(this.type='date')" onblur="(this.type='text')">
-              <input type="text" id="verzugBis" v-model="verzugbis"
-                     :class="{ 'error-border': errorMessages.verzugbis }" placeholder="Verzug bis*"
-                     onfocus="(this.type='date')" onblur="(this.type='text')">
-              <span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
-              <input type="text" id="verzugsende" v-model="verzugsende" @change="validateDates"
-                     :class="{ 'error-border': errorMessages.verzugsende }" placeholder="Verzugsende*"
-                     onfocus="(this.type='date')" onblur="(this.type='text')">
-              <input type="number" min="0" id="beitragsrueckstand" v-model="beitragsrueckstand"
-                     placeholder="Beitragsrückstand*">
-              <input type="number" min="0" id="gesamtsollbetrag" v-model="gesamtsollbetrag"
-                     placeholder="Gesamtsollbetrag in Euro*">
-            </td>
-          </tr>
+            <input type="text" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates"
+                   :class="{ 'error-border': errorMessages.aufforderungsdatum }" placeholder="Aufforderungsdatum*"
+                   onfocus="(this.type='date')" onblur="(this.type='text')">
+            <span v-if="errorMessages.startdatum" class="error-message">{{ errorMessages.startdatum }}</span>
+            <input type="text" id="startdatum" v-model="startdatum" @change="validateDates"
+                   :class="{ 'error-border': errorMessages.startdatum }" placeholder="Beginn Rückstand*"
+                   onfocus="(this.type='date')" onblur="(this.type='text')">
+            <input type="text" id="verzugBis" v-model="verzugbis"
+                   :class="{ 'error-border': errorMessages.verzugbis }" placeholder="Verzug bis*"
+                   onfocus="(this.type='date')" onblur="(this.type='text')">
+            <span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
+            <input type="text" id="verzugsende" v-model="verzugsende" @change="validateDates"
+                   :class="{ 'error-border': errorMessages.verzugsende }" placeholder="Verzugsende*"
+                   onfocus="(this.type='date')" onblur="(this.type='text')">
+            <input type="number" min="0" id="beitragsrueckstand" v-model="beitragsrueckstand"
+                   placeholder="Beitragsrückstand*">
+            <input type="number" min="0" id="gesamtsollbetrag" v-model="gesamtsollbetrag"
+                   placeholder="Gesamtsollbetrag in Euro*">
+          </td></tr>
+        </table>
+
+        <table class="weitere-angaben">
+          <tr><th>Weitere Angaben</th></tr>
+          <tr><td>
+            <input type="text" id="notizen" placeholder="Notizen">
+          </td></tr>
         </table>
 
         <div class="submit-and-response">
@@ -69,7 +82,6 @@
         </div>
 
       </form>
-
     </div>
   </div>
 </template>
@@ -189,14 +201,11 @@ export default {
   margin: 0;
 }
 
-.input-fields, th, td {
-  text-align: left;
-}
-
 th, td {
   padding-top: 0;
   padding-bottom: 16px;
   padding-right: 16px;
+  border: 1px solid #292929;
 }
 
 th {
@@ -209,6 +218,13 @@ td {
 
 form {
   background: #fdfdfd;
+}
+
+textarea {
+  font-size: 16px;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  border: 1px solid #404040;
 }
 
 label {
