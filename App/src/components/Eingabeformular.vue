@@ -21,14 +21,15 @@
             <th colspan="3">Angaben zur beschuldigten Person</th>
           </tr>
           <tr>
-            <td><input type="text" id="geschlecht" required v-model="geschlecht" placeholder="Geschlecht*"></td>
+            <td><input type="text" id="geschlecht" required v-model="geschlecht" placeholder="Geschlecht*"
+                       maxlength="8"></td>
             <td><input type="text" id="titel" v-model="titel" placeholder="Titel"></td>
           </tr>
           <tr>
             <td><input type="text" id="vorname" required v-model="vorname" placeholder="Vorname*"></td>
             <td><input type="text" id="nachname" required v-model="nachname" placeholder="Nachname*"></td>
             <td><input type="text" id="geburtsdatum" required v-model="geburtsdatum"
-                       placeholder="Geburtsdatum*"></td>
+                       placeholder="Geburtsdatum*" maxlength="10"></td>
           </tr>
           <tr>
             <td colspan="2"><input type="text" id="str" required v-model="str" placeholder="Straße*"></td>
