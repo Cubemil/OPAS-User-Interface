@@ -18,7 +18,7 @@
 
         <table class="angaben-zur-beschuldigten-person">
           <tr>
-            <th>Angaben zur beschuldigten Person</th>
+            <th colspan="3">Angaben zur beschuldigten Person</th>
           </tr>
           <tr>
             <td><input type="text" id="geschlecht" required v-model="geschlecht" placeholder="Geschlecht*"></td>
@@ -27,8 +27,7 @@
           <tr>
             <td><input type="text" id="vorname" required v-model="vorname" placeholder="Vorname*"></td>
             <td><input type="text" id="nachname" required v-model="nachname" placeholder="Nachname*"></td>
-            <td><input type="text" id="geburtsdatum" required v-model="geburtsdatum" placeholder="Geburtsdatum*"
-                       onfocus="(this.type='date')" onblur="(this.type='text')"></td>
+            <td><input type="text" id="geburtsdatum" required v-model="geburtsdatum" placeholder="Geburtsdatum (TT.MM.JJJJ)*"></td>
           </tr>
           <tr>
             <td colspan="2"><input type="text" id="str" required v-model="str" placeholder="Straße*"></td>
@@ -46,7 +45,7 @@
 
         <table class="angaben-zur-versicherung">
           <tr>
-            <th>Angaben zur Versicherung</th>
+            <th colspan="2">Angaben zur Versicherung</th>
           </tr>
           <tr>
             <td><input type="text" id="vu-nr" required v-model="versicherungsunternehmensnummer"
@@ -62,7 +61,7 @@
 
         <table class="angaben-zum-tatbestand">
           <tr>
-            <th>Angaben zum Tatbestand § 51 Abs.1 Satz 2 SGB XI</th>
+            <th colspan="2">Angaben zum Tatbestand § 51 Abs.1 Satz 2 SGB XI</th>
           </tr>
           <tr>
             <td>
@@ -70,23 +69,19 @@
                   errorMessages.aufforderungsdatum
                 }}</span>
               <input type="text" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates"
-                     :class="{ 'error-border': errorMessages.aufforderungsdatum }" placeholder="Aufforderungsdatum*"
-                     onfocus="(this.type='date')" onblur="(this.type='text')"></td>
+                     :class="{ 'error-border': errorMessages.aufforderungsdatum }" placeholder="Aufforderungsdatum (TT.MM.JJJJ)*"></td>
             <td><span v-if="errorMessages.startdatum" class="error-message">{{ errorMessages.startdatum }}</span>
               <input type="text" id="startdatum" v-model="startdatum" @change="validateDates"
-                     :class="{ 'error-border': errorMessages.startdatum }" placeholder="Beginn Rückstand*"
-                     onfocus="(this.type='date')" onblur="(this.type='text')">
+                     :class="{ 'error-border': errorMessages.startdatum }" placeholder="Beginn Rückstand (TT.MM.JJJJ)*">
             </td>
           </tr>
           <tr>
             <td><input type="text" id="verzugBis" v-model="verzugbis"
-                       :class="{ 'error-border': errorMessages.verzugbis }" placeholder="Verzug bis*"
-                       onfocus="(this.type='date')" onblur="(this.type='text')">
+                       :class="{ 'error-border': errorMessages.verzugbis }" placeholder="Verzug bis (TT.MM.JJJJ)*">
             </td>
             <td><span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
               <input type="text" id="verzugsende" v-model="verzugsende" @change="validateDates"
-                     :class="{ 'error-border': errorMessages.verzugsende }" placeholder="Verzugsende*"
-                     onfocus="(this.type='date')" onblur="(this.type='text')">
+                     :class="{ 'error-border': errorMessages.verzugsende }" placeholder="Verzugsende (TT.MM.JJJJ)*">
             </td>
           </tr>
           <tr>
@@ -278,11 +273,6 @@ input, .readonly-field {
   border: 1px solid #404040;
   width: 100%;
   font-size: 16px;
-}
-
-input[type="date"] {
-  font-family: Arial, Helvetica, sans-serif;
-  color: grey;
 }
 
 #notizen {
