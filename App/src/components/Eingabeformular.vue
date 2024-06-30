@@ -27,7 +27,8 @@
           <tr>
             <td><input type="text" id="vorname" required v-model="vorname" placeholder="Vorname*"></td>
             <td><input type="text" id="nachname" required v-model="nachname" placeholder="Nachname*"></td>
-            <td><input type="text" id="geburtsdatum" required v-model="geburtsdatum" placeholder="Geburtsdatum (TT.MM.JJJJ)*"></td>
+            <td><input type="text" id="geburtsdatum" required v-model="geburtsdatum"
+                       placeholder="Geburtsdatum*"></td>
           </tr>
           <tr>
             <td colspan="2"><input type="text" id="str" required v-model="str" placeholder="Straße*"></td>
@@ -39,7 +40,7 @@
           </tr>
           <tr>
             <td><input type="text" id="geburtsort" required v-model="geburtsort" placeholder="Geburtsort*"></td>
-            <td colspan="2"><input type="text" id="ortsteil" required v-model="ortsteil" placeholder="Ortsteil*"></td>
+            <td colspan="2"><input type="text" id="ortsteil" required v-model="ortsteil" placeholder="Ortsteil"></td>
           </tr>
         </table>
 
@@ -69,19 +70,20 @@
                   errorMessages.aufforderungsdatum
                 }}</span>
               <input type="text" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates"
-                     :class="{ 'error-border': errorMessages.aufforderungsdatum }" placeholder="Aufforderungsdatum (TT.MM.JJJJ)*"></td>
+                     :class="{ 'error-border': errorMessages.aufforderungsdatum }"
+                     placeholder="Aufforderungsdatum*"></td>
             <td><span v-if="errorMessages.startdatum" class="error-message">{{ errorMessages.startdatum }}</span>
               <input type="text" id="startdatum" v-model="startdatum" @change="validateDates"
-                     :class="{ 'error-border': errorMessages.startdatum }" placeholder="Beginn Rückstand (TT.MM.JJJJ)*">
+                     :class="{ 'error-border': errorMessages.startdatum }" placeholder="Beginn Rückstand*">
             </td>
           </tr>
           <tr>
-            <td><input type="text" id="verzugBis" v-model="verzugbis"
-                       :class="{ 'error-border': errorMessages.verzugbis }" placeholder="Verzug bis (TT.MM.JJJJ)*">
+            <td><input type="text" id="verzugBis" class="readonly-field" v-model="verzugbis"
+                       :class="{ 'error-border': errorMessages.verzugbis }" placeholder="Verzug bis" readonly>
             </td>
             <td><span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
               <input type="text" id="verzugsende" v-model="verzugsende" @change="validateDates"
-                     :class="{ 'error-border': errorMessages.verzugsende }" placeholder="Verzugsende (TT.MM.JJJJ)*">
+                     :class="{ 'error-border': errorMessages.verzugsende }" placeholder="Verzugsende*">
             </td>
           </tr>
           <tr>
