@@ -258,7 +258,7 @@ table {
 }
 
 th, td {
-  //border: 1px solid #292929;
+  /* border: 1px solid #292929; */
   text-align: left;
   vertical-align: top;
   padding-right: 10px;
