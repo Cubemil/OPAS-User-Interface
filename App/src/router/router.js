@@ -14,7 +14,10 @@ const routes = [
   { 
     path: '/bearbeiten/:id', 
     component: Bearbeitungssicht, 
-    props: route => ({ id: route.params.id, data: route.query.data }) 
+    props: route => {
+      const data = route.query.data ? JSON.parse(route.query.data) : {};
+      return { id: route.params.id, data };
+    }
   }
 ];
 

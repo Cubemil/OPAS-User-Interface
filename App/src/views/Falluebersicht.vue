@@ -5,7 +5,7 @@
       <div class="menu">
         <h1>Fallübersicht</h1>
         <div v-if="items.length">
-          <div v-for="item in items" :key="item.fallnummer" class="item">
+          <div v-for="item in items" :key="item.recordId" class="item">
             <img src="@/assets/edit-icon.svg" alt="edit" height="25" weight="auto" style="float: right; cursor: pointer" @click="openEditView(item)">
             <p><strong>Fallnummer:</strong> {{ item.fallnummer }}</p>
             <p><strong>Name:</strong> {{ item.nachname }}, {{ item.vorname }}</p>
@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       items: []
-    };
+    }
   },
   mounted() {
     this.fetchItems();
@@ -49,12 +49,13 @@ export default {
         const response = await fetch('http://localhost:5000/api/Offense');
         const result = await response.json();
         this.items = result.data;
+        console.log("items: " + JSON.stringify(this.items));
       } catch (error) {
         console.error('Error fetching items:', error);
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>

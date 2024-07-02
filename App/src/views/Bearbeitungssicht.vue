@@ -1,21 +1,19 @@
 <template>
-  <div>
-    <h2>Bearbeitungssicht Formular</h2>
-    <p><strong>ID:</strong> {{ id }}</p>
-    <div v-if="formData">
-      <p><strong>Fallnummer:</strong> {{ formData.fallnummer }}</p>
-      <p><strong>Name:</strong> {{ formData.nachname }}, {{ formData.vorname }}</p>
-      <!-- Add more fields as needed -->
-    </div>
-    <div v-else>
-      <p>Keine Daten verfügbar.</p>
-    </div>
+  <div class="container">
+    <img id="background" src="@/assets/landesverwaltungsamt.jpeg" alt="background">
+    <h1 id="title">Ordnungswidrigkeit nach §121 Abs.1 Nr.6 SGB XI</h1>
+    <h2 id="mode"> * Bearbeitungsmodus *</h2>
+    <Eingabeformular :initialData="formData" @submit="handleSubmit"/>
+    <p v-if="responseMessage">{{ responseMessage }}</p>
   </div>
 </template>
 
 <script>
+import Eingabeformular from '../components/Eingabeformular.vue';
+
 export default {
-  name: 'Eingabeformular',
+  components: { Eingabeformular },
+  name: 'Bearbeitungssicht',
   props: {
     id: {
       type: String,
@@ -26,14 +24,64 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      responseMessage: ''
+    }
+  },
   computed: {
     formData() {
       return this.data;
     }
+  },
+  methods: {
+    async handleSubmit(formData) {
+      try {
+        console.log("id: " + this.id)
+        console.log("formData: " + JSON.stringify(formData))
+
+        const response = await fetch(`http://localhost:5000/api/offense/${this.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        })
+
+        console.log("response: " + response)
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        
+        const result = await response.json()
+        this.responseMessage = result.message
+        console.log("result: " + result)
+
+        return result
+      } catch (error) {
+        alert('Error: ' + error.message)
+      }
+    }
   }
-};
+}
 </script>
 
 <style scoped>
-/* Add your styles here */
+#background {
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+#title {
+  font-size: 30px;
+  text-align: center;
+}
+
+#mode {
+  color: rgb(222, 38, 38);
+  text-align: center;
+  margin-bottom: -0.5em;
+}
 </style>

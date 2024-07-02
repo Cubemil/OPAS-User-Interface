@@ -3,8 +3,6 @@
     <div id="input-form">
       <form @submit.prevent="handleSubmit">
 
-        <h2 id="title">Ordnungswidrigkeit nach §121 Abs.1 Nr.6 SGB XI</h2>
-
         <table id="formal-table">
           <tr>
             <th>Formelle Angaben</th>
@@ -24,22 +22,12 @@
           <tr>
             <td>
               <label for="geschlecht" class="field-label">* Geschlecht</label>
-              <select id="geschlecht" required v-model="geschlecht">
-                <option value="" disabled selected hidden>* Geschlecht</option>
-                <option value="männlich">männlich</option>
-                <option value="weiblich">weiblich</option>
-                <option value="divers">divers</option>
-              </select>
+              <input type="text" id="geschlecht" required v-model="geschlecht" placeholder="Geschlecht" maxlength="8">
             </td>
             <td>
               <label for="titel" class="field-label">Titel</label>
-              <select id="titel" required v-model="titel">
-                <option value="" disabled selected hidden>Titel</option>
-                <option value="prof.">Prof.</option>
-                <option value="dr.">Dr.</option>
-                <option value="prof.dr.">Prof. Dr.</option>
-                <option value="empty">keine Angabe</option>
-              </select></td>
+              <input type="text" id="titel" v-model="titel" placeholder="Titel">
+            </td>
           </tr>
           <tr>
             <td>
@@ -82,7 +70,7 @@
             </td>
             <td colspan="2">
               <label for="ortsteil" class="field-label">Ortsteil</label>
-              <input type="text" id="ortsteil" required v-model="ortsteil" placeholder="Ortsteil">
+              <input type="text" id="ortsteil" v-model="ortsteil" placeholder="Ortsteil">
             </td>
           </tr>
         </table>
@@ -117,11 +105,12 @@
             <td>
               <span v-if="errorMessages.aufforderungsdatum" class="error-message">{{ errorMessages.aufforderungsdatum }}</span>
               <label v-else for="aufforderungsdatum" class="field-label">* Aufforderungsdatum</label>
-              <input type="date" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates" :class="{ 'error-border': errorMessages.aufforderungsdatum }"></td>
+              <input type="date" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates" :class="{ 'error-border': errorMessages.aufforderungsdatum }">
+            </td>
             <td>
               <span v-if="errorMessages.startdatum" class="error-message">{{ errorMessages.startdatum }}</span>
               <label v-else for="startdatum" class="field-label">* Startdatum</label>
-              <input type="date" id="startdatum" v-model="startdatum" @change="validateDates" :class="{ 'error-border': errorMessages.startdatum }" >
+              <input type="date" id="startdatum" v-model="startdatum" @change="validateDates" :class="{ 'error-border': errorMessages.startdatum }">
             </td>
           </tr>
           <tr>
@@ -132,7 +121,7 @@
             <td>
               <span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
               <label v-else for="verzugsende" class="field-label">* Verzugsende</label>
-              <input type="date" id="verzugsende" v-model="verzugsende" @change="validateDates" :class="{ 'error-border': errorMessages.verzugsende }" >
+              <input type="date" id="verzugsende" v-model="verzugsende" @change="validateDates" :class="{ 'error-border': errorMessages.verzugsende }">
             </td>
           </tr>
           <tr>
@@ -152,7 +141,7 @@
             <th>Weitere Angaben</th>
           </tr>
           <tr>
-            <td><textarea type="text" id="bemerkungen" placeholder="Bemerkungen"></textarea></td>
+            <td><textarea type="text" id="bemerkungen" placeholder="Bemerkungen" v-model="bemerkungen"></textarea></td>
           </tr>
         </table>
 
@@ -169,29 +158,36 @@
 <script>
 export default {
   name: 'Eingabeformular',
+  props: {
+    initialData: {
+      type: Object,
+      default: () => ({})
+    }
+  },
   data() {
     return {
-      fallnummer: '',
-      geschlecht: '',
-      vorname: '',
-      nachname: '',
-      titel: '',
-      geburtsdatum: '',
-      str: '',
-      hausnummer: '',
-      plz: '',
-      wohnort: '',
-      geburtsort: '',
-      ortsteil: '',
-      versicherungsunternehmensnummer: '',
-      versicherungsnummer: '',
-      krankenversicherung: '',
-      aufforderungsdatum: '',
-      startdatum: '',
-      verzugsende: '',
-      verzugBis: '',
-      beitragsrueckstand: '',
-      gesamtsollbetrag: '',
+      fallnummer: this.initialData.fallnummer || '',
+      geschlecht: this.initialData.geschlecht || '',
+      vorname: this.initialData.vorname || '',
+      nachname: this.initialData.nachname || '',
+      titel: this.initialData.titel || '',
+      geburtsdatum: this.formatDate(this.initialData.geburtsdatum) || '',
+      str: this.initialData.str || '',
+      hausnummer: this.initialData.hausnummer || '',
+      plz: this.initialData.plz || '',
+      wohnort: this.initialData.wohnort || '',
+      geburtsort: this.initialData.geburtsort || '',
+      ortsteil: this.initialData.ortsteil || '',
+      versicherungsunternehmensnummer: this.initialData.versicherungsunternehmensnummer || '',
+      krankenversicherung: this.initialData.krankenversicherung || '',
+      versicherungsnummer: this.initialData.versicherungsnummer || '',
+      aufforderungsdatum: this.formatDate(this.initialData.aufforderungsdatum) || '',
+      startdatum: this.formatDate(this.initialData.startdatum) || '',
+      verzugBis: this.formatDate(this.initialData.verzugBis) || '',
+      verzugsende: this.formatDate(this.initialData.verzugsende) || '',
+      beitragsrueckstand: this.initialData.beitragsrueckstand || '',
+      gesamtsollbetrag: this.initialData.gesamtsollbetrag || '',
+      bemerkungen: this.initialData.bemerkungen || '',
       responseMessage: '',
       errorMessages: {}
     }
@@ -205,7 +201,7 @@ export default {
     hasErrors() {
       return Object.keys(this.errorMessages).length > 0;
     },
-    formattedVerzugBis() { // used to store value in dd.mm.yyyy format
+    formattedVerzugBis() {
       if (this.verzugBis) {
         const date = new Date(this.verzugBis);
         const day = date.getDate().toString().padStart(2, '0');
@@ -217,12 +213,20 @@ export default {
     }
   },
   methods: {
+    formatDate(dateString) {
+      if (!dateString) return '';
+      const date = new Date(dateString);
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    },
     updateVerzugBis() {
       if (this.startdatum) {
         let date = new Date(this.startdatum);
         date.setDate(1);
         date.setMonth(date.getMonth() + 5);
-        this.verzugBis = date.toISOString().substring(0, 10);  // in yyyy-mm-dd format
+        this.verzugBis = date.toISOString().substring(0, 10);
       }
     },
     validateDates() {
@@ -270,28 +274,9 @@ export default {
         beitragsrueckstand: this.beitragsrueckstand,
         gesamtsollbetrag: this.gesamtsollbetrag,
         bemerkungen: this.bemerkungen
-      }
+      };
 
-      try {
-        const response = await fetch('http://localhost:5000/api/offense', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData)
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const result = await response.json();
-        this.responseMessage = result.message;
-
-        return result;
-      } catch (error) {
-        alert('Error: ' + error.message);
-      }
+      this.$emit('submit', formData);
     }
   }
 }
@@ -302,10 +287,6 @@ export default {
   background: #fdfdfd;
   width: 100%;
   min-height: 520px;
-}
-
-#title {
-  margin-bottom: 34px;
 }
 
 #input-form {
@@ -326,21 +307,6 @@ input {
   font-family: Arial, serif;
 }
 
-/*
-input[type="date"]::-webkit-calendar-picker-indicator {
-  background: transparent;
-  bottom: 0;
-  color: transparent;
-  cursor: pointer;
-  height: auto;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: auto;
-}
-*/
-
 input[type="date"] {
   padding: .38rem;
   font-weight: 450;
@@ -350,16 +316,6 @@ input[type="date"] {
 input[type="text"] {
   padding: .45rem;
   font-family: Arial, serif;
-}
-
-select {
-  padding: .27rem;
-  font-weight: 500;
-  font-size: 16px;
-  box-sizing: border-box;
-  outline: 0;
-  position: relative;
-  width: 100%;
 }
 
 input, .readonly-field {
@@ -377,7 +333,6 @@ table {
 }
 
 th, td {
-  /*border: 1px solid #292929;*/
   text-align: left;
   vertical-align: top;
   padding-right: 10px;
@@ -395,7 +350,7 @@ input, .readonly-field, input[type="date"] {
   border: 1px solid #404040;
   width: 100%;
   font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif; /* Ensures the date input has the same font */
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #bemerkungen {
@@ -419,7 +374,7 @@ input, .readonly-field, input[type="date"] {
   font-size: 14px;
   margin-top: -15px;
   margin-bottom: 15px;
-  font-family: Arial, Helvetica, sans-serif; /* Ensures the labels have the same font */
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .error-message {
