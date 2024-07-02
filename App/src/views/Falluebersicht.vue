@@ -5,10 +5,10 @@
       <div class="menu">
         <h1>Fallübersicht</h1>
         <div v-if="items.length">
-          <div v-for="item in items" :key="item.aktenzeichen" class="item">
+          <div v-for="item in items" :key="item.fallnummer" class="item">
             <img src="@/assets/edit-icon.svg" alt="edit" height="25" weight="auto"
                  style="float: right; cursor: pointer">
-            <p><strong>Aktenzeichen:</strong> {{ item.aktenzeichen }}</p>
+            <p><strong>Fallnummer:</strong> {{ item.fallnummer }}</p>
             <p><strong>Name:</strong> {{ item.nachname }}, {{ item.vorname }}</p>
           </div>
         </div>

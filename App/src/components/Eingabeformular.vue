@@ -236,7 +236,7 @@ export default {
       if (Object.keys(this.errorMessages).length > 0) return;
 
       const formData = {
-        aktenzeichen: this.aktenzeichen,
+        fallnummer: this.fallnummer,
         geschlecht: this.geschlecht,
         titel: this.titel,
         vorname: this.vorname,
