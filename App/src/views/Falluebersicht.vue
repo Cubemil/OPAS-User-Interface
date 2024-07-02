@@ -6,8 +6,7 @@
         <h1>Fallübersicht</h1>
         <div v-if="items.length">
           <div v-for="item in items" :key="item.fallnummer" class="item">
-            <img src="@/assets/edit-icon.svg" alt="edit" height="25" weight="auto"
-                 style="float: right; cursor: pointer">
+            <img src="@/assets/edit-icon.svg" alt="edit" height="25" weight="auto" style="float: right; cursor: pointer" @click="openEditView(item)">
             <p><strong>Fallnummer:</strong> {{ item.fallnummer }}</p>
             <p><strong>Name:</strong> {{ item.nachname }}, {{ item.vorname }}</p>
           </div>
@@ -32,6 +31,19 @@ export default {
     this.fetchItems();
   },
   methods: {
+    async openEditView(item) {
+      try {
+        const response = await fetch(`http://localhost:5000/api/Offense/${item.recordId}`);
+        const result = await response.json();
+
+        this.$router.push({
+          path: `/bearbeiten/${item.recordId}`,
+          query: { data: JSON.stringify(result.data) }
+        });
+      } catch (error) {
+        console.error('Error fetching item:', error);
+      }
+    },
     async fetchItems() {
       try {
         const response = await fetch('http://localhost:5000/api/Offense');

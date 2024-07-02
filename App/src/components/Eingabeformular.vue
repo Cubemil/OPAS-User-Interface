@@ -339,7 +339,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   top: 0;
   width: auto;
 }
- */
+*/
+
 input[type="date"] {
   padding: .38rem;
   font-weight: 450;
