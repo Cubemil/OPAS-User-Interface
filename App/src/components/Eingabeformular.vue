@@ -1,112 +1,152 @@
 <template>
-  <div class="container">
-    <div class="input-form">
+  <div id="container">
+    <div id="input-form">
       <form @submit.prevent="handleSubmit">
 
         <h2 id="title">Ordnungswidrigkeit nach §121 Abs.1 Nr.6 SGB XI</h2>
 
-        <table class="formelle-angaben">
+        <table id="formal-table">
           <tr>
             <th>Formelle Angaben</th>
           </tr>
           <tr>
             <td>
-              <input type="text" id="fallnummer" required v-model="fallnummer" placeholder="Fallnummer*" size="">
+              <label for="fallnummer" class="field-label">* Fallnummer</label>
+              <input type="text" id="fallnummer" required v-model="fallnummer" placeholder="Fallnummer">
             </td>
           </tr>
         </table>
 
-        <table class="angaben-zur-beschuldigten-person">
+        <table id="person-table">
           <tr>
             <th colspan="3">Angaben zur beschuldigten Person</th>
           </tr>
           <tr>
-            <td><input type="text" id="geschlecht" required v-model="geschlecht" placeholder="Geschlecht*"
-                       maxlength="8"></td>
-            <td><input type="text" id="titel" v-model="titel" placeholder="Titel"></td>
+            <td>
+              <label for="geschlecht" class="field-label">* Geschlecht</label>
+              <input type="text" id="geschlecht" required v-model="geschlecht" placeholder="Geschlecht" maxlength="8">
+            </td>
+            <td>
+              <label for="titel" class="field-label">Titel</label>
+              <input type="text" id="titel" v-model="titel" placeholder="Titel">
+            </td>
           </tr>
           <tr>
-            <td><input type="text" id="vorname" required v-model="vorname" placeholder="Vorname*"></td>
-            <td><input type="text" id="nachname" required v-model="nachname" placeholder="Nachname*"></td>
-            <td><input type="text" id="geburtsdatum" required v-model="geburtsdatum"
-                       placeholder="Geburtsdatum*" maxlength="10"></td>
+            <td>
+              <label for="vorname" class="field-label">* Vorname</label>
+              <input type="text" id="vorname" required v-model="vorname" placeholder="Vorname">
+            </td>
+            <td>
+              <label for="nachname" class="field-label">* Nachname</label>
+              <input type="text" id="nachname" required v-model="nachname" placeholder="Nachname">
+            </td>
+            <td>
+              <label for="geburtsdatum" class="field-label">* Geburtsdatum</label>
+              <input type="date" id="geburtsdatum" required v-model="geburtsdatum" maxlength="10">
+            </td>
           </tr>
           <tr>
-            <td colspan="2"><input type="text" id="str" required v-model="str" placeholder="Straße*"></td>
-            <td><input type="text" id="hausnummer" required v-model="hausnummer" placeholder="Hausnummer*"></td>
+            <td colspan="2">
+              <label for="str" class="field-label">* Straße</label>
+              <input type="text" id="str" required v-model="str" placeholder="Straße">
+            </td>
+            <td>
+              <label for="hausnummer" class="field-label">* Hausnummer</label>
+              <input type="text" id="hausnummer" required v-model="hausnummer" placeholder="Hausnummer">
+            </td>
           </tr>
           <tr>
-            <td><input type="text" id="plz" required v-model="plz" placeholder="PLZ*"></td>
-            <td colspan="2"><input type="text" id="wohnort" required v-model="wohnort" placeholder="Wohnort*"></td>
+            <td>
+              <label for="plz" class="field-label">* PLZ</label>
+              <input type="text" id="plz" required v-model="plz" placeholder="PLZ">
+            </td>
+            <td colspan="2">
+              <label for="wohnort" class="field-label">* Wohnort</label>
+              <input type="text" id="wohnort" required v-model="wohnort" placeholder="Wohnort">
+            </td>
           </tr>
           <tr>
-            <td><input type="text" id="geburtsort" required v-model="geburtsort" placeholder="Geburtsort*"></td>
-            <td colspan="2"><input type="text" id="ortsteil" required v-model="ortsteil" placeholder="Ortsteil"></td>
+            <td>
+              <label for="geburtsort" class="field-label">* Geburtsort</label>
+              <input type="text" id="geburtsort" required v-model="geburtsort" placeholder="Geburtsort">
+            </td>
+            <td colspan="2">
+              <label for="ortsteil" class="field-label">* Ortsteil</label>
+              <input type="text" id="ortsteil" required v-model="ortsteil" placeholder="Ortsteil">
+            </td>
           </tr>
         </table>
 
-        <table class="angaben-zur-versicherung">
+        <table class="insurance-table">
           <tr>
             <th colspan="2">Angaben zur Versicherung</th>
           </tr>
           <tr>
-            <td><input type="text" id="vu-nr" required v-model="versicherungsunternehmensnummer"
-                       placeholder="VU-Nr.*"></td>
-            <td><input type="text" id="krankenversicherung" required v-model="krankenversicherung"
-                       placeholder="Krankenversicherung*"></td>
+            <td>
+              <label for="vu-nr" class="field-label">* VU-Nr.</label>
+              <input type="text" id="vu-nr" required v-model="versicherungsunternehmensnummer" placeholder="VU-Nr.">
+            </td>
+            <td>
+              <label for="krankenversicherung" class="field-label">* Krankenversicherung</label>
+              <input type="text" id="krankenversicherung" required v-model="krankenversicherung" placeholder="Krankenversicherung">
+            </td>
           </tr>
           <tr>
-            <td><input type="text" id="versicherungsnummer" required v-model="versicherungsnummer"
-                       placeholder="Versicherungsnummer*"></td>
+            <td>
+              <label for="versicherungsnummer" class="field-label">* Versicherungsnummer</label>
+              <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer" placeholder="Versicherungsnummer">
+            </td>
           </tr>
         </table>
 
-        <table class="angaben-zum-tatbestand">
+        <table class="offense-table">
           <tr>
             <th colspan="2">Angaben zum Tatbestand § 51 Abs.1 Satz 2 SGB XI</th>
           </tr>
           <tr>
             <td>
-              <span v-if="errorMessages.aufforderungsdatum" class="error-message">{{
-                  errorMessages.aufforderungsdatum
-                }}</span>
-              <input type="text" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates"
-                     :class="{ 'error-border': errorMessages.aufforderungsdatum }"
-                     placeholder="Aufforderungsdatum*"></td>
-            <td><span v-if="errorMessages.startdatum" class="error-message">{{ errorMessages.startdatum }}</span>
-              <input type="text" id="startdatum" v-model="startdatum" @change="validateDates"
-                     :class="{ 'error-border': errorMessages.startdatum }" placeholder="Beginn Rückstand*">
+              <span v-if="errorMessages.aufforderungsdatum" class="error-message">{{ errorMessages.aufforderungsdatum }}</span>
+              <label v-else for="aufforderungsdatum" class="field-label">* Aufforderungsdatum</label>
+              <input type="date" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates" :class="{ 'error-border': errorMessages.aufforderungsdatum }"></td>
+            <td>
+              <span v-if="errorMessages.startdatum" class="error-message">{{ errorMessages.startdatum }}</span>
+              <label v-else for="startdatum" class="field-label">* Startdatum</label>
+              <input type="date" id="startdatum" v-model="startdatum" @change="validateDates" :class="{ 'error-border': errorMessages.startdatum }" >
             </td>
           </tr>
           <tr>
-            <td><input type="text" id="verzugBis" class="readonly-field" v-model="verzugbis"
-                       :class="{ 'error-border': errorMessages.verzugbis }" placeholder="Verzug bis" readonly>
+            <td>
+              <label for="verzug-bis" class="field-label">Verzug bis</label>
+              <input type="date" id="verzug-bis" class="readonly-field" v-model="verzugBis" :class="{ 'error-border': errorMessages.verzugBis }" readonly>
             </td>
-            <td><span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
-              <input type="text" id="verzugsende" v-model="verzugsende" @change="validateDates"
-                     :class="{ 'error-border': errorMessages.verzugsende }" placeholder="Verzugsende*">
+            <td>
+              <span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
+              <label v-else for="verzugsende" class="field-label">* Verzugsende</label>
+              <input type="date" id="verzugsende" v-model="verzugsende" @change="validateDates" :class="{ 'error-border': errorMessages.verzugsende }" >
             </td>
           </tr>
           <tr>
-            <td><input type="number" min="0" id="beitragsrueckstand" v-model="beitragsrueckstand"
-                       placeholder="Beitragsrückstand*"></td>
-            <td><input type="number" min="0" id="gesamtsollbetrag" v-model="gesamtsollbetrag"
-                       placeholder="Gesamtsollbetrag*"></td>
+            <td>
+              <label for="beitragsrueckstand" class="field-label">* Beitragsrückstand</label>
+              <input type="number" min="0" id="beitragsrueckstand" v-model="beitragsrueckstand" placeholder="Beitragsrückstand">
+            </td>
+            <td>
+              <label for="gesamtsollbetrag" class="field-label">* Gesamtsollbetrag</label>
+              <input type="number" min="0" id="gesamtsollbetrag" v-model="gesamtsollbetrag" placeholder="Gesamtsollbetrag">
+            </td>
           </tr>
         </table>
 
-        <table class="weitere-angaben">
+        <table class="additional-table">
           <tr>
             <th>Weitere Angaben</th>
           </tr>
           <tr>
-            <td>
-              <textarea type="text" id="notizen" placeholder="Notizen"></textarea>
-            </td>
+            <td><textarea type="text" id="notizen" placeholder="Notizen"></textarea></td>
           </tr>
         </table>
 
-        <div class="submit-and-response">
+        <div id="submit-and-response">
           <button id="submit_button" :disabled="hasErrors">Absenden</button>
           <p id="response">{{ responseMessage }}</p>
         </div>
@@ -139,10 +179,9 @@ export default {
       aufforderungsdatum: '',
       startdatum: '',
       verzugsende: '',
-      verzugbis: '',
+      verzugBis: '',
       beitragsrueckstand: '',
       gesamtsollbetrag: '',
-      verjaehrungsfrist: '',
       responseMessage: '',
       errorMessages: {}
     }
@@ -150,18 +189,25 @@ export default {
   computed: {
     calculateVerzugBis() {
       if (this.startdatum) {
-        let start = new Date(this.startdatum);
-        start.setMonth(start.getMonth() + 5);
-        start.setDate(start.getDate());
+        // convert to date object
+        let date = new Date(this.startdatum);
 
-        // Format the date to DD.MM.YYYY
-        let day = start.getDate().toString().padStart(2, '0');
-        let month = (start.getMonth() + 1).toString().padStart(2, '0');
-        let year = start.getFullYear();
+        // set first day of month and 5 months in advance
+        date.setDate(1);
+        date.setMonth(date.getMonth() + 5);
 
-        return `${day}.${month}.${year}`;
+        /*
+        format date to DD.MM.YYYY
+        let day = date.getDate().toString().padStart(2, '0');
+        let month = (date.getMonth() + 1).toString().padStart(2, '0');
+        let year = date.getFullYear();
+        */
+
+        this.verzugBis = date;
+        return date;
       }
-      return 'dd.mm.yyyy';
+      this.
+      return 'tt.mm.jjjj';
     },
     hasErrors() {
       return Object.keys(this.errorMessages).length > 0;
@@ -170,14 +216,20 @@ export default {
   methods: {
     validateDates() {
       this.errorMessages = {};
+      if (this.geburtsdatum && new Date(this.geburtsdatum) > new Date()) {
+        this.errorMessages.geburtsdatum = 'Geburtsdatum muss in der Vergangenheit liegen.';
+      }
       if (this.aufforderungsdatum && new Date(this.aufforderungsdatum) > new Date()) {
-        this.errorMessages.aufforderungsdatum = 'Das Aufforderungsdatum muss in der Vergangenheit liegen.';
+        this.errorMessages.aufforderungsdatum = 'Aufforderungsdatum muss in der Vergangenheit liegen.';
       }
       if (this.startdatum && new Date(this.startdatum) > new Date()) {
-        this.errorMessages.startdatum = 'Das Startdatum muss in der Vergangenheit liegen.';
+        this.errorMessages.startdatum = 'Startdatum muss in der Vergangenheit liegen.';
+      }
+      if (this.startdatum && new Date(this.startdatum).getDate() != 1) {
+        this.errorMessages.startdatum = 'Startdatum muss am Monatsanfang liegen.';
       }
       if (this.verzugsende && new Date(this.verzugsende) > new Date()) {
-        this.errorMessages.verzugsende = 'Das Verzugsende muss in der Vergangenheit liegen.';
+        this.errorMessages.verzugsende = 'Verzugsende muss in der Vergangenheit liegen.';
       }
     },
     async handleSubmit() {
@@ -186,7 +238,7 @@ export default {
 
       const formData = {
         aktenzeichen: this.aktenzeichen,
-        anrede: this.anrede,
+        geschlecht: this.geschlecht,
         titel: this.titel,
         vorname: this.vorname,
         nachname: this.nachname,
@@ -195,16 +247,18 @@ export default {
         hausnummer: this.hausnummer,
         plz: this.plz,
         wohnort: this.wohnort,
+        geburtsort: this.geburtsort,
+        ortsteil: this.ortsteil,
         versicherungsunternehmensnummer: this.versicherungsunternehmensnummer,
         krankenversicherung: this.krankenversicherung,
         versicherungsnummer: this.versicherungsnummer,
         aufforderungsdatum: this.aufforderungsdatum,
         startdatum: this.startdatum,
-        verzugBis: this.calculateVerzugBis,
+        verzugBis: this.calculateVerzugBis, // calculates, only value not set manually
         verzugsende: this.verzugsende,
         beitragsrueckstand: this.beitragsrueckstand,
-        gesamtsollbetrag: this.calculateGesamtsollbetrag,
-        verjaehrungsfrist: this.calculateVerjaehrungsfrist
+        gesamtsollbetrag: this.gesamtsollbetrag,
+        notizen: this.notizen
       }
 
       try {
@@ -233,7 +287,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
+#container {
   background: #fdfdfd;
   width: 100%;
   min-height: 520px;
@@ -243,7 +297,7 @@ export default {
   margin-bottom: 34px;
 }
 
-.input-form {
+#input-form {
   padding: 1% 6%;
   font-size: 20px;
   font-weight: bold;
@@ -258,7 +312,7 @@ table {
 }
 
 th, td {
-  //border: 1px solid #292929;
+  /*border: 1px solid #292929;*/
   text-align: left;
   vertical-align: top;
   padding-right: 10px;
@@ -295,18 +349,21 @@ input, .readonly-field {
   font-weight: normal;
 }
 
-.error-message {
-  color: red;
+.field-label, .error-message {
   font-size: 14px;
   margin-top: -15px;
   margin-bottom: 15px;
+}
+
+.error-message {
+  color: red;
 }
 
 .error-border {
   border-color: red !important;
 }
 
-.submit-and-response {
+#submit-and-response {
   text-align: center;
   padding-top: 3%;
 }
