@@ -117,7 +117,7 @@
           <tr>
             <td>
               <label for="verzug-bis" class="field-label">Verzug bis</label>
-              <input type="date" id="verzug-bis" class="readonly-field" v-model="verzugBis" :class="{ 'error-border': errorMessages.verzugBis }" readonly>
+              <input type="text" id="verzug-bis" class="readonly-field" v-model="formattedVerzugBis" readonly>
             </td>
             <td>
               <span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
@@ -186,33 +186,35 @@ export default {
       errorMessages: {}
     }
   },
+  watch: {
+    startdatum: function(newStartDatum) {
+      this.updateVerzugBis();
+    }
+  },
   computed: {
-    calculateVerzugBis() {
-      if (this.startdatum) {
-        // convert to date object
-        let date = new Date(this.startdatum);
-
-        // set first day of month and 5 months in advance
-        date.setDate(1);
-        date.setMonth(date.getMonth() + 5);
-
-        /*
-        format date to DD.MM.YYYY
-        let day = date.getDate().toString().padStart(2, '0');
-        let month = (date.getMonth() + 1).toString().padStart(2, '0');
-        let year = date.getFullYear();
-        */
-
-        this.verzugBis = date;
-        return date;
-      }
-      return 'tt.mm.jjjj';
-    },
     hasErrors() {
       return Object.keys(this.errorMessages).length > 0;
+    },
+    formattedVerzugBis() { // used to store value in dd.mm.yyyy format
+      if (this.verzugBis) {
+        const date = new Date(this.verzugBis);
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}.${month}.${year}`;
+      }
+      return '';
     }
   },
   methods: {
+    updateVerzugBis() {
+      if (this.startdatum) {
+        let date = new Date(this.startdatum);
+        date.setDate(1);
+        date.setMonth(date.getMonth() + 5);
+        this.verzugBis = date.toISOString().substring(0, 10);  // in yyyy-mm-dd format
+      }
+    },
     validateDates() {
       this.errorMessages = {};
       if (this.geburtsdatum && new Date(this.geburtsdatum) > new Date()) {
@@ -253,7 +255,7 @@ export default {
         versicherungsnummer: this.versicherungsnummer,
         aufforderungsdatum: this.aufforderungsdatum,
         startdatum: this.startdatum,
-        verzugBis: this.calculateVerzugBis, // calculates, only value not set manually
+        verzugBis: this.verzugBis,
         verzugsende: this.verzugsende,
         beitragsrueckstand: this.beitragsrueckstand,
         gesamtsollbetrag: this.gesamtsollbetrag,
