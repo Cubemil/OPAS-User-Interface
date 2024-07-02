@@ -21,15 +21,28 @@
             <th colspan="3">Angaben zur beschuldigten Person</th>
           </tr>
           <tr>
-            <td><input type="text" id="geschlecht" required v-model="geschlecht" placeholder="Geschlecht*"
-                       maxlength="8"></td>
-            <td><input type="text" id="titel" v-model="titel" placeholder="Titel"></td>
+            <td>
+              <select id="geschlecht" required v-model="geschlecht">
+                <option value="" disabled selected hidden>Geschlecht*</option>
+                <option value="männlich">Männlich</option>
+                <option value="weiblich">Weiblich</option>
+                <option value="divers">Divers</option>
+              </select>
+            </td>
+            <td>
+              <select id="titel" required v-model="titel">
+                <option value="" disabled selected hidden>Titel*</option>
+                <option value="prof.">Prof.</option>
+                <option value="dr.">Dr.</option>
+                <option value="prof.dr.">Prof. Dr.</option>
+                <option value="empty">keine Angabe</option>
+              </select></td>
           </tr>
           <tr>
             <td><input type="text" id="vorname" required v-model="vorname" placeholder="Vorname*"></td>
             <td><input type="text" id="nachname" required v-model="nachname" placeholder="Nachname*"></td>
-            <td><input type="text" id="geburtsdatum" required v-model="geburtsdatum"
-                       placeholder="Geburtsdatum*" maxlength="10"></td>
+            <td><input type="text" id="geburtsdatum" required v-model="geburtsdatum" @blur="checkDatesEmpty"
+                       placeholder="Geburtsdatum*" onfocus="(this.type='date')"></td>
           </tr>
           <tr>
             <td colspan="2"><input type="text" id="str" required v-model="str" placeholder="Straße*"></td>
@@ -72,10 +85,11 @@
                 }}</span>
               <input type="text" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates"
                      :class="{ 'error-border': errorMessages.aufforderungsdatum }"
-                     placeholder="Aufforderungsdatum*"></td>
+                     placeholder="Aufforderungsdatum*" onfocus="(this.type='date')" @blur="checkDatesEmpty"></td>
             <td><span v-if="errorMessages.startdatum" class="error-message">{{ errorMessages.startdatum }}</span>
               <input type="text" id="startdatum" v-model="startdatum" @change="validateDates"
-                     :class="{ 'error-border': errorMessages.startdatum }" placeholder="Beginn Rückstand*">
+                     :class="{ 'error-border': errorMessages.startdatum }" placeholder="Beginn Rückstand*"
+                     onfocus="(this.type='date')" @blur="checkDatesEmpty">
             </td>
           </tr>
           <tr>
@@ -84,7 +98,8 @@
             </td>
             <td><span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
               <input type="text" id="verzugsende" v-model="verzugsende" @change="validateDates"
-                     :class="{ 'error-border': errorMessages.verzugsende }" placeholder="Verzugsende*">
+                     :class="{ 'error-border': errorMessages.verzugsende }" placeholder="Verzugsende*"
+                     onfocus="(this.type='date')" @blur="checkDatesEmpty">
             </td>
           </tr>
           <tr>
@@ -144,7 +159,7 @@ export default {
       gesamtsollbetrag: '',
       verjaehrungsfrist: '',
       responseMessage: '',
-      errorMessages: {}
+      errorMessages: {},
     }
   },
   computed: {
@@ -203,8 +218,8 @@ export default {
         verzugBis: this.calculateVerzugBis,
         verzugsende: this.verzugsende,
         beitragsrueckstand: this.beitragsrueckstand,
-        gesamtsollbetrag: this.calculateGesamtsollbetrag,
-        verjaehrungsfrist: this.calculateVerjaehrungsfrist
+        gesamtsollbetrag: this.gesamtsollbetrag,
+        verjaehrungsfrist: this.verjaehrungsfrist,
       }
 
       try {
@@ -226,6 +241,24 @@ export default {
         return result;
       } catch (error) {
         alert('Error: ' + error.message);
+      }
+    },
+    checkDatesEmpty() {
+      if (!this.geburtsdatum) {
+        console.log('empty');
+        document.getElementById("geburtsdatum").type = 'text';
+      }
+      if (!this.aufforderungsdatum) {
+        console.log('empty');
+        document.getElementById("aufforderungsdatum").type = 'text';
+      }
+      if (!this.startdatum) {
+        console.log('empty');
+        document.getElementById("startdatum").type = 'text';
+      }
+      if (!this.verzugsende) {
+        console.log('empty');
+        document.getElementById("verzugsende").type = 'text';
       }
     }
   }
@@ -252,6 +285,58 @@ export default {
   justify-content: center;
 }
 
+input {
+  border: none;
+  box-sizing: border-box;
+  outline: 0;
+  position: relative;
+  width: 100%;
+  font-family: Arial, serif;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+
+input[type="date"] {
+  padding: .38rem;
+  font-weight: 450;
+  font-family: Arial, serif;
+}
+
+input[type="text"] {
+  padding: .45rem;
+  font-family: Arial, serif;
+}
+
+select {
+  padding: .27rem;
+  font-weight: 500;
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: 0;
+  position: relative;
+  width: 100%;
+}
+
+input, .readonly-field {
+  display: block;
+  padding: 6px 10px;
+  box-sizing: border-box;
+  border: 1px solid #404040;
+  width: 100%;
+  font-size: 16px;
+}
+
 table {
   margin-bottom: 18px;
   width: 100%;
@@ -267,15 +352,6 @@ th, td {
 
 form {
   background: #fdfdfd;
-}
-
-input, .readonly-field {
-  display: block;
-  padding: 6px 10px;
-  box-sizing: border-box;
-  border: 1px solid #404040;
-  width: 100%;
-  font-size: 16px;
 }
 
 #notizen {
