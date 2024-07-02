@@ -142,7 +142,7 @@
             <th>Weitere Angaben</th>
           </tr>
           <tr>
-            <td><textarea type="text" id="notizen" placeholder="Notizen"></textarea></td>
+            <td><textarea type="text" id="bemerkungen" placeholder="Bemerkungen"></textarea></td>
           </tr>
         </table>
 
@@ -259,7 +259,7 @@ export default {
         verzugsende: this.verzugsende,
         beitragsrueckstand: this.beitragsrueckstand,
         gesamtsollbetrag: this.gesamtsollbetrag,
-        notizen: this.notizen
+        bemerkungen: this.bemerkungen
       }
 
       try {
@@ -333,7 +333,7 @@ input, .readonly-field {
   font-size: 16px;
 }
 
-#notizen {
+#bemerkungen {
   width: calc(100% - 20px);
   height: 125px;
   resize: none;
