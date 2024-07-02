@@ -24,12 +24,22 @@
           <tr>
             <td>
               <label for="geschlecht" class="field-label">* Geschlecht</label>
-              <input type="text" id="geschlecht" required v-model="geschlecht" placeholder="Geschlecht" maxlength="8">
+              <select id="geschlecht" required v-model="geschlecht">
+                <option value="" disabled selected hidden>* Geschlecht</option>
+                <option value="männlich">männlich</option>
+                <option value="weiblich">weiblich</option>
+                <option value="divers">divers</option>
+              </select>
             </td>
             <td>
               <label for="titel" class="field-label">Titel</label>
-              <input type="text" id="titel" v-model="titel" placeholder="Titel">
-            </td>
+              <select id="titel" required v-model="titel">
+                <option value="" disabled selected hidden>Titel</option>
+                <option value="prof.">Prof.</option>
+                <option value="dr.">Dr.</option>
+                <option value="prof.dr.">Prof. Dr.</option>
+                <option value="empty">keine Angabe</option>
+              </select></td>
           </tr>
           <tr>
             <td>
@@ -307,6 +317,58 @@ export default {
   justify-content: center;
 }
 
+input {
+  border: none;
+  box-sizing: border-box;
+  outline: 0;
+  position: relative;
+  width: 100%;
+  font-family: Arial, serif;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+
+input[type="date"] {
+  padding: .38rem;
+  font-weight: 450;
+  font-family: Arial, serif;
+}
+
+input[type="text"] {
+  padding: .45rem;
+  font-family: Arial, serif;
+}
+
+select {
+  padding: .27rem;
+  font-weight: 500;
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: 0;
+  position: relative;
+  width: 100%;
+}
+
+input, .readonly-field {
+  display: block;
+  padding: 6px 10px;
+  box-sizing: border-box;
+  border: 1px solid #404040;
+  width: 100%;
+  font-size: 16px;
+}
+
 table {
   margin-bottom: 18px;
   width: 100%;
@@ -409,4 +471,3 @@ input, .readonly-field, input[type="date"] {
   }
 }
 </style>
-
