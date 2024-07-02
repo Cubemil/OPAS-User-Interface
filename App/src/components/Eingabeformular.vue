@@ -206,7 +206,6 @@ export default {
         this.verzugBis = date;
         return date;
       }
-      this.
       return 'tt.mm.jjjj';
     },
     hasErrors() {
