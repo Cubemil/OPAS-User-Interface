@@ -71,7 +71,7 @@
               <input type="text" id="geburtsort" required v-model="geburtsort" placeholder="Geburtsort">
             </td>
             <td colspan="2">
-              <label for="ortsteil" class="field-label">* Ortsteil</label>
+              <label for="ortsteil" class="field-label">Ortsteil</label>
               <input type="text" id="ortsteil" required v-model="ortsteil" placeholder="Ortsteil">
             </td>
           </tr>
@@ -324,13 +324,14 @@ form {
   background: #fdfdfd;
 }
 
-input, .readonly-field {
+input, .readonly-field, input[type="date"] {
   display: block;
   padding: 6px 10px;
   box-sizing: border-box;
   border: 1px solid #404040;
   width: 100%;
   font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif; /* Ensures the date input has the same font */
 }
 
 #bemerkungen {
@@ -354,6 +355,7 @@ input, .readonly-field {
   font-size: 14px;
   margin-top: -15px;
   margin-bottom: 15px;
+  font-family: Arial, Helvetica, sans-serif; /* Ensures the labels have the same font */
 }
 
 .error-message {
@@ -407,3 +409,4 @@ input, .readonly-field {
   }
 }
 </style>
+
