@@ -37,9 +37,6 @@ export default {
   methods: {
     async handleSubmit(formData) {
       try {
-        console.log("id: " + this.id)
-        console.log("formData: " + JSON.stringify(formData))
-
         const response = await fetch(`http://localhost:5000/api/offense/${this.id}`, {
           method: 'PUT',
           headers: {
@@ -48,15 +45,12 @@ export default {
           body: JSON.stringify(formData)
         })
 
-        console.log("response: " + response)
-        
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
         }
         
         const result = await response.json()
         this.responseMessage = result.message
-        console.log("result: " + result)
 
         return result
       } catch (error) {
