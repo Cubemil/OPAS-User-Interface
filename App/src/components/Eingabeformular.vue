@@ -2,7 +2,6 @@
   <div id="container">
     <div id="input-form">
       <form @submit.prevent="handleSubmit">
-
         <table id="formal-table">
           <tr>
             <th>Formelle Angaben</th>
@@ -146,10 +145,10 @@
         </table>
 
         <div id="submit-and-response">
-          <button id="submit_button" :disabled="hasErrors" aria-label="absenden-button">{{ sendMode }}</button>
+          <button class="form-button" id="cancel-button" type="button" @click="handleCancel" aria-label="cancel-button">Abbrechen</button>
+          <button class="form-button" id="submit-button" :disabled="hasErrors" aria-label="send-button">{{ sendMode }}</button>
           <p id="response">{{ responseMessage }}</p>
         </div>
-
       </form>
     </div>
   </div>
@@ -189,7 +188,8 @@ export default {
       bemerkungen: this.initialData.bemerkungen || '',
       responseMessage: '',
       errorMessages: {},
-      sendMode: this.initialData.fallnummer ? 'Speichern' : 'Absenden' // if fallnummer is set, we're in edit mode
+      sendMode: this.initialData.fallnummer ? 'Speichern' : 'Absenden', // if fallnummer is set, we're in edit mode
+      isSubmitting: false // Add this flag to prevent multiple submissions
     }
   },
   methods: {
@@ -229,7 +229,9 @@ export default {
     },
     async handleSubmit() {
       this.validateDates();
-      if (Object.keys(this.errorMessages).length > 0) return;
+      if (Object.keys(this.errorMessages).length > 0 || this.isSubmitting) return;
+
+      this.isSubmitting = true; // Prevent multiple submissions
 
       const formData = {
         fallnummer: this.fallnummer,
@@ -256,8 +258,12 @@ export default {
         bemerkungen: this.bemerkungen
       }
 
-      this.$emit('submit', formData)
+      this.$emit('submit', formData);
+      this.isSubmitting = false; // Reset the flag after submission
     },
+    handleCancel() {
+      window.history.back(); // Go back one page in the browser history
+    }
   },
   watch: {
     startdatum: function(newStartDatum) {
@@ -390,7 +396,7 @@ input, .readonly-field, input[type="date"] {
   padding-top: 3%;
 }
 
-#submit_button {
+#submit-button, #cancel-button {
   background: #404040;
   font-size: 20px;
   padding: 1% 3%;
@@ -398,14 +404,15 @@ input, .readonly-field, input[type="date"] {
   border: none;
   cursor: pointer;
   transition: 0.3s;
+  margin: 0 1%;
 }
 
-#submit_button:disabled {
+#submit-button:disabled {
   background: grey;
   cursor: not-allowed;
 }
 
-#submit_button:hover:enabled {
+#submit-button:hover:enabled {
   background: #E8C325;
 }
 
@@ -418,7 +425,7 @@ input, .readonly-field, input[type="date"] {
     font-size: 20px;
   }
 
-  #submit_button {
+  #submit-button {
     font-size: 16px;
     padding: 2% 4%;
   }
