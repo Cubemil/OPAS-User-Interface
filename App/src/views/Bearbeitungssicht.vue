@@ -36,16 +36,19 @@ export default {
       this.isSubmitting = true
 
       try {
-        const url = `http://localhost:5000/api/offense/${this.data.recordId}`
-        console.log('Sending PUT request to URLurl: ', url)
-        console.log('Data: ', formData)
+        // create new object including recordId
+        const updatedFormData = { ...formData, recordId: this.data.recordId };
 
+        const url = `http://localhost:5000/api/offense/${this.data.recordId}`
+        console.log('Sending PUT request to URL: ', url)
+        console.log('updatedFormData: ', updatedFormData)
+        
         const response = await fetch(url, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(formData)
+          body: JSON.stringify(updatedFormData) 
         })
         
         if (!response.ok) {
