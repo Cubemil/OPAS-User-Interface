@@ -146,7 +146,7 @@
         </table>
 
         <div id="submit-and-response">
-          <button id="submit_button" :disabled="hasErrors" aria-label="absenden-button">Absenden</button>
+          <button id="submit_button" :disabled="hasErrors" aria-label="absenden-button">{{ sendMode }}</button>
           <p id="response">{{ responseMessage }}</p>
         </div>
 
@@ -188,7 +188,8 @@ export default {
       gesamtsollbetrag: this.initialData.gesamtsollbetrag || '',
       bemerkungen: this.initialData.bemerkungen || '',
       responseMessage: '',
-      errorMessages: {}
+      errorMessages: {},
+      sendMode: this.initialData.fallnummer ? 'Speichern' : 'Absenden'
     }
   },
   methods: {

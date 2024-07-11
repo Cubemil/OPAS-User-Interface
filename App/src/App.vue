@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav id="navbar-ar">
-      <Navbar/>
+      <AppNavbar/>
     </nav>
     
     <router-view id="main-content"></router-view>
@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import Navbar from '@/components/Navbar.vue';
+import AppNavbar from '@/components/AppNavbar.vue';
 import AppFooter from '@/components/AppFooter.vue';
 </script>
 
