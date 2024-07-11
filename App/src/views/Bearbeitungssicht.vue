@@ -26,36 +26,48 @@ export default {
   },
   data() {
     return {
-      responseMessage: ''
+      responseMessage: '',
+      isSubmitting: false,
     }
   },
   methods: {
     async handleSubmit(formData) {
+      if (this.isSubmitting) return
+      this.isSubmitting = true
+
       try {
-        const response = await fetch(`http://localhost:5000/api/offense/${this.id}`, {
+        const url = `http://localhost:5000/api/offense/${this.data.recordId}`
+        console.log('Sending PUT request to URLurl: ', url)
+        console.log('Data: ', formData)
+
+        const response = await fetch(url, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(formData)
         })
-
+        
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
         }
         
         const result = await response.json()
         this.responseMessage = result.message
+        console.log('Response: ', result)
 
         return result
       } catch (error) {
+        console.error('Error:', error.message)
         alert('Error: ' + error.message)
+      } finally {
+        this.isSubmitting = false
       }
     }
   },
   computed: {
     formData() {
-      return this.data;
+      return this.data
     }
   }
 }

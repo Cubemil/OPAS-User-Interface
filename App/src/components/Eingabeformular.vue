@@ -189,7 +189,7 @@ export default {
       bemerkungen: this.initialData.bemerkungen || '',
       responseMessage: '',
       errorMessages: {},
-      sendMode: this.initialData.fallnummer ? 'Speichern' : 'Absenden'
+      sendMode: this.initialData.fallnummer ? 'Speichern' : 'Absenden' // if fallnummer is set, we're in edit mode
     }
   },
   methods: {
