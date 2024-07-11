@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div id="container">
     <img id="background" src="@/assets/landesverwaltungsamt.jpeg" alt="background">
     <h1 id="title">Ordnungswidrigkeit nach §121 Abs.1 Nr.6 SGB XI</h1>
     <h2 id="mode"> * Bearbeitungsmodus *</h2>
@@ -8,12 +8,12 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Eingabeformular from '../components/Eingabeformular.vue';
+</script>
 
+<script>
 export default {
-  components: { Eingabeformular },
-  name: 'Bearbeitungssicht',
   props: {
     id: {
       type: String,
@@ -27,11 +27,6 @@ export default {
   data() {
     return {
       responseMessage: ''
-    }
-  },
-  computed: {
-    formData() {
-      return this.data;
     }
   },
   methods: {
@@ -56,6 +51,11 @@ export default {
       } catch (error) {
         alert('Error: ' + error.message)
       }
+    }
+  },
+  computed: {
+    formData() {
+      return this.data;
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div id="container">
     <img id="background" src="../assets/landesverwaltungsamt.jpeg" alt="background">
     <div class="menu-container">
       <div class="menu">
@@ -27,12 +27,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'Startseite',
-}
-</script>
 
 <style scoped>
 #background {

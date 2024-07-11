@@ -8,12 +8,12 @@
 	</div>
 </template>
 
-<script>
+<script setup>
 import Eingabeformular from '../components/Eingabeformular.vue';
+</script>
 
+<script>
 export default {
-  components: { Eingabeformular },
-	name: 'Ersterfassung',
 	data() {
 		return {
 			responseMessage: ''
@@ -34,12 +34,12 @@ export default {
           throw new Error(`HTTP error! status: ${response.status}`)
         }
 
-        const result = await response.json();
-        this.responseMessage = result.message;
+        const result = await response.json()
+        this.responseMessage = result.message
 
-        return result;
+        return result
       } catch (error) {
-        alert('Error: ' + error.message);
+        alert('Error: ' + error.message)
       }
 		}
 	}

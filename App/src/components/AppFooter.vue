@@ -1,6 +1,6 @@
 <template>
-  <div class="footer">
-    <ul class="list">
+  <div id="app-footer">
+    <ul id="list">
       <li>© OPUS 2024</li>
       <li><a>Hinweise</a></li>
       <li><a>Datenschutz</a></li>
@@ -11,14 +11,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Footer'
-}
-</script>
-
 <style scoped>
-.footer {
+#app-footer {
   background: #404040;
   font-size: 20px;
   font-weight: bold;
@@ -27,7 +21,7 @@ export default {
   border-top: #E8C325 solid 9px;
 }
 
-.list {
+#list {
   list-style: none;
   display: flex;
   justify-content: space-evenly;
@@ -35,24 +29,24 @@ export default {
   flex-wrap: wrap;
 }
 
-.list a {
+#list a {
   color: #fdfdfd;
   text-decoration: none;
   border-bottom: #fdfdfd solid 1px;
   cursor: pointer;
 }
 
-.list a:hover {
+#list a:hover {
   border-bottom: rgba(253, 253, 253, 0) solid 1px;
 }
 
 @media only screen and (max-width: 480px) {
-  .footer {
+  #app-footer {
     font-size: 16px;
     border-top: #E8C325 solid 6px;
   }
 
-  .list {
+  #list {
     list-style: none;
     display: block;
     justify-content: space-evenly;

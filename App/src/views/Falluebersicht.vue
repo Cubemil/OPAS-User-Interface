@@ -21,38 +21,37 @@
 
 <script>
 export default {
-  name: 'Falluebersicht',
   data() {
     return {
       items: []
     }
   },
-  mounted() {
-    this.fetchItems();
-  },
   methods: {
     async openEditView(item) {
       try {
-        const response = await fetch(`http://localhost:5000/api/Offense/${item.recordId}`);
-        const result = await response.json();
+        const response = await fetch(`http://localhost:5000/api/Offense/${item.recordId}`)
+        const result = await response.json()
 
         this.$router.push({
           path: `/bearbeiten/${item.recordId}`,
           query: { data: JSON.stringify(result.data) }
-        });
+        })
       } catch (error) {
-        console.error('Error fetching item:', error);
+        console.error('Error fetching item:', error)
       }
     },
     async fetchItems() {
       try {
-        const response = await fetch('http://localhost:5000/api/Offense');
-        const result = await response.json();
-        this.items = result.data;
+        const response = await fetch('http://localhost:5000/api/Offense')
+        const result = await response.json()
+        this.items = result.data
       } catch (error) {
-        console.error('Error fetching items:', error);
+        console.error('Error fetching items:', error)
       }
     }
+  },
+  mounted() {
+    this.fetchItems()
   }
 }
 </script>

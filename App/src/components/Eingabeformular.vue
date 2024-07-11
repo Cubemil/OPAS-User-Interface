@@ -146,7 +146,7 @@
         </table>
 
         <div id="submit-and-response">
-          <button id="submit_button" :disabled="hasErrors">Absenden</button>
+          <button id="submit_button" :disabled="hasErrors" aria-label="absenden-button">Absenden</button>
           <p id="response">{{ responseMessage }}</p>
         </div>
 
@@ -157,7 +157,6 @@
 
 <script>
 export default {
-  name: 'Eingabeformular',
   props: {
     initialData: {
       type: Object,
@@ -192,59 +191,39 @@ export default {
       errorMessages: {}
     }
   },
-  watch: {
-    startdatum: function(newStartDatum) {
-      this.updateVerzugBis();
-    }
-  },
-  computed: {
-    hasErrors() {
-      return Object.keys(this.errorMessages).length > 0;
-    },
-    formattedVerzugBis() {
-      if (this.verzugBis) {
-        const date = new Date(this.verzugBis);
-        const day = date.getDate().toString().padStart(2, '0');
-        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-        const year = date.getFullYear();
-        return `${day}.${month}.${year}`;
-      }
-      return '';
-    }
-  },
   methods: {
     formatDate(dateString) {
-      if (!dateString) return '';
-      const date = new Date(dateString);
-      const year = date.getFullYear();
-      const month = (date.getMonth() + 1).toString().padStart(2, '0');
-      const day = date.getDate().toString().padStart(2, '0');
-      return `${year}-${month}-${day}`;
+      if (!dateString) return ''
+      const date = new Date(dateString)
+      const year = date.getFullYear()
+      const month = (date.getMonth() + 1).toString().padStart(2, '0')
+      const day = date.getDate().toString().padStart(2, '0')
+      return `${year}-${month}-${day}`
     },
     updateVerzugBis() {
       if (this.startdatum) {
-        let date = new Date(this.startdatum);
-        date.setDate(1);
-        date.setMonth(date.getMonth() + 5);
-        this.verzugBis = date.toISOString().substring(0, 10);
+        let date = new Date(this.startdatum)
+        date.setDate(1)
+        date.setMonth(date.getMonth() + 5)
+        this.verzugBis = date.toISOString().substring(0, 10)
       }
     },
     validateDates() {
       this.errorMessages = {};
       if (this.geburtsdatum && new Date(this.geburtsdatum) > new Date()) {
-        this.errorMessages.geburtsdatum = 'Geburtsdatum muss in der Vergangenheit liegen.';
+        this.errorMessages.geburtsdatum = 'Geburtsdatum muss in der Vergangenheit liegen.'
       }
       if (this.aufforderungsdatum && new Date(this.aufforderungsdatum) > new Date()) {
-        this.errorMessages.aufforderungsdatum = 'Aufforderungsdatum muss in der Vergangenheit liegen.';
+        this.errorMessages.aufforderungsdatum = 'Aufforderungsdatum muss in der Vergangenheit liegen.'
       }
       if (this.startdatum && new Date(this.startdatum) > new Date()) {
-        this.errorMessages.startdatum = 'Startdatum muss in der Vergangenheit liegen.';
+        this.errorMessages.startdatum = 'Startdatum muss in der Vergangenheit liegen.'
       }
       if (this.startdatum && new Date(this.startdatum).getDate() != 1) {
-        this.errorMessages.startdatum = 'Startdatum muss am Monatsanfang liegen.';
+        this.errorMessages.startdatum = 'Startdatum muss am Monatsanfang liegen.'
       }
       if (this.verzugsende && new Date(this.verzugsende) > new Date()) {
-        this.errorMessages.verzugsende = 'Verzugsende muss in der Vergangenheit liegen.';
+        this.errorMessages.verzugsende = 'Verzugsende muss in der Vergangenheit liegen.'
       }
     },
     async handleSubmit() {
@@ -274,9 +253,29 @@ export default {
         beitragsrueckstand: this.beitragsrueckstand,
         gesamtsollbetrag: this.gesamtsollbetrag,
         bemerkungen: this.bemerkungen
-      };
+      }
 
-      this.$emit('submit', formData);
+      this.$emit('submit', formData)
+    },
+  },
+  watch: {
+    startdatum: function(newStartDatum) {
+      this.updateVerzugBis()
+    }
+  },
+  computed: {
+    hasErrors() {
+      return Object.keys(this.errorMessages).length > 0
+    },
+    formattedVerzugBis() {
+      if (this.verzugBis) {
+        const date = new Date(this.verzugBis);
+        const day = date.getDate().toString().padStart(2, '0')
+        const month = (date.getMonth() + 1).toString().padStart(2, '0')
+        const year = date.getFullYear()
+        return `${day}.${month}.${year}`
+      }
+      return ''
     }
   }
 }

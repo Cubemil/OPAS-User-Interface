@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar">
+  <div id="navbar">
     <router-link to="/" class="router-link">
       <img id="logo" src="../assets/logo.png" alt="logo">
     </router-link>
@@ -10,14 +10,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Navbar'
-}
-</script>
-
 <style scoped>
-.navbar {
+#navbar {
   position: sticky;
   background: #fdfdfd;
   padding: 1% 6%;
