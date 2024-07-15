@@ -36,8 +36,8 @@ export default {
       this.isSubmitting = true
 
       try {
-        // create new object including recordId
-        const updatedFormData = { ...formData, recordId: this.data.recordId };
+        // new data including recordId and rowVersion
+        const updatedFormData = { ...formData, recordId: this.data.recordId, rowVersion: this.data.rowVersion };
 
         const url = `http://localhost:5000/api/offense/${this.data.recordId}`
         console.log('Sending PUT request to URL: ', url)
