@@ -189,7 +189,7 @@ export default {
       responseMessage: '',
       errorMessages: {},
       sendMode: this.initialData.fallnummer ? 'Speichern' : 'Absenden', // if fallnummer is set, we're in edit mode
-      isSubmitting: false // Add this flag to prevent multiple submissions
+      isSubmitting: false // prevent multiple submissions
     }
   },
   methods: {
@@ -231,7 +231,7 @@ export default {
       this.validateDates();
       if (Object.keys(this.errorMessages).length > 0 || this.isSubmitting) return;
 
-      this.isSubmitting = true; // Prevent multiple submissions
+      this.isSubmitting = true; // prevent multiple submissions
 
       const formData = {
         fallnummer: this.fallnummer,
@@ -259,10 +259,10 @@ export default {
       }
 
       this.$emit('submit', formData);
-      this.isSubmitting = false; // Reset the flag after submission
+      this.isSubmitting = false;
     },
     handleCancel() {
-      window.history.back(); // Go back one page in the browser history
+      window.history.back(); // back one page in browser history
     }
   },
   watch: {

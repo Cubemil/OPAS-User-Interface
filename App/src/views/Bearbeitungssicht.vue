@@ -38,6 +38,9 @@ export default {
       try {
         // new data including recordId and rowVersion
         const updatedFormData = { ...formData, recordId: this.data.recordId, rowVersion: this.data.rowVersion };
+        console.log('recordId: ', this.data.recordId);
+        console.log('rowVersion: ', this.data.rowVersion);
+        console.log('updatedFormData: ', updatedFormData);
 
         const url = `http://localhost:5000/api/offense/${this.data.recordId}`
         console.log('Sending PUT request to URL: ', url)
@@ -67,6 +70,9 @@ export default {
         this.isSubmitting = false
       }
     }
+  },
+  mounted() {
+    console.log('Data: ', this.data)
   },
   computed: {
     formData() {

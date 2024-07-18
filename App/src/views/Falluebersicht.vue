@@ -45,6 +45,7 @@ export default {
         const response = await fetch('http://localhost:5000/api/Offense')
         const result = await response.json()
         this.items = result.data
+        console.log('Fetched items:', this.items)
       } catch (error) {
         console.error('Error fetching items:', error)
       }
