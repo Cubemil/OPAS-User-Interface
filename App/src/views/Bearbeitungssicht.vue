@@ -38,13 +38,8 @@ export default {
       try {
         // new data including recordId and rowVersion
         const updatedFormData = { ...formData, recordId: this.data.recordId, rowVersion: this.data.rowVersion };
-        console.log('recordId: ', this.data.recordId);
-        console.log('rowVersion: ', this.data.rowVersion);
-        console.log('updatedFormData: ', updatedFormData);
 
         const url = `http://localhost:5000/api/offense/${this.data.recordId}`
-        console.log('Sending PUT request to URL: ', url)
-        console.log('updatedFormData: ', updatedFormData)
         
         const response = await fetch(url, {
           method: 'PUT',
@@ -60,19 +55,13 @@ export default {
         
         const result = await response.json()
         this.responseMessage = result.message
-        console.log('Response: ', result)
-
         return result
       } catch (error) {
-        console.error('Error:', error.message)
         alert('Error: ' + error.message)
       } finally {
         this.isSubmitting = false
       }
     }
-  },
-  mounted() {
-    console.log('Data: ', this.data)
   },
   computed: {
     formData() {

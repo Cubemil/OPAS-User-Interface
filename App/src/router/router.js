@@ -4,6 +4,7 @@ import Verwaltung from '../views/Verwaltung.vue';
 import Ersterfassung from '../views/Ersterfassung.vue';
 import Falluebersicht from '../views/Falluebersicht.vue';
 import Bearbeitungssicht from '../views/Bearbeitungssicht.vue';
+import StyleGuide from '../views/StyleGuide.vue';
 
 const routes = [
   { path: '/', component: Startseite },
@@ -18,7 +19,8 @@ const routes = [
       const data = route.query.data ? JSON.parse(route.query.data) : {};
       return { id: route.params.id, data };
     }
-  }
+  },
+  { path: '/styleguide', component: StyleGuide }
 ];
 
 const router = createRouter({
