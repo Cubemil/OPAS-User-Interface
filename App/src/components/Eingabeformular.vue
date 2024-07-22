@@ -332,6 +332,7 @@ input[type="text"] {
 select {
   padding: .41rem;
   box-sizing: border-box;
+  outline: none;
   position: relative;
   width: 100%;
   font-size: 16px;
