@@ -14,6 +14,28 @@
           </tr>
         </table>
 
+        <table class="insurance-table">
+          <tr>
+            <th colspan="2">Angaben zur Versicherung</th>
+          </tr>
+          <tr>
+            <td>
+              <label for="vu-nr" class="field-label">* VU-Nr.</label>
+              <input type="text" id="vu-nr" required v-model="versicherungsunternehmensnummer" placeholder="VU-Nr.">
+            </td>
+            <td>
+              <label for="krankenversicherung" class="field-label">* Krankenversicherung</label>
+              <input type="text" id="krankenversicherung" required v-model="krankenversicherung" placeholder="Krankenversicherung">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="versicherungsnummer" class="field-label">* Versicherungsnummer</label>
+              <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer" placeholder="Versicherungsnummer">
+            </td>
+          </tr>
+        </table>
+
         <table id="person-table">
           <tr>
             <th colspan="3">Angaben zur beschuldigten Person</th>
@@ -70,28 +92,6 @@
             <td colspan="2">
               <label for="ortsteil" class="field-label">Ortsteil</label>
               <input type="text" id="ortsteil" v-model="ortsteil" placeholder="Ortsteil">
-            </td>
-          </tr>
-        </table>
-
-        <table class="insurance-table">
-          <tr>
-            <th colspan="2">Angaben zur Versicherung</th>
-          </tr>
-          <tr>
-            <td>
-              <label for="vu-nr" class="field-label">* VU-Nr.</label>
-              <input type="text" id="vu-nr" required v-model="versicherungsunternehmensnummer" placeholder="VU-Nr.">
-            </td>
-            <td>
-              <label for="krankenversicherung" class="field-label">* Krankenversicherung</label>
-              <input type="text" id="krankenversicherung" required v-model="krankenversicherung" placeholder="Krankenversicherung">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <label for="versicherungsnummer" class="field-label">* Versicherungsnummer</label>
-              <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer" placeholder="Versicherungsnummer">
             </td>
           </tr>
         </table>
