@@ -50,6 +50,9 @@ export default {
         })
         
         if (!response.ok) {
+          if (response.status === 409) {
+            throw new Error('Diese Daten wurden bereits geändert. Bitte laden Sie die Seite neu.')
+          }
           throw new Error(`HTTP error! status: ${response.status}`)
         }
         
