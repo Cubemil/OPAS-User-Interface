@@ -26,7 +26,7 @@
 .menu-container {
   background: #fdfdfd;
   width: 100%;
-  min-height: 520px;
+  min-height: 65vh;
 }
 
 .menu {
