@@ -43,7 +43,12 @@
           <tr>
             <td>
               <label for="geschlecht" class="field-label">* Geschlecht</label>
-              <input type="text" id="geschlecht" required v-model="geschlecht" placeholder="Geschlecht" maxlength="8">
+              <select id="geschlecht" required v-model="geschlecht">
+                <option value="" disabled selected hidden>Geschlecht</option>
+                <option value="Herr">Herr</option>
+                <option value="Frau">Frau</option>
+                <option value="Divers">Divers</option>
+              </select>
             </td>
             <td>
               <label for="titel" class="field-label">Titel</label>
@@ -322,6 +327,19 @@ input[type="date"] {
 input[type="text"] {
   padding: .45rem;
   font-family: Arial, serif;
+}
+
+select {
+  padding: .41rem;
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  font-size: 16px;
+  font-family: Arial, serif;
+  border: solid 1px #272727;
+  &:invalid { /* as long selected option is invalid -> font color = gray */
+    color: gray;
+  }
 }
 
 input, .readonly-field {
