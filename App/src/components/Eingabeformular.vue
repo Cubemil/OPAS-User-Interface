@@ -70,6 +70,10 @@
               <label for="nachname" class="field-label">Nachname*</label>
               <input type="text" id="nachname" required v-model="nachname" placeholder="Nachname">
             </td>
+            <td>
+              <label for="geburtsname" class="field-label">Geburtsname</label>
+              <input type="text" id="geburtsname" required v-model="geburtsname" placeholder="Geburtsname">
+            </td>
           </tr>
           <tr>
             <td colspan="2">
@@ -190,6 +194,7 @@ export default {
       geschlecht: this.initialData.geschlecht || '',
       vorname: this.initialData.vorname || '',
       nachname: this.initialData.nachname || '',
+      geburtsname: this.initialData.geburtsname || '',
       titel: this.initialData.titel || '',
       geburtsdatum: this.formatDate(this.initialData.geburtsdatum) || '',
       str: this.initialData.str || '',
@@ -264,6 +269,7 @@ export default {
         titel: this.titel,
         vorname: this.vorname,
         nachname: this.nachname,
+        geburtsname: this.geburtsname,
         geburtsdatum: this.geburtsdatum,
         str: this.str,
         hausnummer: this.hausnummer,
