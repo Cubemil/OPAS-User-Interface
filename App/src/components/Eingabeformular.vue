@@ -112,9 +112,9 @@
               <input type="date" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates" :class="{ 'error-border': errorMessages.aufforderungsdatum }">
             </td>
             <td>
-              <span v-if="errorMessages.startdatum" class="error-message">{{ errorMessages.startdatum }}</span>
-              <label v-else for="startdatum" class="field-label">Startdatum*</label>
-              <input type="date" id="startdatum" v-model="startdatum" @change="validateDates" :class="{ 'error-border': errorMessages.startdatum }">
+              <span v-if="errorMessages.beginnRueckstand" class="error-message">{{ errorMessages.beginnRueckstand }}</span>
+              <label v-else for="beginn-rückstand" class="field-label">Beginn Rückstand*</label>
+              <input type="date" id="beginn-rückstand" v-model="beginnRueckstand" @change="validateDates" :class="{ 'error-border': errorMessages.beginnRueckstand }">
             </td>
           </tr>
           <tr>
@@ -185,7 +185,7 @@ export default {
       krankenversicherung: this.initialData.krankenversicherung || '',
       versicherungsnummer: this.initialData.versicherungsnummer || '',
       aufforderungsdatum: this.formatDate(this.initialData.aufforderungsdatum) || '',
-      startdatum: this.formatDate(this.initialData.startdatum) || '',
+      beginnRueckstand: this.formatDate(this.initialData.beginnRueckstand) || '',
       verzugBis: this.formatDate(this.initialData.verzugBis) || '',
       verzugsende: this.formatDate(this.initialData.verzugsende) || '',
       beitragsrueckstand: this.initialData.beitragsrueckstand || '',
