@@ -56,6 +56,10 @@
               <label for="titel" class="field-label">Titel</label>
               <input type="text" id="titel" v-model="titel" placeholder="Titel">
             </td>
+            <td>
+              <label for="geburtsdatum" class="field-label">Geburtsdatum*</label>
+              <input type="date" id="geburtsdatum" required v-model="geburtsdatum" maxlength="10">
+            </td>
           </tr>
           <tr>
             <td>
@@ -65,10 +69,6 @@
             <td>
               <label for="nachname" class="field-label">Nachname*</label>
               <input type="text" id="nachname" required v-model="nachname" placeholder="Nachname">
-            </td>
-            <td>
-              <label for="geburtsdatum" class="field-label">Geburtsdatum*</label>
-              <input type="date" id="geburtsdatum" required v-model="geburtsdatum" maxlength="10">
             </td>
           </tr>
           <tr>
