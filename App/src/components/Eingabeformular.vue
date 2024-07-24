@@ -58,7 +58,7 @@
             </td>
             <td>
               <label for="geburtsdatum" class="field-label">Geburtsdatum*</label>
-              <input type="date" id="geburtsdatum" required v-model="geburtsdatum" maxlength="10">
+              <input type="date" id="geburtsdatum" required v-model="geburtsdatum">
             </td>
           </tr>
           <tr>

@@ -6,7 +6,7 @@
         <h1>Fallübersicht</h1>
         <div v-if="items.length">
           <div v-for="item in items" :key="item.recordId" class="item">
-            <img src="@/assets/edit-icon.svg" alt="edit" height="25" weight="auto" style="float: right; cursor: pointer" @click="openEditView(item)">
+            <div id="edit-icon" @click="openEditView(item)"></div>
             <p><strong>Fallnummer:</strong> {{ item.fallnummer }}</p>
             <p><strong>Name:</strong> {{ item.nachname }}, {{ item.vorname }}</p>
           </div>
@@ -95,5 +95,19 @@ export default {
 
 .menu .item p strong {
   color: #333;
+}
+
+#edit-icon {
+  background-image: url(@/assets/edit-icon.svg);
+  position: relative;
+  height: 25px;
+  width: 25px;
+  float: right;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#edit-icon:hover {
+  background-image: url(@/assets/filled-edit-icon.svg);
 }
 </style>
