@@ -134,8 +134,8 @@
               <input type="number" min="0" id="beitragsrueckstand" v-model="beitragsrueckstand" placeholder="Beitragsrückstand">
             </td>
             <td>
-              <label for="gesamtsollbetrag" class="field-label">Gesamtsollbetrag*</label>
-              <input type="number" min="0" id="gesamtsollbetrag" v-model="gesamtsollbetrag" placeholder="Gesamtsollbetrag">
+              <label for="sollbeitrag" class="field-label">Sollbeitrag*</label>
+              <input type="number" min="0" id="sollbeitrag" v-model="sollbeitrag" placeholder="Sollbeitrag">
             </td>
           </tr>
         </table>
@@ -189,7 +189,7 @@ export default {
       verzugBis: this.formatDate(this.initialData.verzugBis) || '',
       verzugsende: this.formatDate(this.initialData.verzugsende) || '',
       beitragsrueckstand: this.initialData.beitragsrueckstand || '',
-      gesamtsollbetrag: this.initialData.gesamtsollbetrag || '',
+      sollbeitrag: this.initialData.sollbeitrag || '',
       bemerkungen: this.initialData.bemerkungen || '',
       responseMessage: '',
       errorMessages: {},
@@ -259,7 +259,7 @@ export default {
         verzugBis: this.verzugBis,
         verzugsende: this.verzugsende,
         beitragsrueckstand: this.beitragsrueckstand,
-        gesamtsollbetrag: this.gesamtsollbetrag,
+        sollbeitrag: this.sollbeitrag,
         bemerkungen: this.bemerkungen
       }
 
