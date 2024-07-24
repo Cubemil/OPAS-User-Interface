@@ -154,6 +154,12 @@
               <input type="number" min="0" id="sollbeitrag" v-model="sollbeitrag" placeholder="Sollbeitrag">
             </td>
           </tr>
+          <tr>
+            <td colspan="3">
+              <label for="folgemeldung" class="field-label">Folgemeldung*</label>
+              <input type="number" min="1" id="folgemeldung" v-model="folgemeldung" placeholder="Folgemeldung">
+            </td>
+          </tr>
         </table>
 
         <table class="additional-table">
@@ -212,6 +218,7 @@ export default {
       verzugsende: this.formatDate(this.initialData.verzugsende) || '',
       beitragsrueckstand: this.initialData.beitragsrueckstand || '',
       sollbeitrag: this.initialData.sollbeitrag || '',
+      folgemeldung: this.initialData.folgemeldung || '',
       bemerkungen: this.initialData.bemerkungen || '',
       responseMessage: '',
       errorMessages: {},
@@ -286,6 +293,7 @@ export default {
         verzugsende: this.verzugsende,
         beitragsrueckstand: this.beitragsrueckstand,
         sollbeitrag: this.sollbeitrag,
+        folgemeldung: this.folgemeldung,
         bemerkungen: this.bemerkungen
       }
 
