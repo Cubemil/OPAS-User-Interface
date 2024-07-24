@@ -25,13 +25,15 @@
             </td>
             <td>
               <label for="krankenversicherung" class="field-label">Krankenversicherung*</label>
-              <input type="text" id="krankenversicherung" required v-model="krankenversicherung" placeholder="Krankenversicherung">
+              <input type="text" id="krankenversicherung" required v-model="krankenversicherung"
+                     placeholder="Krankenversicherung">
             </td>
           </tr>
           <tr>
             <td>
               <label for="versicherungsnummer" class="field-label">Versicherungsnummer*</label>
-              <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer" placeholder="Versicherungsnummer">
+              <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer"
+                     placeholder="Versicherungsnummer">
             </td>
           </tr>
         </table>
@@ -107,14 +109,20 @@
           </tr>
           <tr>
             <td>
-              <span v-if="errorMessages.aufforderungsdatum" class="error-message">{{ errorMessages.aufforderungsdatum }}</span>
+              <span v-if="errorMessages.aufforderungsdatum" class="error-message">{{
+                  errorMessages.aufforderungsdatum
+                }}</span>
               <label v-else for="aufforderungsdatum" class="field-label">Aufforderungsdatum*</label>
-              <input type="date" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates" :class="{ 'error-border': errorMessages.aufforderungsdatum }">
+              <input type="date" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates"
+                     :class="{ 'error-border': errorMessages.aufforderungsdatum }">
             </td>
             <td>
-              <span v-if="errorMessages.beginnRueckstand" class="error-message">{{ errorMessages.beginnRueckstand }}</span>
+              <span v-if="errorMessages.beginnRueckstand" class="error-message">{{
+                  errorMessages.beginnRueckstand
+                }}</span>
               <label v-else for="beginn-rückstand" class="field-label">Beginn Rückstand*</label>
-              <input type="date" id="beginn-rückstand" v-model="beginnRueckstand" @change="validateDates" :class="{ 'error-border': errorMessages.beginnRueckstand }">
+              <input type="date" id="beginn-rückstand" v-model="beginnRueckstand" @change="validateDates"
+                     :class="{ 'error-border': errorMessages.beginnRueckstand }">
             </td>
           </tr>
           <tr>
@@ -125,13 +133,15 @@
             <td>
               <span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
               <label v-else for="verzugsende" class="field-label">Verzugsende*</label>
-              <input type="date" id="verzugsende" v-model="verzugsende" @change="validateDates" :class="{ 'error-border': errorMessages.verzugsende }">
+              <input type="date" id="verzugsende" v-model="verzugsende" @change="validateDates"
+                     :class="{ 'error-border': errorMessages.verzugsende }">
             </td>
           </tr>
           <tr>
             <td>
               <label for="beitragsrueckstand" class="field-label">Beitragsrückstand*</label>
-              <input type="number" min="0" id="beitragsrueckstand" v-model="beitragsrueckstand" placeholder="Beitragsrückstand">
+              <input type="number" min="0" id="beitragsrueckstand" v-model="beitragsrueckstand"
+                     placeholder="Beitragsrückstand">
             </td>
             <td>
               <label for="sollbeitrag" class="field-label">Sollbeitrag*</label>
@@ -150,8 +160,13 @@
         </table>
 
         <div id="submit-and-response">
-          <button class="form-button" id="cancel-button" type="button" @click="handleCancel" aria-label="cancel-button">Abbrechen</button>
-          <button class="form-button" id="submit-button" :disabled="hasErrors" aria-label="send-button">{{ sendMode }}</button>
+          <button class="form-button" id="cancel-button" type="button" @click="handleCancel" aria-label="cancel-button">
+            Abbrechen
+          </button>
+          <button class="form-button" id="submit-button" :disabled="hasErrors" aria-label="send-button">{{
+              sendMode
+            }}
+          </button>
           <p id="response">{{ responseMessage }}</p>
         </div>
       </form>
@@ -225,8 +240,11 @@ export default {
       if (this.beginnRueckstand && new Date(this.beginnRueckstand) > new Date()) {
         this.errorMessages.beginnRueckstand = 'Beginn Rückstand muss in der Vergangenheit liegen.'
       }
-      if (this.beginnRueckstand && new Date(this.beginnRueckstand).getDate() != 1) {
+      if (this.beginnRueckstand && new Date(this.beginnRueckstand).getDate() !== 1) {
         this.errorMessages.beginnRueckstand = 'Beginn Rückstand muss am Monatsanfang liegen.'
+      }
+      if (this.beginnRueckstand > this.aufforderungsdatum || this.beginnRueckstand === this.aufforderungsdatum) {
+        this.errorMessages.beginnRueckstand = 'Beginn Rückstand muss vor dem Aufforderungsdatum liegen.'
       }
       if (this.verzugsende && new Date(this.verzugsende) > new Date()) {
         this.errorMessages.verzugsende = 'Verzugsende muss in der Vergangenheit liegen.'
@@ -271,7 +289,7 @@ export default {
     }
   },
   watch: {
-    beginnRueckstand: function(beginnRueckstand) {
+    beginnRueckstand: function (beginnRueckstand) {
       this.updateVerzugBis()
     }
   },
@@ -338,6 +356,7 @@ select {
   font-size: 16px;
   font-family: Arial, serif;
   border: solid 1px #272727;
+
   &:invalid { /* as long selected option is invalid -> font color = gray */
     color: gray;
   }
