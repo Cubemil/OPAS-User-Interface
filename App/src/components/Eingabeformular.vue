@@ -8,7 +8,7 @@
           </tr>
           <tr>
             <td>
-              <label for="fallnummer" class="field-label">* Fallnummer</label>
+              <label for="fallnummer" class="field-label">Fallnummer*</label>
               <input type="text" id="fallnummer" required v-model="fallnummer" placeholder="Fallnummer">
             </td>
           </tr>
@@ -20,17 +20,17 @@
           </tr>
           <tr>
             <td>
-              <label for="vu-nr" class="field-label">* VU-Nr.</label>
+              <label for="vu-nr" class="field-label">VU-Nr.*</label>
               <input type="text" id="vu-nr" required v-model="versicherungsunternehmensnummer" placeholder="VU-Nr.">
             </td>
             <td>
-              <label for="krankenversicherung" class="field-label">* Krankenversicherung</label>
+              <label for="krankenversicherung" class="field-label">Krankenversicherung*</label>
               <input type="text" id="krankenversicherung" required v-model="krankenversicherung" placeholder="Krankenversicherung">
             </td>
           </tr>
           <tr>
             <td>
-              <label for="versicherungsnummer" class="field-label">* Versicherungsnummer</label>
+              <label for="versicherungsnummer" class="field-label">Versicherungsnummer*</label>
               <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer" placeholder="Versicherungsnummer">
             </td>
           </tr>
@@ -42,7 +42,7 @@
           </tr>
           <tr>
             <td>
-              <label for="geschlecht" class="field-label">* Geschlecht</label>
+              <label for="geschlecht" class="field-label">Geschlecht*</label>
               <select id="geschlecht" required v-model="geschlecht">
                 <option value="" disabled selected hidden>Geschlecht</option>
                 <option value="Herr">Herr</option>
@@ -57,41 +57,41 @@
           </tr>
           <tr>
             <td>
-              <label for="vorname" class="field-label">* Vorname</label>
+              <label for="vorname" class="field-label">Vorname*</label>
               <input type="text" id="vorname" required v-model="vorname" placeholder="Vorname">
             </td>
             <td>
-              <label for="nachname" class="field-label">* Nachname</label>
+              <label for="nachname" class="field-label">Nachname*</label>
               <input type="text" id="nachname" required v-model="nachname" placeholder="Nachname">
             </td>
             <td>
-              <label for="geburtsdatum" class="field-label">* Geburtsdatum</label>
+              <label for="geburtsdatum" class="field-label">Geburtsdatum*</label>
               <input type="date" id="geburtsdatum" required v-model="geburtsdatum" maxlength="10">
             </td>
           </tr>
           <tr>
             <td colspan="2">
-              <label for="str" class="field-label">* Straße</label>
+              <label for="str" class="field-label">Straße*</label>
               <input type="text" id="str" required v-model="str" placeholder="Straße">
             </td>
             <td>
-              <label for="hausnummer" class="field-label">* Hausnummer</label>
+              <label for="hausnummer" class="field-label">Hausnummer*</label>
               <input type="text" id="hausnummer" required v-model="hausnummer" placeholder="Hausnummer">
             </td>
           </tr>
           <tr>
             <td>
-              <label for="plz" class="field-label">* PLZ</label>
+              <label for="plz" class="field-label">PLZ*</label>
               <input type="text" id="plz" required v-model="plz" placeholder="PLZ">
             </td>
             <td colspan="2">
-              <label for="wohnort" class="field-label">* Wohnort</label>
+              <label for="wohnort" class="field-label">Wohnort*</label>
               <input type="text" id="wohnort" required v-model="wohnort" placeholder="Wohnort">
             </td>
           </tr>
           <tr>
             <td>
-              <label for="geburtsort" class="field-label">* Geburtsort</label>
+              <label for="geburtsort" class="field-label">Geburtsort*</label>
               <input type="text" id="geburtsort" required v-model="geburtsort" placeholder="Geburtsort">
             </td>
             <td colspan="2">
@@ -108,12 +108,12 @@
           <tr>
             <td>
               <span v-if="errorMessages.aufforderungsdatum" class="error-message">{{ errorMessages.aufforderungsdatum }}</span>
-              <label v-else for="aufforderungsdatum" class="field-label">* Aufforderungsdatum</label>
+              <label v-else for="aufforderungsdatum" class="field-label">Aufforderungsdatum*</label>
               <input type="date" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates" :class="{ 'error-border': errorMessages.aufforderungsdatum }">
             </td>
             <td>
               <span v-if="errorMessages.startdatum" class="error-message">{{ errorMessages.startdatum }}</span>
-              <label v-else for="startdatum" class="field-label">* Startdatum</label>
+              <label v-else for="startdatum" class="field-label">Startdatum*</label>
               <input type="date" id="startdatum" v-model="startdatum" @change="validateDates" :class="{ 'error-border': errorMessages.startdatum }">
             </td>
           </tr>
@@ -124,17 +124,17 @@
             </td>
             <td>
               <span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
-              <label v-else for="verzugsende" class="field-label">* Verzugsende</label>
+              <label v-else for="verzugsende" class="field-label">Verzugsende*</label>
               <input type="date" id="verzugsende" v-model="verzugsende" @change="validateDates" :class="{ 'error-border': errorMessages.verzugsende }">
             </td>
           </tr>
           <tr>
             <td>
-              <label for="beitragsrueckstand" class="field-label">* Beitragsrückstand</label>
+              <label for="beitragsrueckstand" class="field-label">Beitragsrückstand*</label>
               <input type="number" min="0" id="beitragsrueckstand" v-model="beitragsrueckstand" placeholder="Beitragsrückstand">
             </td>
             <td>
-              <label for="gesamtsollbetrag" class="field-label">* Gesamtsollbetrag</label>
+              <label for="gesamtsollbetrag" class="field-label">Gesamtsollbetrag*</label>
               <input type="number" min="0" id="gesamtsollbetrag" v-model="gesamtsollbetrag" placeholder="Gesamtsollbetrag">
             </td>
           </tr>
