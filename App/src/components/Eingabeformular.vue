@@ -207,8 +207,8 @@ export default {
       return `${year}-${month}-${day}`
     },
     updateVerzugBis() {
-      if (this.startdatum) {
-        let date = new Date(this.startdatum)
+      if (this.beginnRueckstand) {
+        let date = new Date(this.beginnRueckstand)
         date.setDate(1)
         date.setMonth(date.getMonth() + 5)
         this.verzugBis = date.toISOString().substring(0, 10)
@@ -222,11 +222,11 @@ export default {
       if (this.aufforderungsdatum && new Date(this.aufforderungsdatum) > new Date()) {
         this.errorMessages.aufforderungsdatum = 'Aufforderungsdatum muss in der Vergangenheit liegen.'
       }
-      if (this.startdatum && new Date(this.startdatum) > new Date()) {
-        this.errorMessages.startdatum = 'Startdatum muss in der Vergangenheit liegen.'
+      if (this.beginnRueckstand && new Date(this.beginnRueckstand) > new Date()) {
+        this.errorMessages.beginnRueckstand = 'Beginn Rückstand muss in der Vergangenheit liegen.'
       }
-      if (this.startdatum && new Date(this.startdatum).getDate() != 1) {
-        this.errorMessages.startdatum = 'Startdatum muss am Monatsanfang liegen.'
+      if (this.beginnRueckstand && new Date(this.beginnRueckstand).getDate() != 1) {
+        this.errorMessages.beginnRueckstand = 'Beginn Rückstand muss am Monatsanfang liegen.'
       }
       if (this.verzugsende && new Date(this.verzugsende) > new Date()) {
         this.errorMessages.verzugsende = 'Verzugsende muss in der Vergangenheit liegen.'
@@ -255,7 +255,7 @@ export default {
         krankenversicherung: this.krankenversicherung,
         versicherungsnummer: this.versicherungsnummer,
         aufforderungsdatum: this.aufforderungsdatum,
-        startdatum: this.startdatum,
+        beginnRueckstand: this.beginnRueckstand,
         verzugBis: this.verzugBis,
         verzugsende: this.verzugsende,
         beitragsrueckstand: this.beitragsrueckstand,
@@ -271,7 +271,7 @@ export default {
     }
   },
   watch: {
-    startdatum: function(newStartDatum) {
+    beginnRueckstand: function(beginnRueckstand) {
       this.updateVerzugBis()
     }
   },
