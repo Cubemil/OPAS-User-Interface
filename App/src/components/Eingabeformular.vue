@@ -92,13 +92,15 @@
             </td>
           </tr>
           <tr>
-            <td>
-              <label for="geburtsort" class="field-label">Geburtsort*</label>
-              <input type="text" id="geburtsort" required v-model="geburtsort" placeholder="Geburtsort">
-            </td>
-            <td colspan="2">
+            <td colspan="3">
               <label for="ortsteil" class="field-label">Ortsteil</label>
               <input type="text" id="ortsteil" v-model="ortsteil" placeholder="Ortsteil">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <label for="geburtsort" class="field-label">Geburtsort*</label>
+              <input type="text" id="geburtsort" required v-model="geburtsort" placeholder="Geburtsort">
             </td>
           </tr>
         </table>
