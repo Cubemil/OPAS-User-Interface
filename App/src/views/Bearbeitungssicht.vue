@@ -4,7 +4,7 @@
     <h1 id="title">Ordnungswidrigkeit nach §121 Abs.1 Nr.6 SGB XI</h1>
     <h2 id="mode"> * Bearbeitungsmodus *</h2>
     <Eingabeformular :initialData="formData" @submit="handleSubmit"/>
-    <p v-if="responseMessage">{{ responseMessage }}</p>
+    <p id="response" style="text-align: center; font-weight: bold" v-if="responseMessage">{{ responseMessage }}</p>
   </div>
 </template>
 

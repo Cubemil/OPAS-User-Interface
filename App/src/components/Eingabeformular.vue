@@ -273,6 +273,7 @@ export default {
     },
     async handleSubmit() {
       this.validateDates();
+      this.validateFollowUpMessage();
       if (Object.keys(this.errorMessages).length > 0 || this.isSubmitting) return;
 
       this.isSubmitting = true; // prevent multiple submissions
