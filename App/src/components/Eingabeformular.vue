@@ -48,7 +48,7 @@
                   errorMessages.geschlecht
                 }}</span>
               <label v-else for="geschlecht" class="field-label">Geschlecht*</label>
-              <select id="geschlecht" required v-model="geschlecht" @change="validateGeschlecht"
+              <select id="geschlecht" required v-model="geschlecht" @change="validateData"
                       :class="{ 'error-border': errorMessages.geschlecht }">
                 <option value="" disabled selected hidden>Geschlecht</option>
                 <option value=""></option>
@@ -124,7 +124,7 @@
                   errorMessages.aufforderungsdatum
                 }}</span>
               <label v-else for="aufforderungsdatum" class="field-label">Aufforderungsdatum*</label>
-              <input type="date" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateDates"
+              <input type="date" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateData"
                      :class="{ 'error-border': errorMessages.aufforderungsdatum }">
             </td>
             <td>
@@ -132,7 +132,7 @@
                   errorMessages.beginnRueckstand
                 }}</span>
               <label v-else for="beginn-rückstand" class="field-label">Beginn Rückstand*</label>
-              <input type="date" id="beginn-rückstand" v-model="beginnRueckstand" @change="validateDates"
+              <input type="date" id="beginn-rückstand" v-model="beginnRueckstand" @change="validateData"
                      :class="{ 'error-border': errorMessages.beginnRueckstand }">
             </td>
           </tr>
@@ -144,7 +144,7 @@
             <td>
               <span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
               <label v-else for="verzugsende" class="field-label">Verzugsende*</label>
-              <input type="date" id="verzugsende" v-model="verzugsende" @change="validateDates"
+              <input type="date" id="verzugsende" v-model="verzugsende" @change="validateData"
                      :class="{ 'error-border': errorMessages.verzugsende }">
             </td>
           </tr>
@@ -163,7 +163,7 @@
             <td colspan="1">
               <label for="folgemeldung" class="field-label">Folgemeldung*</label>
               <input type="number" min="1" id="folgemeldung" v-model="folgemeldung" placeholder="Folgemeldung"
-                     @change="validateFollowUpMessage">
+                     @change="validateData">
             </td>
           </tr>
         </table>
@@ -249,7 +249,7 @@ export default {
         this.verzugBis = date.toISOString().substring(0, 10)
       }
     },
-    validateDates() {
+    validateData() {
       this.errorMessages = {};
       if (this.geburtsdatum && new Date(this.geburtsdatum) > new Date()) {
         this.errorMessages.geburtsdatum = 'Geburtsdatum muss in der Vergangenheit liegen.'
@@ -269,15 +269,9 @@ export default {
       if (this.verzugsende && new Date(this.verzugsende) > new Date()) {
         this.errorMessages.verzugsende = 'Verzugsende muss in der Vergangenheit liegen.'
       }
-    },
-    validateFollowUpMessage() {
-      this.errorMessages = {};
       if (this.folgemeldung < 1) {
         this.errorMessages.folgemeldung = 'Folgemeldung muss größer als Null sein.'
       }
-    },
-    validateGeschlecht() {
-      this.errorMessages = {};
       if (this.geschlecht === "") {
         this.errorMessages.geschlecht = 'Wählen Sie ein Geschlecht.'
       }
