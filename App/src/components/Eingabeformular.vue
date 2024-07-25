@@ -44,9 +44,14 @@
           </tr>
           <tr>
             <td>
-              <label for="geschlecht" class="field-label">Geschlecht*</label>
-              <select id="geschlecht" required v-model="geschlecht">
+              <span v-if="errorMessages.geschlecht" class="error-message">{{
+                  errorMessages.geschlecht
+                }}</span>
+              <label v-else for="geschlecht" class="field-label">Geschlecht*</label>
+              <select id="geschlecht" required v-model="geschlecht" @change="validateGeschlecht"
+                      :class="{ 'error-border': errorMessages.geschlecht }">
                 <option value="" disabled selected hidden>Geschlecht</option>
+                <option value=""></option>
                 <option value="Herr">Herr</option>
                 <option value="Frau">Frau</option>
                 <option value="Divers">Divers</option>
@@ -269,6 +274,12 @@ export default {
       this.errorMessages = {};
       if (this.folgemeldung < 1) {
         this.errorMessages.folgemeldung = 'Folgemeldung muss größer als Null sein.'
+      }
+    },
+    validateGeschlecht() {
+      this.errorMessages = {};
+      if (this.geschlecht === "") {
+        this.errorMessages.geschlecht = 'Wählen Sie ein Geschlecht.'
       }
     },
     async handleSubmit() {
