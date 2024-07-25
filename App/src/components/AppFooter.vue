@@ -8,7 +8,9 @@
       <li><a>Barrierefreiheitserklärung</a></li>
       <li><a>Impressum</a></li>
       <router-link to="/styleguide" class="router-link">
-      <li><div id="style-icon"></div></li>
+        <li>
+          <div id="style-icon"></div>
+        </li>
       </router-link>
     </ul>
   </div>
@@ -16,9 +18,7 @@
 
 <script>
 export default {
-  methods: {
-
-  }
+  methods: {}
 }
 </script>
 
@@ -40,14 +40,14 @@ export default {
   flex-wrap: wrap;
 }
 
-#list a {
+a {
   color: #fdfdfd;
   text-decoration: none;
   border-bottom: #fdfdfd solid 1px;
   cursor: pointer;
 }
 
-#list a:hover {
+a:hover {
   border-bottom: rgba(253, 253, 253, 0) solid 1px;
 }
 
@@ -63,6 +63,10 @@ export default {
 
 #style-icon:hover {
   background-image: url(@/assets/style-icon-hovered.svg);
+}
+
+.router-link {
+  border-bottom: none;
 }
 
 @media only screen and (max-width: 480px) {
