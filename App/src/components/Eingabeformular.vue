@@ -157,7 +157,8 @@
           <tr>
             <td colspan="3">
               <label for="folgemeldung" class="field-label">Folgemeldung*</label>
-              <input type="number" min="1" id="folgemeldung" v-model="folgemeldung" placeholder="Folgemeldung">
+              <input type="number" min="1" id="folgemeldung" v-model="folgemeldung" placeholder="Folgemeldung"
+                     @change="validateFollowUpMessage">
             </td>
           </tr>
         </table>
@@ -262,6 +263,12 @@ export default {
       }
       if (this.verzugsende && new Date(this.verzugsende) > new Date()) {
         this.errorMessages.verzugsende = 'Verzugsende muss in der Vergangenheit liegen.'
+      }
+    },
+    validateFollowUpMessage() {
+      this.errorMessages = {};
+      if (this.folgemeldung < 1) {
+        this.errorMessages.folgemeldung = 'Folgemeldung muss größer als Null sein.'
       }
     },
     async handleSubmit() {

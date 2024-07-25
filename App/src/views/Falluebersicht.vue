@@ -104,7 +104,7 @@ export default {
   width: 25px;
   float: right;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.1s;
 }
 
 #edit-icon:hover {
