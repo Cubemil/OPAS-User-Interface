@@ -7,9 +7,20 @@
       <li><a>Kontakt</a></li>
       <li><a>Barrierefreiheitserklärung</a></li>
       <li><a>Impressum</a></li>
+      <router-link to="/styleguide" class="router-link">
+      <li><div id="style-icon"></div></li>
+      </router-link>
     </ul>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+
+  }
+}
+</script>
 
 <style scoped>
 #app-footer {
@@ -40,6 +51,20 @@
   border-bottom: rgba(253, 253, 253, 0) solid 1px;
 }
 
+#style-icon {
+  background-image: url(@/assets/style-icon.svg);
+  position: relative;
+  height: 25px;
+  width: 25px;
+  float: right;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+#style-icon:hover {
+  background-image: url(@/assets/style-icon-hovered.svg);
+}
+
 @media only screen and (max-width: 480px) {
   #app-footer {
     font-size: 16px;
@@ -54,3 +79,5 @@
   }
 }
 </style>
+<script setup lang="ts">
+</script>
