@@ -96,15 +96,15 @@
             </td>
           </tr>
           <tr>
-            <td colspan="3">
+            <td colspan="2">
               <label for="ortsteil" class="field-label">Ortsteil</label>
               <input type="text" id="ortsteil" v-model="ortsteil" placeholder="Ortsteil">
             </td>
           </tr>
           <tr>
-            <td colspan="3">
-              <label for="geburtsort" class="field-label">Geburtsort*</label>
-              <input type="text" id="geburtsort" required v-model="geburtsort" placeholder="Geburtsort">
+            <td colspan="2">
+              <label for="geburtsort" class="field-label">Geburtsort</label>
+              <input type="text" id="geburtsort" v-model="geburtsort" placeholder="Geburtsort">
             </td>
           </tr>
         </table>
@@ -155,7 +155,7 @@
             </td>
           </tr>
           <tr>
-            <td colspan="3">
+            <td colspan="1">
               <label for="folgemeldung" class="field-label">Folgemeldung*</label>
               <input type="number" min="1" id="folgemeldung" v-model="folgemeldung" placeholder="Folgemeldung"
                      @change="validateFollowUpMessage">
@@ -475,6 +475,10 @@ input, .readonly-field, input[type="date"] {
 }
 
 #submit-button:hover:enabled {
+  background: #E8C325;
+}
+
+#cancel-button:hover {
   background: #E8C325;
 }
 
