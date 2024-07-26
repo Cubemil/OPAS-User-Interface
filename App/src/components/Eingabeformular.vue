@@ -386,9 +386,10 @@ select {
   font-family: Arial, serif;
   border: solid 1px #272727;
 
-  &:invalid { /* as long selected option is invalid -> font color = gray */
-    color: gray;
-  }
+}
+
+select:invalid {
+  color: gray;
 }
 
 input, .readonly-field {
