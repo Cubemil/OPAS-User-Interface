@@ -77,7 +77,7 @@
             </td>
             <td>
               <label for="geburtsname" class="field-label">Geburtsname</label>
-              <input type="text" id="geburtsname" required v-model="geburtsname" placeholder="Geburtsname">
+              <input type="text" id="geburtsname" v-model="geburtsname" placeholder="Geburtsname">
             </td>
           </tr>
           <tr>
