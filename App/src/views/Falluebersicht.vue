@@ -106,8 +106,4 @@ export default {
   cursor: pointer;
   transition: 0.1s;
 }
-
-#edit-icon:hover {
-  background-image: url(@/assets/filled-edit-icon.svg);
-}
 </style>
