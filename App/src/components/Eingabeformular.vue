@@ -263,7 +263,7 @@ export default {
       if (this.beginnRueckstand && new Date(this.beginnRueckstand).getDate() !== 1) {
         this.errorMessages.beginnRueckstand = 'Beginn Rückstand muss am Monatsanfang liegen.'
       }
-      if (this.beginnRueckstand > this.aufforderungsdatum || this.beginnRueckstand === this.aufforderungsdatum) {
+      if (this.beginnRueckstand > this.aufforderungsdatum || this.beginnRueckstand === this.aufforderungsdatum && this.beginnRueckstand !== "") {
         this.errorMessages.beginnRueckstand = 'Beginn Rückstand muss vor dem Aufforderungsdatum liegen.'
       }
       if (this.verzugsende && new Date(this.verzugsende) > new Date()) {
