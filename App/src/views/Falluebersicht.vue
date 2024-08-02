@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import api from '@/services/api'
+
 export default {
   data() {
     return {
@@ -29,12 +31,12 @@ export default {
   methods: {
     async openEditView(item) {
       try {
-        const response = await fetch(`http://localhost:5000/api/Offense/${item.recordId}`)
-        const result = await response.json()
+        const response = await api.getOffense(item.recordId)
+        const result = response.data
 
         this.$router.push({
           path: `/bearbeiten/${item.recordId}`,
-          query: { data: JSON.stringify(result.data) }
+          query: { data: JSON.stringify(result) }
         })
       } catch (error) {
         console.error('Error fetching item:', error)
@@ -42,9 +44,8 @@ export default {
     },
     async fetchItems() {
       try {
-        const response = await fetch('http://localhost:5000/api/Offense')
-        const result = await response.json()
-        this.items = result.data
+        const response = await api.getAllOffenses()
+        this.items = response.data
       } catch (error) {
         console.error('Error fetching items:', error)
       }

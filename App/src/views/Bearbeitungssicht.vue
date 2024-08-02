@@ -10,6 +10,7 @@
 
 <script setup>
 import Eingabeformular from '../components/Eingabeformular.vue';
+import api from '@/services/api';
 </script>
 
 <script>
@@ -39,28 +40,20 @@ export default {
         // new data including recordId and rowVersion
         const updatedFormData = { ...formData, recordId: this.data.recordId, rowVersion: this.data.rowVersion };
 
-        const url = `http://localhost:5000/api/offense/${this.data.recordId}`
-        
-        const response = await fetch(url, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(updatedFormData) 
-        })
-        
-        if (!response.ok) {
-          if (response.status === 409) {
-            throw new Error('Diese Daten wurden bereits geändert. Bitte laden Sie die Seite neu.')
-          }
-          throw new Error(`HTTP error! status: ${response.status}`)
+        const result = await api.updateOffense(this.data.recordId, updatedFormData);
+
+        if (!result.data) {
+          throw new Error('Unexpected response from server')
         }
-        
-        const result = await response.json()
-        this.responseMessage = result.message
-        return result
+
+        this.responseMessage = result.data.message
+        return result.data
       } catch (error) {
-        alert('Error: ' + error.message)
+        if (error.response && error.response.status === 409) {
+          alert('Diese Daten wurden bereits geändert. Bitte laden Sie die Seite neu.')
+        } else {
+          alert('Error: ' + error.message)
+        }
       } finally {
         this.isSubmitting = false
       }

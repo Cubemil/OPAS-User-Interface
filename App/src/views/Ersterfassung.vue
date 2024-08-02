@@ -10,6 +10,7 @@
 
 <script setup>
 import Eingabeformular from '../components/Eingabeformular.vue';
+import api from '@/services/api';
 </script>
 
 <script>
@@ -25,17 +26,11 @@ export default {
       if (this.isSubmitting) {
         return; // Prevent multiple submissions
       }
-      
+
       this.isSubmitting = true; // Set the flag to true
-      
+
       try {
-        const response = await fetch('http://localhost:5000/api/offense', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData)
-        });
+        const response = await api.createOffense(formData);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
