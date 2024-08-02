@@ -272,7 +272,7 @@ export default {
       if (this.folgemeldung < 1) {
         this.errorMessages.folgemeldung = 'Folgemeldung muss größer als Null sein.'
       }
-      if (this.geschlecht === "") {
+      if (this.geschlecht < 1) {
         this.errorMessages.geschlecht = 'Wählen Sie ein Geschlecht.'
       }
     },
