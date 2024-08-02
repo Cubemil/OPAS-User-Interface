@@ -51,10 +51,10 @@
               <select id="geschlecht" required v-model="geschlecht" @change="validateData"
                       :class="{ 'error-border': errorMessages.geschlecht }">
                 <option value="" disabled selected hidden>Geschlecht</option>
-                <option value=""></option>
-                <option value="Herr">Herr</option>
-                <option value="Frau">Frau</option>
-                <option value="Divers">Divers</option>
+                <option value="0"></option>
+                <option value="1">Herr</option>
+                <option value="2">Frau</option>
+                <option value="3">Divers</option>
               </select>
             </td>
             <td>
