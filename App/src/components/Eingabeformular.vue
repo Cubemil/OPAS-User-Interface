@@ -50,8 +50,8 @@
               <label v-else for="geschlecht" class="field-label">Geschlecht*</label>
               <select id="geschlecht" required v-model="geschlecht" @change="validateData"
                       :class="{ 'error-border': errorMessages.geschlecht }">
-                <option value="" disabled selected hidden>Geschlecht</option>
-                <option value="0"></option>
+                <option value="" ref="empty" disabled selected hidden>Geschlecht</option>
+                <option value="0" ref="no-declaration">keine Angabe</option>
                 <option value="1">Herr</option>
                 <option value="2">Frau</option>
                 <option value="3">Divers</option>
@@ -272,8 +272,10 @@ export default {
       if (this.folgemeldung < 1) {
         this.errorMessages.folgemeldung = 'Folgemeldung muss größer als Null sein.'
       }
-      if (this.geschlecht < 1) {
+      if (this.geschlecht === "0") {
         this.errorMessages.geschlecht = 'Wählen Sie ein Geschlecht.'
+        // Reset to default (empty) value
+        this.geschlecht = "";
       }
     },
     async handleSubmit() {
