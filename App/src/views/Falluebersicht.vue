@@ -128,9 +128,9 @@ export default {
   z-index: 1;
   bottom: 125%;
   left: 50%;
-  margin-left: -60px;
+  margin-left: -65px;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: 0.3s;
 }
 
 #edit-icon #tooltiptext::after {
