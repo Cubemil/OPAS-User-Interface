@@ -6,7 +6,9 @@
         <h1>Fallübersicht</h1>
         <div v-if="items.length">
           <div v-for="item in items" :key="item.recordId" class="item">
-            <div id="edit-icon" @click="openEditView(item)"></div>
+            <div id="edit-icon" @click="openEditView(item)">
+              <span id="tooltiptext">Fall bearbeiten</span>
+            </div>
             <p><strong>Fallnummer:</strong> {{ item.fallnummer }}</p>
             <p><strong>Name:</strong> {{ item.nachname }}, {{ item.vorname }}</p>
           </div>
@@ -105,5 +107,45 @@ export default {
   float: right;
   cursor: pointer;
   transition: 0.1s;
+}
+
+#edit-icon {
+  position: relative;
+  display: inline-block;
+}
+
+#edit-icon #tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #0a1c2c;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 5px 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+#edit-icon #tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #0a1c2c transparent transparent transparent;
+}
+
+#edit-icon:hover #tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
 </style>
