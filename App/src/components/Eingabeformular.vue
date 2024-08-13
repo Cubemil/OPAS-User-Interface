@@ -11,6 +11,10 @@
               <label for="fallnummer" class="field-label">Fallnummer*</label>
               <input type="text" id="fallnummer" required v-model="fallnummer" placeholder="Fallnummer">
             </td>
+            <td>
+              <label for="meldedatum" class="field-label">Meldedatum*</label>
+              <input type="date" id="meldedatum" required v-model="meldedatum" placeholder="Meldedatum">
+            </td>
           </tr>
         </table>
 
@@ -34,6 +38,11 @@
               <label for="versicherungsnummer" class="field-label">Versicherungsnummer*</label>
               <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer"
                      placeholder="Versicherungsnummer">
+            </td>
+            <td>
+              <label for="beginn-versicherung" class="field-label">Beginn Versicherung*</label>
+              <input type="date" id="beginn-versicherung" required v-model="beginnVersicherung"
+                     placeholder="Beginn Versicherung">
             </td>
           </tr>
         </table>
@@ -177,6 +186,18 @@
           </tr>
         </table>
 
+        <table class="documents-table">
+          <tr>
+            <th>Dokumente</th>
+          </tr>
+          <tr>
+            <td>
+              <label for="anhoehrungsdatum" class="field-label">Anhörungsdatum</label>
+              <input type="date" id="anhoerungsdatum" v-model="anhoerungsdatum">
+            </td>
+          </tr>
+        </table>
+
         <div id="submit-and-response">
           <button class="form-button" id="cancel-button" type="button" @click="handleCancel" aria-label="cancel-button">
             Abbrechen
@@ -203,21 +224,23 @@ export default {
   data() {
     return {
       fallnummer: this.initialData.fallnummer || '',
+      meldedatum: this.formatDate(this.initialData.beginnVersicherung) || '',
+      versicherungsunternehmensnummer: this.initialData.versicherungsunternehmensnummer || '',
+      krankenversicherung: this.initialData.krankenversicherung || '',
+      versicherungsnummer: this.initialData.versicherungsnummer || '',
+      beginnVersicherung: this.formatDate(this.initialData.beginnVersicherung) || '',
       geschlecht: this.initialData.geschlecht || '',
+      titel: this.initialData.titel || '',
+      geburtsdatum: this.formatDate(this.initialData.geburtsdatum) || '',
       vorname: this.initialData.vorname || '',
       nachname: this.initialData.nachname || '',
       geburtsname: this.initialData.geburtsname || '',
-      titel: this.initialData.titel || '',
-      geburtsdatum: this.formatDate(this.initialData.geburtsdatum) || '',
       str: this.initialData.str || '',
       hausnummer: this.initialData.hausnummer || '',
       plz: this.initialData.plz || '',
       wohnort: this.initialData.wohnort || '',
-      geburtsort: this.initialData.geburtsort || '',
       ortsteil: this.initialData.ortsteil || '',
-      versicherungsunternehmensnummer: this.initialData.versicherungsunternehmensnummer || '',
-      krankenversicherung: this.initialData.krankenversicherung || '',
-      versicherungsnummer: this.initialData.versicherungsnummer || '',
+      geburtsort: this.initialData.geburtsort || '',
       aufforderungsdatum: this.formatDate(this.initialData.aufforderungsdatum) || '',
       beginnRueckstand: this.formatDate(this.initialData.beginnRueckstand) || '',
       verzugBis: this.formatDate(this.initialData.verzugBis) || '',
@@ -226,6 +249,7 @@ export default {
       sollbeitrag: this.initialData.sollbeitrag || '',
       folgemeldung: this.initialData.folgemeldung || '',
       bemerkungen: this.initialData.bemerkungen || '',
+      anhoerungsdatum: this.formatDate(this.initialData.anhoerungsdatum) || '',
       responseMessage: '',
       errorMessages: {},
       sendMode: this.initialData.fallnummer ? 'Speichern' : 'Absenden', // if fallnummer is set, we're in edit mode
@@ -250,7 +274,13 @@ export default {
       }
     },
     validateData() {
-      this.errorMessages = {};
+      this.errorMessages = {}
+      if (this.meldedatum && new Date(this.meldedatum) > new Date()) {
+        this.errorMessages.meldedatum = 'Meldedatum muss in der Vergangenheit liegen.'
+      }
+      if (this.beginnVersicherung && new Date(this.beginnVersicherung) > new Date()) {
+        this.errorMessages.beginnVersicherung = 'Beginn Versicherung muss in der Vergangenheit liegen.'
+      }
       if (this.geburtsdatum && new Date(this.geburtsdatum) > new Date()) {
         this.errorMessages.geburtsdatum = 'Geburtsdatum muss in der Vergangenheit liegen.'
       }
@@ -270,12 +300,11 @@ export default {
         this.errorMessages.verzugsende = 'Verzugsende muss in der Vergangenheit liegen.'
       }
       if (this.folgemeldung < 1) {
-        this.errorMessages.folgemeldung = 'Folgemeldung muss größer als Null sein.'
+        this.errorMessages.folgemeldung = 'Es muss mindestens eine Folgemeldung existieren.'
       }
       if (this.geschlecht === "0") {
-        this.errorMessages.geschlecht = 'Wählen Sie ein Geschlecht.'
-        // Reset to default (empty) value
-        this.geschlecht = "";
+        this.errorMessages.geschlecht = 'Bitte wählen Sie ein Geschlecht.'
+        this.geschlecht = "" // reset to default value
       }
     },
     async handleSubmit() {
@@ -286,21 +315,23 @@ export default {
 
       const formData = {
         fallnummer: this.fallnummer,
+        meldedatum: this.meldedatum,
+        versicherungsunternehmensnummer: this.versicherungsunternehmensnummer,
+        krankenversicherung: this.krankenversicherung,
+        versicherungsnummer: this.versicherungsnummer,
+        beginnVersicherung: this.beginnVersicherung,
         geschlecht: this.geschlecht,
         titel: this.titel,
+        geburtsdatum: this.geburtsdatum,
         vorname: this.vorname,
         nachname: this.nachname,
         geburtsname: this.geburtsname,
-        geburtsdatum: this.geburtsdatum,
         str: this.str,
         hausnummer: this.hausnummer,
         plz: this.plz,
         wohnort: this.wohnort,
-        geburtsort: this.geburtsort,
         ortsteil: this.ortsteil,
-        versicherungsunternehmensnummer: this.versicherungsunternehmensnummer,
-        krankenversicherung: this.krankenversicherung,
-        versicherungsnummer: this.versicherungsnummer,
+        geburtsort: this.geburtsort,
         aufforderungsdatum: this.aufforderungsdatum,
         beginnRueckstand: this.beginnRueckstand,
         verzugBis: this.verzugBis,
@@ -308,7 +339,8 @@ export default {
         beitragsrueckstand: this.beitragsrueckstand,
         sollbeitrag: this.sollbeitrag,
         folgemeldung: this.folgemeldung,
-        bemerkungen: this.bemerkungen
+        bemerkungen: this.bemerkungen,
+        anhoerungsdatum: this.anhoerungsdatum
       }
 
       this.$emit('submit', formData)
