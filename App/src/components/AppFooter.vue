@@ -16,12 +16,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  methods: {}
-}
-</script>
-
 <style scoped>
 #app-footer {
   background: #404040;

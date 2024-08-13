@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav id="navbar-ar">
+    <nav id="navbar-area">
       <AppNavbar/>
     </nav>
     
@@ -13,8 +13,8 @@
 </template>
 
 <script setup>
-import AppNavbar from '@/components/AppNavbar.vue';
-import AppFooter from '@/components/AppFooter.vue';
+import AppNavbar from '@/components/AppNavbar.vue'
+import AppFooter from '@/components/AppFooter.vue'
 </script>
 
 <style>

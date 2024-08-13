@@ -2,33 +2,33 @@
   <div id="style-guide-container">
     <img id="background" src="../assets/landesverwaltungsamt.jpeg" alt="background">
     <div class="menu-container">
-      <h2 style="color: rgb(222, 38, 38)"> * Styleguide *</h2>
+      <h2 style="color: rgb(222, 38, 38)"> * Style Guide *</h2>
 
-      Standard Input Field
+      Standard Eingabefeld
       <label for="fallnummer" class="field-label">Fallnummer*</label>
       <input type="text" id="text-input" placeholder=""/>
 
       <br><br>
 
-      Error Input Field
+      Eingabefeld mit Fehlermeldung
       <label for="fallnummer" class="field-label" id="error-field-label">Fallnummer*</label>
       <input type="text" id="error-text-input" placeholder=""/>
 
       <br><br>
 
-      Readonly Input Field
+      Read-only Eingabefeld
       <label for="fallnummer" class="field-label">Fallnummer*</label>
       <input type="text" id="read-only-text-input" placeholder="" disabled/>
 
       <br><br>
 
-      Date Input Field
+      Eingabefeld mit Datum
       <label for="fallnummer" class="field-label">Fallnummer*</label>
       <input type="date" id="date-input"/>
 
       <br><br>
 
-      Select Input Field
+      Eingabefeld mit Auswahlmenü
       <label for="fallnummer" class="field-label">Fallnummer*</label>
       <select>
         <option value=""></option>
@@ -36,7 +36,7 @@
 
       <br><br>
 
-      Active Button
+      Aktive Schaltfläche
       <br><br>
       <button>
         Speichern
@@ -44,7 +44,7 @@
 
       <br><br>
 
-      Disabled Button
+      Deaktivierte Schaltfläche
       <br><br>
       <button>
         Speichern
@@ -55,13 +55,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-</script>
-
-<script>
-export default {}
-</script>
 
 <style scoped>
 #background {

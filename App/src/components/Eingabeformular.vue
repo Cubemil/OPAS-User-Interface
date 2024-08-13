@@ -280,9 +280,9 @@ export default {
     },
     async handleSubmit() {
       this.validateData();
-      if (Object.keys(this.errorMessages).length > 0 || this.isSubmitting) return;
+      if (Object.keys(this.errorMessages).length > 0 || this.isSubmitting) return
 
-      this.isSubmitting = true; // prevent multiple submissions
+      this.isSubmitting = true // prevent multiple submissions
 
       const formData = {
         fallnummer: this.fallnummer,
@@ -311,11 +311,11 @@ export default {
         bemerkungen: this.bemerkungen
       }
 
-      this.$emit('submit', formData);
-      this.isSubmitting = false;
+      this.$emit('submit', formData)
+      this.isSubmitting = false
     },
     handleCancel() {
-      window.history.back(); // back one page in browser history
+      window.history.back() // back one page in browser history
     }
   },
   watch: {

@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-import Eingabeformular from '../components/Eingabeformular.vue';
+import Eingabeformular from '../components/Eingabeformular.vue'
 </script>
 
 <script>
@@ -17,16 +17,14 @@ export default {
   data() {
     return {
       responseMessage: '',
-      isSubmitting: false // Add this flag
+      isSubmitting: false
     }
   },
   methods: {
     async handleSubmit(formData) {
-      if (this.isSubmitting) {
-        return; // Prevent multiple submissions
-      }
+      if (this.isSubmitting) return
       
-      this.isSubmitting = true; // Set the flag to true
+      this.isSubmitting = true
       
       try {
         const response = await fetch('http://localhost:5000/api/offense', {
@@ -38,17 +36,17 @@ export default {
         });
 
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`HTTP error! status: ${response.status}`)
         }
 
-        const result = await response.json();
-        this.responseMessage = result.message;
-        this.isSubmitting = false; // Reset the flag after successful submission
+        const result = await response.json()
+        this.responseMessage = result.message
+        this.isSubmitting = false
 
-        return result;
+        return result
       } catch (error) {
-        alert('Error: ' + error.message);
-        this.isSubmitting = false; // Reset the flag in case of an error
+        alert('Error: ' + error.message)
+        this.isSubmitting = false
       }
     }
   }
