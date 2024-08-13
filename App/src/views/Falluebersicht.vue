@@ -88,6 +88,7 @@ export default {
 
 .menu .item:hover {
   background: #E8C325;
+  scale: 1.01;
 }
 
 .menu .item p {
