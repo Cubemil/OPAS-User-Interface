@@ -160,12 +160,29 @@
           <tr>
             <td>
               <label for="beitragsrueckstand" class="field-label">Beitragsrückstand*</label>
-              <input type="number" min="0" id="beitragsrueckstand" v-model="beitragsrueckstand"
-                     placeholder="Beitragsrückstand">
+              <div class="input-euro-wrapper">
+                <input
+                  type="number"
+                  min="0"
+                  id="beitragsrueckstand"
+                  v-model="beitragsrueckstand"
+                  placeholder="Beitragsrückstand"
+                >
+                <span class="euro-symbol">€</span>
+              </div>
             </td>
             <td>
               <label for="sollbeitrag" class="field-label">Sollbeitrag*</label>
-              <input type="number" min="0" id="sollbeitrag" v-model="sollbeitrag" placeholder="Sollbeitrag">
+              <div class="input-euro-wrapper">
+                <input
+                  type="number"
+                  min="0"
+                  id="sollbeitrag"
+                  v-model="sollbeitrag"
+                  placeholder="Sollbeitrag"
+                >
+                <span class="euro-symbol">€</span>
+              </div>
             </td>
           </tr>
           <tr>
@@ -458,6 +475,27 @@ input, .readonly-field, input[type="date"] {
   width: 100%;
   font-size: 16px;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.input-euro-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.euro-symbol {
+  position: absolute;
+  right: 5%;
+  font-size: 16px;
+  color: #404040;
+  pointer-events: none;
+}
+
+/* hides up and down arrows in fron of the euro symbol */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 #bemerkungen {
