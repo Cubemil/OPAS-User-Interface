@@ -1,5 +1,5 @@
 <template>
-  <div id="container">
+  <div id="input-form-container">
     <div id="input-form">
       <form @submit.prevent="handleSubmit">
         <table id="formal-table">
@@ -9,40 +9,98 @@
           <tr>
             <td>
               <label for="fallnummer" class="field-label">Fallnummer*</label>
-              <input type="text" id="fallnummer" required v-model="fallnummer" placeholder="Fallnummer">
+              <input
+                type="text"
+                id="fallnummer"
+                required
+                @focusout="validateData('fallnummer')"
+                v-model="fallnummer"
+                placeholder="Fallnummer"
+                :class="{ 'error-border': errorMessages.fallnummer }"
+              >
+              <div class="error-container" v-if="errorMessages.fallnummer">
+                <span class="error-message">{{ errorMessages.fallnummer }}</span>
+              </div>
             </td>
             <td>
               <label for="meldedatum" class="field-label">Meldedatum*</label>
-              <input type="date" id="meldedatum" required v-model="meldedatum" placeholder="Meldedatum">
+              <input
+                type="date"
+                id="meldedatum"
+                required
+                @focusout="validateData('meldedatum')"
+                v-model="meldedatum"
+                :class="{ 'error-border': errorMessages.meldedatum }"
+              >
+              <div class="error-container" v-if="errorMessages.meldedatum">
+                <span class="error-message">{{ errorMessages.meldedatum }}</span>
+              </div>
             </td>
           </tr>
         </table>
 
-        <table class="insurance-table">
+        <table id="insurance-table">
           <tr>
             <th colspan="2">Angaben zur Versicherung</th>
           </tr>
           <tr>
             <td>
               <label for="vu-nr" class="field-label">VU-Nr.*</label>
-              <input type="text" id="vu-nr" required v-model="versicherungsunternehmensnummer" placeholder="VU-Nr.">
+              <input
+                type="text"
+                id="vu-nr"
+                required
+                @focusout="validateData('vuNr')"
+                v-model="versicherungsunternehmensnummer"
+                placeholder="VU-Nr."
+                :class="{ 'error-border': errorMessages.vuNr }"
+              >
+              <div class="error-container" v-if="errorMessages.vuNr">
+                <span class="error-message">{{ errorMessages.vuNr }}</span>
+              </div>
             </td>
             <td>
               <label for="krankenversicherung" class="field-label">Krankenversicherung*</label>
-              <input type="text" id="krankenversicherung" required v-model="krankenversicherung"
-                     placeholder="Krankenversicherung">
+              <input
+                type="text"
+                id="krankenversicherung"
+                required
+                @focusout="validateData('krankenversicherung')"
+                v-model="krankenversicherung"
+                placeholder="Krankenversicherung"
+                :class="{ 'error-border': errorMessages.krankenversicherung }"
+              >
+              <div class="error-container" v-if="errorMessages.krankenversicherung">
+                <span class="error-message">{{ errorMessages.krankenversicherung }}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td>
               <label for="versicherungsnummer" class="field-label">Versicherungsnummer*</label>
-              <input type="text" id="versicherungsnummer" required v-model="versicherungsnummer"
-                     placeholder="Versicherungsnummer">
+              <input
+                type="text"
+                id="versicherungsnummer"
+                required
+                v-model="versicherungsnummer"
+                placeholder="Versicherungsnummer"
+                :class="{ 'error-border': errorMessages.versicherungsnummer }"
+              >
+              <div class="error-container" v-if="errorMessages.versicherungsnummer">
+                <span class="error-message">{{ errorMessages.versicherungsnummer }}</span>
+              </div>
             </td>
             <td>
               <label for="beginn-versicherung" class="field-label">Beginn Versicherung*</label>
-              <input type="date" id="beginn-versicherung" required v-model="beginnVersicherung"
-                     placeholder="Beginn Versicherung">
+              <input
+                type="date"
+                id="beginn-versicherung"
+                required
+                v-model="beginnVersicherung"
+              >
+              <div class="error-container" v-if="errorMessages.beginnVersicherung">
+                <span class="error-message">{{ errorMessages.beginnVersicherung }}</span>
+              </div>
             </td>
           </tr>
         </table>
@@ -53,108 +111,233 @@
           </tr>
           <tr>
             <td>
-              <span v-if="errorMessages.geschlecht" class="error-message">{{
-                  errorMessages.geschlecht
-                }}</span>
-              <label v-else for="geschlecht" class="field-label">Geschlecht*</label>
-              <select id="geschlecht" required v-model="geschlecht" @change="validateData"
-                      :class="{ 'error-border': errorMessages.geschlecht }">
+              <label for="geschlecht" class="field-label">Geschlecht*</label>
+              <select
+                id="geschlecht"
+                required
+                v-model="geschlecht"
+                @focusout="validateData('geschlecht')"
+                :class="{ 'error-border': errorMessages.geschlecht }"
+              >
                 <option value="" ref="empty" disabled selected hidden>Geschlecht</option>
                 <option value="0" ref="no-declaration">keine Angabe</option>
                 <option value="1">Herr</option>
                 <option value="2">Frau</option>
                 <option value="3">Divers</option>
               </select>
+              <div class="error-container" v-if="errorMessages.geschlecht">
+                <span class="error-message">{{ errorMessages.geschlecht }}</span>
+              </div>
             </td>
             <td>
               <label for="titel" class="field-label">Titel</label>
-              <input type="text" id="titel" v-model="titel" placeholder="Titel">
+              <input
+                type="text"
+                id="titel"
+                v-model="titel"
+                placeholder="Titel"
+              >
             </td>
             <td>
               <label for="geburtsdatum" class="field-label">Geburtsdatum*</label>
-              <input type="date" id="geburtsdatum" required v-model="geburtsdatum">
+              <input
+                type="date"
+                id="geburtsdatum"
+                required
+                @focusout="validateData('geburtsdatum')"
+                v-model="geburtsdatum"
+                :class="{ 'error-border': errorMessages.geburtsdatum }"
+              >
+              <div class="error-container" v-if="errorMessages.geburtsdatum">
+                <span class="error-message">{{ errorMessages.geburtsdatum }}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td>
               <label for="vorname" class="field-label">Vorname*</label>
-              <input type="text" id="vorname" required v-model="vorname" placeholder="Vorname">
+              <input
+                type="text"
+                id="vorname"
+                required
+                v-model="vorname"
+                @focusout="validateData('vorname')"
+                placeholder="Vorname"
+                :class="{ 'error-border': errorMessages.vorname }"
+              >
+              <div class="error-container" v-if="errorMessages.vorname">
+                <span class="error-message">{{ errorMessages.vorname }}</span>
+              </div>
             </td>
             <td>
               <label for="nachname" class="field-label">Nachname*</label>
-              <input type="text" id="nachname" required v-model="nachname" placeholder="Nachname">
+              <input
+                type="text"
+                id="nachname"
+                required
+                v-model="nachname"
+                @focusout="validateData('nachname')"
+                placeholder="Nachname"
+                :class="{ 'error-border': errorMessages.nachname }"
+              >
+              <div class="error-container" v-if="errorMessages.nachname">
+                <span class="error-message">{{ errorMessages.nachname }}</span>
+              </div>
             </td>
             <td>
               <label for="geburtsname" class="field-label">Geburtsname</label>
-              <input type="text" id="geburtsname" v-model="geburtsname" placeholder="Geburtsname">
+              <input
+                type="text"
+                id="geburtsname"
+                v-model="geburtsname"
+                placeholder="Geburtsname"
+              >
             </td>
           </tr>
           <tr>
             <td colspan="2">
               <label for="str" class="field-label">Straße*</label>
-              <input type="text" id="str" required v-model="str" placeholder="Straße">
+              <input
+                type="text"
+                id="str"
+                required
+                @focusout="validateData('str')"
+                v-model="str"
+                placeholder="Straße"
+                :class="{ 'error-border': errorMessages.str }"
+              >
+              <div class="error-container" v-if="errorMessages.str">
+                <span class="error-message">{{ errorMessages.str }}</span>
+              </div>
             </td>
             <td>
               <label for="hausnummer" class="field-label">Hausnummer*</label>
-              <input type="text" id="hausnummer" required v-model="hausnummer" placeholder="Hausnummer">
+              <input
+                type="text"
+                id="hausnummer"
+                required
+                @focusout="validateData('hausnummer')"
+                v-model="hausnummer"
+                placeholder="Hausnummer"
+                :class="{ 'error-border': errorMessages.hausnummer }"
+              >
+              <div class="error-container" v-if="errorMessages.hausnummer">
+                <span class="error-message">{{ errorMessages.hausnummer }}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td>
               <label for="plz" class="field-label">PLZ*</label>
-              <input type="text" id="plz" required v-model="plz" placeholder="PLZ">
+              <input 
+                type="text"
+                id="plz"
+                required
+                @focusout="validateData('plz')"
+                v-model="plz"
+                placeholder="PLZ"
+                :class="{ 'error-border': errorMessages.plz }"
+              >
+              <div class="error-container" v-if="errorMessages.plz">
+                <span class="error-message">{{ errorMessages.plz }}</span>
+              </div>
             </td>
             <td colspan="2">
               <label for="wohnort" class="field-label">Wohnort*</label>
-              <input type="text" id="wohnort" required v-model="wohnort" placeholder="Wohnort">
+              <input 
+                type="text" 
+                id="wohnort"
+                required
+                @focusout="validateData('wohnort')"
+                v-model="wohnort" 
+                placeholder="Wohnort"
+                :class="{ 'error-border': errorMessages.wohnort }"
+              >
             </td>
           </tr>
           <tr>
             <td colspan="2">
               <label for="ortsteil" class="field-label">Ortsteil</label>
-              <input type="text" id="ortsteil" v-model="ortsteil" placeholder="Ortsteil">
+              <input
+                type="text"
+                id="ortsteil"
+                v-model="ortsteil"
+                placeholder="Ortsteil"
+              >
             </td>
           </tr>
           <tr>
             <td colspan="2">
               <label for="geburtsort" class="field-label">Geburtsort</label>
-              <input type="text" id="geburtsort" v-model="geburtsort" placeholder="Geburtsort">
+              <input
+                type="text"
+                id="geburtsort"
+                v-model="geburtsort"
+                placeholder="Geburtsort"
+              >
             </td>
           </tr>
         </table>
 
-        <table class="offense-table">
+        <table id="offense-table">
           <tr>
             <th colspan="2">Angaben zum Tatbestand § 51 Abs.1 Satz 2 SGB XI</th>
           </tr>
           <tr>
             <td>
-              <span v-if="errorMessages.aufforderungsdatum" class="error-message">{{
-                  errorMessages.aufforderungsdatum
-                }}</span>
-              <label v-else for="aufforderungsdatum" class="field-label">Aufforderungsdatum*</label>
-              <input type="date" id="aufforderungsdatum" v-model="aufforderungsdatum" @change="validateData"
-                     :class="{ 'error-border': errorMessages.aufforderungsdatum }">
+              <label for="aufforderungsdatum" class="field-label">Aufforderungsdatum*</label>
+              <input 
+                type="date"
+                id="aufforderungsdatum"
+                required
+                v-model="aufforderungsdatum"
+                @focusout="validateData('aufforderungsdatum')"
+                :class="{ 'error-border': errorMessages.aufforderungsdatum }"
+              >
+              <div class="error-container" v-if="errorMessages.aufforderungsdatum">
+                <span class="error-message">{{ errorMessages.aufforderungsdatum }}</span>
+              </div>
             </td>
             <td>
-              <span v-if="errorMessages.beginnRueckstand" class="error-message">{{
-                  errorMessages.beginnRueckstand
-                }}</span>
-              <label v-else for="beginn-rückstand" class="field-label">Beginn Rückstand*</label>
-              <input type="date" id="beginn-rückstand" v-model="beginnRueckstand" @change="validateData"
-                     :class="{ 'error-border': errorMessages.beginnRueckstand }">
+              <label for="beginn-rückstand" class="field-label">Beginn Rückstand*</label>
+              <input
+                type="date"
+                id="beginn-rückstand"
+                required
+                v-model="beginnRueckstand"
+                @focusout="validateData('beginnRueckstand')"
+                :class="{ 'error-border': errorMessages.beginnRueckstand }"
+              >
+              <div class="error-container" v-if="errorMessages.beginnRueckstand">
+                <span class="error-message">{{ errorMessages.beginnRueckstand }}</span>
+              </div>
             </td>
           </tr>
           <tr>
             <td>
               <label for="verzug-bis" class="field-label">Verzug bis</label>
-              <input type="text" id="verzug-bis" class="readonly-field" v-model="formattedVerzugBis" readonly>
+              <input
+                type="text"
+                id="verzug-bis"
+                required
+                v-model="formattedVerzugBis"
+                class="readonly-field"
+                readonly
+              >
             </td>
             <td>
-              <span v-if="errorMessages.verzugsende" class="error-message">{{ errorMessages.verzugsende }}</span>
-              <label v-else for="verzugsende" class="field-label">Verzugsende*</label>
-              <input type="date" id="verzugsende" v-model="verzugsende" @change="validateData"
-                     :class="{ 'error-border': errorMessages.verzugsende }">
+              <label for="verzugsende" class="field-label">Verzugsende*</label>
+              <input
+                type="date"
+                id="verzugsende"
+                required
+                v-model="verzugsende"
+                @focusout="validateData('verzugsende')"
+                :class="{ 'error-border': errorMessages.verzugsende }"
+              >
+              <div class="error-container" v-if="errorMessages.verzugsende">
+                <span class="error-message">{{ errorMessages.verzugsende }}</span>
+              </div>
             </td>
           </tr>
           <tr>
@@ -163,12 +346,18 @@
               <div class="input-euro-wrapper">
                 <input
                   type="number"
-                  min="0"
                   id="beitragsrueckstand"
+                  required
                   v-model="beitragsrueckstand"
+                  @focusout="validateData('beitragsrueckstand')"
                   placeholder="Beitragsrückstand"
+                  min="0"
+                  :class="{ 'error-border': errorMessages.beitragsrueckstand }"
                 >
                 <span class="euro-symbol">€</span>
+              </div>
+              <div class="error-container" v-if="errorMessages.beitragsrueckstand">
+                <span class="error-message">{{ errorMessages.beitragsrueckstand }}</span>
               </div>
             </td>
             <td>
@@ -176,53 +365,85 @@
               <div class="input-euro-wrapper">
                 <input
                   type="number"
-                  min="0"
                   id="sollbeitrag"
+                  required
+                  @focusout="validateData('sollbeitrag')"
                   v-model="sollbeitrag"
                   placeholder="Sollbeitrag"
+                  min="0"
+                  :class="{ 'error-border': errorMessages.sollbeitrag }"
                 >
                 <span class="euro-symbol">€</span>
+              </div>
+              <div class="error-container" v-if="errorMessages.sollbeitrag">
+                <span class="error-message">{{ errorMessages.sollbeitrag }}</span>
               </div>
             </td>
           </tr>
           <tr>
             <td colspan="1">
               <label for="folgemeldung" class="field-label">Folgemeldung*</label>
-              <input type="number" min="1" id="folgemeldung" v-model="folgemeldung" placeholder="Folgemeldung"
-                     @change="validateData">
+              <input
+                type="number"
+                id="folgemeldung"
+                required
+                v-model="folgemeldung"
+                @focusout="validateData('folgemeldung')"
+                placeholder="Folgemeldung"
+                min="1"
+                :class="{ 'error-border': errorMessages.folgemeldung }"
+              >
+              <div class="error-container" v-if="errorMessages.folgemeldung">
+                <span class="error-message">{{ errorMessages.folgemeldung }}</span>
+              </div>
             </td>
           </tr>
         </table>
 
-        <table class="additional-table">
+        <table id="additional-table">
           <tr>
             <th>Weitere Angaben</th>
           </tr>
           <tr>
-            <td><textarea type="text" id="bemerkungen" placeholder="Bemerkungen" v-model="bemerkungen"></textarea></td>
+            <td>
+              <textarea
+                type="text"
+                id="bemerkungen"
+                v-model="bemerkungen"
+                placeholder="Bemerkungen"
+              ></textarea>
+            </td>
           </tr>
         </table>
 
-        <table class="documents-table">
+        <table id="documents-table">
           <tr>
             <th>Dokumente</th>
           </tr>
           <tr>
             <td>
               <label for="anhoehrungsdatum" class="field-label">Anhörungsdatum</label>
-              <input type="date" id="anhoerungsdatum" v-model="anhoerungsdatum">
+              <input
+                type="date"
+                id="anhoerungsdatum"
+                v-model="anhoerungsdatum"
+              >
             </td>
           </tr>
         </table>
 
         <div id="submit-and-response">
-          <button class="form-button" id="cancel-button" type="button" @click="handleCancel" aria-label="cancel-button">
-            Abbrechen
-          </button>
-          <button class="form-button" id="submit-button" :disabled="hasErrors" aria-label="send-button">{{
-              sendMode
-            }}
-          </button>
+          <button
+            id="cancel-button"
+            type="button"
+            @click="handleCancel"
+            aria-label="cancel-button"
+          >Abbrechen</button>
+          <button
+            id="submit-button"
+            :disabled="hasErrors"
+            aria-label="send-button"
+          >{{ sendMode }}</button>
           <p id="response">{{ responseMessage }}</p>
         </div>
       </form>
@@ -290,38 +511,145 @@ export default {
         this.verzugBis = date.toISOString().substring(0, 10)
       }
     },
-    validateData() {
+    validateData(fieldName) {
+      //TODO: Wir können das hier noch rausnehmen, ist für die UX besser
+      // zeigt sozusagen immer nur 1 Fehler für das jweilige Feld an und alle anderen weren gelöscht
       this.errorMessages = {}
-      if (this.meldedatum && new Date(this.meldedatum) > new Date()) {
-        this.errorMessages.meldedatum = 'Meldedatum muss in der Vergangenheit liegen.'
-      }
-      if (this.beginnVersicherung && new Date(this.beginnVersicherung) > new Date()) {
-        this.errorMessages.beginnVersicherung = 'Beginn Versicherung muss in der Vergangenheit liegen.'
-      }
-      if (this.geburtsdatum && new Date(this.geburtsdatum) > new Date()) {
-        this.errorMessages.geburtsdatum = 'Geburtsdatum muss in der Vergangenheit liegen.'
-      }
-      if (this.aufforderungsdatum && new Date(this.aufforderungsdatum) > new Date()) {
-        this.errorMessages.aufforderungsdatum = 'Aufforderungsdatum muss in der Vergangenheit liegen.'
-      }
-      if (this.beginnRueckstand && new Date(this.beginnRueckstand) > new Date()) {
-        this.errorMessages.beginnRueckstand = 'Beginn Rückstand muss in der Vergangenheit liegen.'
-      }
-      if (this.beginnRueckstand && new Date(this.beginnRueckstand).getDate() !== 1) {
-        this.errorMessages.beginnRueckstand = 'Beginn Rückstand muss am Monatsanfang liegen.'
-      }
-      if (this.beginnRueckstand > this.aufforderungsdatum || this.beginnRueckstand === this.aufforderungsdatum && this.beginnRueckstand !== "") {
-        this.errorMessages.beginnRueckstand = 'Beginn Rückstand muss vor dem Aufforderungsdatum liegen.'
-      }
-      if (this.verzugsende && new Date(this.verzugsende) > new Date()) {
-        this.errorMessages.verzugsende = 'Verzugsende muss in der Vergangenheit liegen.'
-      }
-      if (this.folgemeldung < 1) {
-        this.errorMessages.folgemeldung = 'Es muss mindestens eine Folgemeldung existieren.'
-      }
-      if (this.geschlecht === "0") {
-        this.errorMessages.geschlecht = 'Bitte wählen Sie ein Geschlecht.'
-        this.geschlecht = "" // reset to default value
+
+      const currDate = new Date()
+
+      switch(fieldName) {
+        case 'fallnummer':
+          if (!this.fallnummer) {
+            this.errorMessages.fallnummer = 'Bitte geben Sie die Fallnummer ein.'
+          }
+          break
+        case 'meldedatum':
+          if (!this.meldedatum)
+            this.errorMessages.meldedatum = 'Bitte geben Sie das Meldedatum ein.'
+          if (new Date(this.meldedatum) > currDate)
+            this.errorMessages.meldedatum = 'Das Meldedatum darf nicht in der Zukunft liegen.'
+          break
+        case 'vuNr':
+          if (!this.versicherungsunternehmensnummer) {
+            this.errorMessages.vuNr = 'Bitte geben Sie die Versicherungsunternehmensnummer an.'
+          }
+          break
+        case 'krankenversicherung':
+          if (!this.krankenversicherung) {
+            this.errorMessages.krankenversicherung = 'Bitte geben Sie eine Krankenversicherung an.'
+          }
+          break
+        case 'versicherungsnummer':
+          if (!this.versicherungsnummer) {
+            this.errorMessages.versicherungsnummer = 'Bitte geben Sie die Versicherungsnummer an.'
+          }
+          break
+        case 'beginnVersicherung':
+          if (!this.beginnVersicherung) {
+            this.errorMessages.beginnVersicherung = 'Bitte geben Sie den Beginn der Versicherung an.'
+          }
+          if (new Date(this.beginnVersicherung) > currDate) {
+            this.errorMessages.beginnVersicherung = 'Der Beginn der Versicherung darf nicht in der Zukunft liegen.'
+          }
+          break
+        case 'geschlecht':
+          if (!this.geschlecht || this.geschlecht === '0') {
+            this.errorMessages.geschlecht = 'Bitte geben Sie das Geschlecht an.'
+          }
+          break
+        case 'geburtsdatum':
+          if (!this.geburtsdatum) {
+            this.errorMessages.geburtsdatum = 'Bitte geben Sie das Geburtsdatum an.'
+          }
+          if (new Date(this.geburtsdatum) > currDate) {
+            this.errorMessages.geburtsdatum = 'Das Geburtsdatum darf nicht in der Zukunft liegen.'
+          }
+          break
+        case 'vorname':
+          if (!this.vorname) {
+            this.errorMessages.vorname = 'Bitte geben Sie den Vornamen an.'
+          }
+          break
+        case 'nachname':
+          if (!this.nachname) {
+            this.errorMessages.nachname = 'Bitte geben Sie den Nachnamen an.'
+          }
+          break
+        case 'str':
+          if (!this.str) {
+            this.errorMessages.str = 'Bitte geben Sie die Straße an.'
+          }
+          break
+        case 'hausnummer':
+          if (!this.hausnummer) {
+            this.errorMessages.hausnummer = 'Bitte geben Sie die Hausnummer an.'
+          }
+          break
+        case 'plz':
+          if (!this.plz) {
+            this.errorMessages.plz = 'Bitte geben Sie die PLZ an.'
+          }
+          break
+        case 'wohnort':
+          if (!this.wohnort) {
+            this.errorMessages.wohnort = 'Bitte geben Sie den Wohnort an.'
+          }
+          break
+        case 'aufforderungsdatum':
+          if (!this.aufforderungsdatum) {
+            this.errorMessages.aufforderungsdatum = 'Bitte geben Sie das Aufforderungsdatum an.'
+            break
+          }
+          if (new Date(this.aufforderungsdatum) > currDate) {
+            this.errorMessages.aufforderungsdatum = 'Das Aufforderungsdatum darf nicht in der Zukunft liegen.'
+          }
+          break
+        case 'beginnRueckstand':
+          if (!this.beginnRueckstand) {
+            this.errorMessages.beginnRueckstand = 'Bitte geben Sie den Beginn des Rückstands an.'
+            break
+          }
+          const bR = new Date(this.beginnRueckstand)
+          if (bR > currDate) {
+            this.errorMessages.beginnRueckstand = 'Das Beginndatum des Rückstands darf nicht in der Zukunft liegen.'
+          }
+          if (new Date(bR.getDate() !== 1)) {
+            this.errorMessages.beginnRueckstand = 'Beginn Rückstand muss am Monatsanfang liegen.'
+          }
+          if (new Date(this.beginnRueckstand > new Date(this.aufforderungsdatum))) {
+            this.errorMessages.beginnRueckstand = 'Beginn Rückstand muss vor dem Aufforderungsdatum liegen.'
+          }
+          break
+        case 'verzugsende':
+          if (!this.verzugsende) {
+            this.errorMessages.verzugsende = 'Bitte geben Sie das Verzugsende an.'
+            break
+          }
+          if (new Date(this.verzugsende) > currDate) {
+            this.errorMessages.verzugsende = 'Das Verzugsende darf nicht in der Zukunft liegen.'
+          }
+          break
+        case 'beitragsrueckstand':
+          if (!this.beitragsrueckstand) {
+            this.errorMessages.beitragsrueckstand = 'Bitte geben Sie den Beitragsrückstand an.'
+          }
+          break
+        case 'sollbeitrag':
+          if (!this.sollbeitrag) {
+            this.errorMessages.sollbeitrag = 'Bitte geben Sie den Sollbeitrag an.'
+          }
+          break
+        case 'folgemeldung':
+          if (!this.folgemeldung) {
+            this.errorMessages.folgemeldung = 'Bitte geben Sie die Folgemeldung an.'
+          }
+          if (this.folgemeldung < 1) {
+            this.errorMessages.folgemeldung = 'Es muss mindestens eine Folgemeldung existieren.'
+          }
+          break
+        default:
+          break
       }
     },
     async handleSubmit() {
@@ -391,7 +719,7 @@ export default {
 </script>
 
 <style scoped>
-#container {
+#input-form-container {
   background: #fdfdfd;
   width: 100%;
   min-height: 520px;
@@ -453,7 +781,8 @@ input, .readonly-field {
 
 table {
   margin-bottom: 18px;
-  width: 100%;
+  width: 650px;
+  table-layout: fixed;
 }
 
 th, td {
@@ -515,15 +844,22 @@ input[type="number"]::-webkit-inner-spin-button {
   font-weight: normal;
 }
 
-.field-label, .error-message {
+.field-label {
   font-size: 14px;
-  margin-top: -15px;
   margin-bottom: 15px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.error-container {
+  width: 100%;
+  margin-top: 5px;
+}
+
 .error-message {
   color: red;
+  font-size: 12px;
+  word-wrap: break-word;
+  display: block;
 }
 
 .error-border {
