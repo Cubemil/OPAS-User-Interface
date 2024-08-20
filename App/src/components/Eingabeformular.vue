@@ -441,7 +441,6 @@
           >Abbrechen</button>
           <button
             id="submit-button"
-            :disabled="hasErrors"
             aria-label="send-button"
           >{{ sendMode }}</button>
           <p id="response">{{ responseMessage }}</p>
@@ -462,7 +461,7 @@ export default {
   data() {
     return {
       fallnummer: this.initialData.fallnummer || '',
-      meldedatum: this.formatDate(this.initialData.beginnVersicherung) || '',
+      meldedatum: this.formatDate(this.initialData.meldedatum) || '',
       versicherungsunternehmensnummer: this.initialData.versicherungsunternehmensnummer || '',
       krankenversicherung: this.initialData.krankenversicherung || '',
       versicherungsnummer: this.initialData.versicherungsnummer || '',
@@ -514,7 +513,7 @@ export default {
     validateData(fieldName) {
       //TODO: Wir können das hier noch rausnehmen, ist für die UX besser
       // zeigt sozusagen immer nur 1 Fehler für das jweilige Feld an und alle anderen weren gelöscht
-      this.errorMessages = {}
+      this.errorMessages[fieldName] = ''
 
       const currDate = new Date()
 
@@ -614,10 +613,10 @@ export default {
           if (bR > currDate) {
             this.errorMessages.beginnRueckstand = 'Das Beginndatum des Rückstands darf nicht in der Zukunft liegen.'
           }
-          if (new Date(bR.getDate() !== 1)) {
+          if (bR.getDate() !== 1) {
             this.errorMessages.beginnRueckstand = 'Beginn Rückstand muss am Monatsanfang liegen.'
           }
-          if (new Date(this.beginnRueckstand > new Date(this.aufforderungsdatum))) {
+          if (new Date(this.beginnRueckstand) > new Date(this.aufforderungsdatum)) {
             this.errorMessages.beginnRueckstand = 'Beginn Rückstand muss vor dem Aufforderungsdatum liegen.'
           }
           break
@@ -652,11 +651,45 @@ export default {
           break
       }
     },
+    validateAllData() {
+      const fieldsToValidate = [
+        'fallnummer',
+        'meldedatum',
+        'vuNr',
+        'krankenversicherung',
+        'versicherungsnummer',
+        'beginnVersicherung',
+        'geschlecht',
+        'geburtsdatum',
+        'vorname',
+        'nachname',
+        'str',
+        'hausnummer',
+        'plz',
+        'wohnort',
+        'aufforderungsdatum',
+        'beginnRueckstand',
+        'verzugsende',
+        'beitragsrueckstand',
+        'sollbeitrag',
+        'folgemeldung'
+      ]
+      
+      fieldsToValidate.forEach(field => this.validateData(field))
+    },
     async handleSubmit() {
-      this.validateData();
-      if (Object.keys(this.errorMessages).length > 0 || this.isSubmitting) return
+      // prevent multiple submissions
+      if (this.isSubmitting) return
+      this.isSubmitting = true
 
-      this.isSubmitting = true // prevent multiple submissions
+      // check all fields
+      this.validateAllData()
+
+      // if there are any errors, return
+      if (Object.keys(this.errorMessages).length > 0 && Object.values(this.errorMessages).some(msg => msg !== '')) {
+        this.isSubmitting = false
+        return
+      }
 
       const formData = {
         fallnummer: this.fallnummer,
