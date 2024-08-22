@@ -23,10 +23,10 @@ export default {
   methods: {
     async handleSubmit(formData) {
       if (this.isSubmitting) return
-      
       this.isSubmitting = true
-      
+
       try {
+
         const response = await fetch('http://localhost:5000/api/offense', {
           method: 'POST',
           headers: {

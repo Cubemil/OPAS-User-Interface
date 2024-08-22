@@ -10,13 +10,13 @@
             <td>
               <label for="fallnummer" class="field-label">Fallnummer*</label>
               <input
-                type="text"
-                id="fallnummer"
-                required
-                @focusout="validateData('fallnummer')"
-                v-model="fallnummer"
-                placeholder="Fallnummer"
-                :class="{ 'error-border': errorMessages.fallnummer }"
+                  type="text"
+                  id="fallnummer"
+                  required
+                  @focusout="validateData('fallnummer')"
+                  v-model="fallnummer"
+                  placeholder="Fallnummer"
+                  :class="{ 'error-border': errorMessages.fallnummer }"
               >
               <div class="error-container" v-if="errorMessages.fallnummer">
                 <span class="error-message">{{ errorMessages.fallnummer }}</span>
@@ -25,12 +25,12 @@
             <td>
               <label for="meldedatum" class="field-label">Meldedatum*</label>
               <input
-                type="date"
-                id="meldedatum"
-                required
-                @focusout="validateData('meldedatum')"
-                v-model="meldedatum"
-                :class="{ 'error-border': errorMessages.meldedatum }"
+                  type="date"
+                  id="meldedatum"
+                  required
+                  @focusout="validateData('meldedatum')"
+                  v-model="meldedatum"
+                  :class="{ 'error-border': errorMessages.meldedatum }"
               >
               <div class="error-container" v-if="errorMessages.meldedatum">
                 <span class="error-message">{{ errorMessages.meldedatum }}</span>
@@ -47,13 +47,13 @@
             <td>
               <label for="vu-nr" class="field-label">VU-Nr.*</label>
               <input
-                type="text"
-                id="vu-nr"
-                required
-                @focusout="validateData('vuNr')"
-                v-model="versicherungsunternehmensnummer"
-                placeholder="VU-Nr."
-                :class="{ 'error-border': errorMessages.vuNr }"
+                  type="text"
+                  id="vu-nr"
+                  required
+                  @focusout="validateData('vuNr')"
+                  v-model="versicherungsunternehmensnummer"
+                  placeholder="VU-Nr."
+                  :class="{ 'error-border': errorMessages.vuNr }"
               >
               <div class="error-container" v-if="errorMessages.vuNr">
                 <span class="error-message">{{ errorMessages.vuNr }}</span>
@@ -62,13 +62,13 @@
             <td>
               <label for="krankenversicherung" class="field-label">Krankenversicherung*</label>
               <input
-                type="text"
-                id="krankenversicherung"
-                required
-                @focusout="validateData('krankenversicherung')"
-                v-model="krankenversicherung"
-                placeholder="Krankenversicherung"
-                :class="{ 'error-border': errorMessages.krankenversicherung }"
+                  type="text"
+                  id="krankenversicherung"
+                  required
+                  @focusout="validateData('krankenversicherung')"
+                  v-model="krankenversicherung"
+                  placeholder="Krankenversicherung"
+                  :class="{ 'error-border': errorMessages.krankenversicherung }"
               >
               <div class="error-container" v-if="errorMessages.krankenversicherung">
                 <span class="error-message">{{ errorMessages.krankenversicherung }}</span>
@@ -79,12 +79,12 @@
             <td>
               <label for="versicherungsnummer" class="field-label">Versicherungsnummer*</label>
               <input
-                type="text"
-                id="versicherungsnummer"
-                required
-                v-model="versicherungsnummer"
-                placeholder="Versicherungsnummer"
-                :class="{ 'error-border': errorMessages.versicherungsnummer }"
+                  type="text"
+                  id="versicherungsnummer"
+                  required
+                  v-model="versicherungsnummer"
+                  placeholder="Versicherungsnummer"
+                  :class="{ 'error-border': errorMessages.versicherungsnummer }"
               >
               <div class="error-container" v-if="errorMessages.versicherungsnummer">
                 <span class="error-message">{{ errorMessages.versicherungsnummer }}</span>
@@ -93,10 +93,10 @@
             <td>
               <label for="beginn-versicherung" class="field-label">Beginn Versicherung*</label>
               <input
-                type="date"
-                id="beginn-versicherung"
-                required
-                v-model="beginnVersicherung"
+                  type="date"
+                  id="beginn-versicherung"
+                  required
+                  v-model="beginnVersicherung"
               >
               <div class="error-container" v-if="errorMessages.beginnVersicherung">
                 <span class="error-message">{{ errorMessages.beginnVersicherung }}</span>
@@ -113,11 +113,11 @@
             <td>
               <label for="geschlecht" class="field-label">Geschlecht*</label>
               <select
-                id="geschlecht"
-                required
-                v-model="geschlecht"
-                @focusout="validateData('geschlecht')"
-                :class="{ 'error-border': errorMessages.geschlecht }"
+                  id="geschlecht"
+                  required
+                  v-model="geschlecht"
+                  @focusout="validateData('geschlecht')"
+                  :class="{ 'error-border': errorMessages.geschlecht }"
               >
                 <option value="" ref="empty" disabled selected hidden>Geschlecht</option>
                 <option value="0" ref="no-declaration">keine Angabe</option>
@@ -132,21 +132,21 @@
             <td>
               <label for="titel" class="field-label">Titel</label>
               <input
-                type="text"
-                id="titel"
-                v-model="titel"
-                placeholder="Titel"
+                  type="text"
+                  id="titel"
+                  v-model="titel"
+                  placeholder="Titel"
               >
             </td>
             <td>
               <label for="geburtsdatum" class="field-label">Geburtsdatum*</label>
               <input
-                type="date"
-                id="geburtsdatum"
-                required
-                @focusout="validateData('geburtsdatum')"
-                v-model="geburtsdatum"
-                :class="{ 'error-border': errorMessages.geburtsdatum }"
+                  type="date"
+                  id="geburtsdatum"
+                  required
+                  @focusout="validateData('geburtsdatum')"
+                  v-model="geburtsdatum"
+                  :class="{ 'error-border': errorMessages.geburtsdatum }"
               >
               <div class="error-container" v-if="errorMessages.geburtsdatum">
                 <span class="error-message">{{ errorMessages.geburtsdatum }}</span>
@@ -157,13 +157,13 @@
             <td>
               <label for="vorname" class="field-label">Vorname*</label>
               <input
-                type="text"
-                id="vorname"
-                required
-                v-model="vorname"
-                @focusout="validateData('vorname')"
-                placeholder="Vorname"
-                :class="{ 'error-border': errorMessages.vorname }"
+                  type="text"
+                  id="vorname"
+                  required
+                  v-model="vorname"
+                  @focusout="validateData('vorname')"
+                  placeholder="Vorname"
+                  :class="{ 'error-border': errorMessages.vorname }"
               >
               <div class="error-container" v-if="errorMessages.vorname">
                 <span class="error-message">{{ errorMessages.vorname }}</span>
@@ -172,13 +172,13 @@
             <td>
               <label for="nachname" class="field-label">Nachname*</label>
               <input
-                type="text"
-                id="nachname"
-                required
-                v-model="nachname"
-                @focusout="validateData('nachname')"
-                placeholder="Nachname"
-                :class="{ 'error-border': errorMessages.nachname }"
+                  type="text"
+                  id="nachname"
+                  required
+                  v-model="nachname"
+                  @focusout="validateData('nachname')"
+                  placeholder="Nachname"
+                  :class="{ 'error-border': errorMessages.nachname }"
               >
               <div class="error-container" v-if="errorMessages.nachname">
                 <span class="error-message">{{ errorMessages.nachname }}</span>
@@ -187,10 +187,10 @@
             <td>
               <label for="geburtsname" class="field-label">Geburtsname</label>
               <input
-                type="text"
-                id="geburtsname"
-                v-model="geburtsname"
-                placeholder="Geburtsname"
+                  type="text"
+                  id="geburtsname"
+                  v-model="geburtsname"
+                  placeholder="Geburtsname"
               >
             </td>
           </tr>
@@ -198,13 +198,13 @@
             <td colspan="2">
               <label for="str" class="field-label">Straße*</label>
               <input
-                type="text"
-                id="str"
-                required
-                @focusout="validateData('str')"
-                v-model="str"
-                placeholder="Straße"
-                :class="{ 'error-border': errorMessages.str }"
+                  type="text"
+                  id="str"
+                  required
+                  @focusout="validateData('str')"
+                  v-model="str"
+                  placeholder="Straße"
+                  :class="{ 'error-border': errorMessages.str }"
               >
               <div class="error-container" v-if="errorMessages.str">
                 <span class="error-message">{{ errorMessages.str }}</span>
@@ -213,13 +213,13 @@
             <td>
               <label for="hausnummer" class="field-label">Hausnummer*</label>
               <input
-                type="text"
-                id="hausnummer"
-                required
-                @focusout="validateData('hausnummer')"
-                v-model="hausnummer"
-                placeholder="Hausnummer"
-                :class="{ 'error-border': errorMessages.hausnummer }"
+                  type="text"
+                  id="hausnummer"
+                  required
+                  @focusout="validateData('hausnummer')"
+                  v-model="hausnummer"
+                  placeholder="Hausnummer"
+                  :class="{ 'error-border': errorMessages.hausnummer }"
               >
               <div class="error-container" v-if="errorMessages.hausnummer">
                 <span class="error-message">{{ errorMessages.hausnummer }}</span>
@@ -229,14 +229,14 @@
           <tr>
             <td>
               <label for="plz" class="field-label">PLZ*</label>
-              <input 
-                type="text"
-                id="plz"
-                required
-                @focusout="validateData('plz')"
-                v-model="plz"
-                placeholder="PLZ"
-                :class="{ 'error-border': errorMessages.plz }"
+              <input
+                  type="text"
+                  id="plz"
+                  required
+                  @focusout="validateData('plz')"
+                  v-model="plz"
+                  placeholder="PLZ"
+                  :class="{ 'error-border': errorMessages.plz }"
               >
               <div class="error-container" v-if="errorMessages.plz">
                 <span class="error-message">{{ errorMessages.plz }}</span>
@@ -244,14 +244,14 @@
             </td>
             <td colspan="2">
               <label for="wohnort" class="field-label">Wohnort*</label>
-              <input 
-                type="text" 
-                id="wohnort"
-                required
-                @focusout="validateData('wohnort')"
-                v-model="wohnort" 
-                placeholder="Wohnort"
-                :class="{ 'error-border': errorMessages.wohnort }"
+              <input
+                  type="text"
+                  id="wohnort"
+                  required
+                  @focusout="validateData('wohnort')"
+                  v-model="wohnort"
+                  placeholder="Wohnort"
+                  :class="{ 'error-border': errorMessages.wohnort }"
               >
             </td>
           </tr>
@@ -259,10 +259,10 @@
             <td colspan="2">
               <label for="ortsteil" class="field-label">Ortsteil</label>
               <input
-                type="text"
-                id="ortsteil"
-                v-model="ortsteil"
-                placeholder="Ortsteil"
+                  type="text"
+                  id="ortsteil"
+                  v-model="ortsteil"
+                  placeholder="Ortsteil"
               >
             </td>
           </tr>
@@ -270,10 +270,10 @@
             <td colspan="2">
               <label for="geburtsort" class="field-label">Geburtsort</label>
               <input
-                type="text"
-                id="geburtsort"
-                v-model="geburtsort"
-                placeholder="Geburtsort"
+                  type="text"
+                  id="geburtsort"
+                  v-model="geburtsort"
+                  placeholder="Geburtsort"
               >
             </td>
           </tr>
@@ -286,13 +286,13 @@
           <tr>
             <td>
               <label for="aufforderungsdatum" class="field-label">Aufforderungsdatum*</label>
-              <input 
-                type="date"
-                id="aufforderungsdatum"
-                required
-                v-model="aufforderungsdatum"
-                @focusout="validateData('aufforderungsdatum')"
-                :class="{ 'error-border': errorMessages.aufforderungsdatum }"
+              <input
+                  type="date"
+                  id="aufforderungsdatum"
+                  required
+                  v-model="aufforderungsdatum"
+                  @focusout="validateData('aufforderungsdatum')"
+                  :class="{ 'error-border': errorMessages.aufforderungsdatum }"
               >
               <div class="error-container" v-if="errorMessages.aufforderungsdatum">
                 <span class="error-message">{{ errorMessages.aufforderungsdatum }}</span>
@@ -301,12 +301,12 @@
             <td>
               <label for="beginn-rückstand" class="field-label">Beginn Rückstand*</label>
               <input
-                type="date"
-                id="beginn-rückstand"
-                required
-                v-model="beginnRueckstand"
-                @focusout="validateData('beginnRueckstand')"
-                :class="{ 'error-border': errorMessages.beginnRueckstand }"
+                  type="month"
+                  id="beginn-rückstand"
+                  required
+                  v-model="beginnRueckstand"
+                  @focusout="validateData('beginnRueckstand')"
+                  :class="{ 'error-border': errorMessages.beginnRueckstand }"
               >
               <div class="error-container" v-if="errorMessages.beginnRueckstand">
                 <span class="error-message">{{ errorMessages.beginnRueckstand }}</span>
@@ -317,23 +317,23 @@
             <td>
               <label for="verzug-bis" class="field-label">Verzug bis</label>
               <input
-                type="text"
-                id="verzug-bis"
-                required
-                v-model="formattedVerzugBis"
-                class="readonly-field"
-                readonly
+                  type="text"
+                  id="verzug-bis"
+                  required
+                  v-model="formattedVerzugBis"
+                  class="readonly-field"
+                  readonly
               >
             </td>
             <td>
               <label for="verzugsende" class="field-label">Verzugsende*</label>
               <input
-                type="date"
-                id="verzugsende"
-                required
-                v-model="verzugsende"
-                @focusout="validateData('verzugsende')"
-                :class="{ 'error-border': errorMessages.verzugsende }"
+                  type="date"
+                  id="verzugsende"
+                  required
+                  v-model="verzugsende"
+                  @focusout="validateData('verzugsende')"
+                  :class="{ 'error-border': errorMessages.verzugsende }"
               >
               <div class="error-container" v-if="errorMessages.verzugsende">
                 <span class="error-message">{{ errorMessages.verzugsende }}</span>
@@ -345,14 +345,14 @@
               <label for="beitragsrueckstand" class="field-label">Beitragsrückstand*</label>
               <div class="input-euro-wrapper">
                 <input
-                  type="number"
-                  id="beitragsrueckstand"
-                  required
-                  v-model="beitragsrueckstand"
-                  @focusout="validateData('beitragsrueckstand')"
-                  placeholder="Beitragsrückstand"
-                  min="0"
-                  :class="{ 'error-border': errorMessages.beitragsrueckstand }"
+                    type="number"
+                    id="beitragsrueckstand"
+                    required
+                    v-model="beitragsrueckstand"
+                    @focusout="validateData('beitragsrueckstand')"
+                    placeholder="Beitragsrückstand"
+                    min="0"
+                    :class="{ 'error-border': errorMessages.beitragsrueckstand }"
                 >
                 <span class="euro-symbol">€</span>
               </div>
@@ -364,14 +364,14 @@
               <label for="sollbeitrag" class="field-label">Sollbeitrag*</label>
               <div class="input-euro-wrapper">
                 <input
-                  type="number"
-                  id="sollbeitrag"
-                  required
-                  @focusout="validateData('sollbeitrag')"
-                  v-model="sollbeitrag"
-                  placeholder="Sollbeitrag"
-                  min="0"
-                  :class="{ 'error-border': errorMessages.sollbeitrag }"
+                    type="number"
+                    id="sollbeitrag"
+                    required
+                    @focusout="validateData('sollbeitrag')"
+                    v-model="sollbeitrag"
+                    placeholder="Sollbeitrag"
+                    min="0"
+                    :class="{ 'error-border': errorMessages.sollbeitrag }"
                 >
                 <span class="euro-symbol">€</span>
               </div>
@@ -384,14 +384,14 @@
             <td colspan="1">
               <label for="folgemeldung" class="field-label">Folgemeldung*</label>
               <input
-                type="number"
-                id="folgemeldung"
-                required
-                v-model="folgemeldung"
-                @focusout="validateData('folgemeldung')"
-                placeholder="Folgemeldung"
-                min="1"
-                :class="{ 'error-border': errorMessages.folgemeldung }"
+                  type="number"
+                  id="folgemeldung"
+                  required
+                  v-model="folgemeldung"
+                  @focusout="validateData('folgemeldung')"
+                  placeholder="Folgemeldung"
+                  min="1"
+                  :class="{ 'error-border': errorMessages.folgemeldung }"
               >
               <div class="error-container" v-if="errorMessages.folgemeldung">
                 <span class="error-message">{{ errorMessages.folgemeldung }}</span>
@@ -407,10 +407,10 @@
           <tr>
             <td>
               <textarea
-                type="text"
-                id="bemerkungen"
-                v-model="bemerkungen"
-                placeholder="Bemerkungen"
+                  type="text"
+                  id="bemerkungen"
+                  v-model="bemerkungen"
+                  placeholder="Bemerkungen"
               ></textarea>
             </td>
           </tr>
@@ -424,9 +424,9 @@
             <td>
               <label for="anhoehrungsdatum" class="field-label">Anhörungsdatum</label>
               <input
-                type="date"
-                id="anhoerungsdatum"
-                v-model="anhoerungsdatum"
+                  type="date"
+                  id="anhoerungsdatum"
+                  v-model="anhoerungsdatum"
               >
             </td>
           </tr>
@@ -434,15 +434,17 @@
 
         <div id="submit-and-response">
           <button
-            id="cancel-button"
-            type="button"
-            @click="handleCancel"
-            aria-label="cancel-button"
-          >Abbrechen</button>
+              id="cancel-button"
+              type="button"
+              @click="handleCancel"
+              aria-label="cancel-button"
+          >Abbrechen
+          </button>
           <button
-            id="submit-button"
-            aria-label="send-button"
-          >{{ sendMode }}</button>
+              id="submit-button"
+              aria-label="send-button"
+          >{{ sendMode }}
+          </button>
           <p id="response">{{ responseMessage }}</p>
         </div>
       </form>
@@ -479,7 +481,7 @@ export default {
       ortsteil: this.initialData.ortsteil || '',
       geburtsort: this.initialData.geburtsort || '',
       aufforderungsdatum: this.formatDate(this.initialData.aufforderungsdatum) || '',
-      beginnRueckstand: this.formatDate(this.initialData.beginnRueckstand) || '',
+      beginnRueckstand: this.convertToMonth(this.initialData.beginnRueckstand) || '',
       verzugBis: this.formatDate(this.initialData.verzugBis) || '',
       verzugsende: this.formatDate(this.initialData.verzugsende) || '',
       beitragsrueckstand: this.initialData.beitragsrueckstand || '',
@@ -510,14 +512,29 @@ export default {
         this.verzugBis = date.toISOString().substring(0, 10)
       }
     },
+    convertToMonth(dateString) {
+      if (!dateString) return ''
+      const date = new Date(dateString);
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Ensure two digits
+      return `${year}-${month}`;
+    },
+    convertToDate(dateString) {
+      if (!dateString) return ''
+      const date = new Date(dateString + '-01');
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Ensure two digits
+      const day = date.getDate().toString().padStart(2, '0'); // Ensure two digits
+      return `${year}-${month}-${day}`;
+    },
     validateData(fieldName) {
       //TODO: Wir können das hier noch rausnehmen, ist für die UX besser
-      // zeigt sozusagen immer nur 1 Fehler für das jweilige Feld an und alle anderen weren gelöscht
+      // zeigt sozusagen immer nur 1 Fehler für das jeweilige Feld an und alle anderen werden gelöscht
       this.errorMessages[fieldName] = ''
 
       const currDate = new Date()
 
-      switch(fieldName) {
+      switch (fieldName) {
         case 'fallnummer':
           if (!this.fallnummer) {
             this.errorMessages.fallnummer = 'Bitte geben Sie die Fallnummer ein.'
@@ -674,7 +691,7 @@ export default {
         'sollbeitrag',
         'folgemeldung'
       ]
-      
+
       fieldsToValidate.forEach(field => this.validateData(field))
     },
     async handleSubmit() {
@@ -711,7 +728,7 @@ export default {
         ortsteil: this.ortsteil,
         geburtsort: this.geburtsort,
         aufforderungsdatum: this.aufforderungsdatum,
-        beginnRueckstand: this.beginnRueckstand,
+        beginnRueckstand: this.convertToDate(this.beginnRueckstand),
         verzugBis: this.verzugBis,
         verzugsende: this.verzugsende,
         beitragsrueckstand: this.beitragsrueckstand,
