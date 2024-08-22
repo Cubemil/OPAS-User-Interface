@@ -796,7 +796,6 @@ select {
   font-size: 16px;
   font-family: Arial, serif;
   border: solid 1px #272727;
-
 }
 
 select:invalid {
