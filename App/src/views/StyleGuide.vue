@@ -49,17 +49,23 @@
         </tr>
         <tr>
           <td>Abschnittsüberschrift</td>
-          <td>#404040 (Grau)</td>
-          <td><h2 style="color: #404040;">Beispielüberschrift</h2></td>
+          <td>#222222 (Dunkelgrau)</td>
+          <td><h2 style="color: #222222;">Beispielüberschrift</h2></td>
+        </tr>
+        <tr>
+          <td>Tabellenüberschrift</td>
+          <td>#222222 (Dunkelgrau)</td>
+          <td>
+            <th style="color: #222222; border: none; padding: 0">Beispieltabellenüberschrift</th>
+          </td>
         </tr>
         <tr>
           <td>Links</td>
-          <td>#f1f1f0 (Hellgrau)</td>
+          <td>#8c898c (Mittelgrau)<br>Hover #222222 (Dunkelgrau)</td>
           <td>
             <ul class="nav-list">
               <li>
                 <router-link to="/styleguide" class="router-link">
-                  <div id="arrow-icon"></div>
                   Beispiellink
                 </router-link>
               </li>
@@ -191,7 +197,6 @@
             <ul class="nav-list">
               <li>
                 <router-link to="/styleguide" class="router-link">
-                  <div id="arrow-icon"></div>
                   Beispiellink
                 </router-link>
               </li>
@@ -209,6 +214,10 @@
 </template>
 
 <style scoped>
+#style-guide-container {
+  font-family: Arial, sans-serif;
+}
+
 #background {
   height: 100%;
   width: 100%;
@@ -315,37 +324,20 @@ button:hover {
   padding: 0;
 }
 
-#arrow-icon {
-  background-image: url("@/assets/arrow-right.png");
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  position: relative;
-  top: 5px;
-  transition: 0.3s;
-}
-
 .router-link {
   cursor: pointer;
   transition: 0.3s;
   text-decoration: none;
-  color: #404040;
+  color: #8c898c;
   font-weight: bold;
 }
 
-.router-link:hover #arrow-icon {
-  background-image: url("@/assets/arrow-right-hovered.png");
-}
-
 .router-link:hover {
-  color: #E8C325;
+  color: #222222;
 }
 
 *:disabled {
   background-color: #f1f1f0;
-
 }
 </style>
 <script setup lang="ts">
